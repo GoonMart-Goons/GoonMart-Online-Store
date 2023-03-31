@@ -213,3 +213,68 @@ nav button {
   font-weight: bold;
   margin-top: 10px;
 }
+
+/* Form pages styling */
+.Form, .loginForm, .registerForm{
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (min-width: 600px){
+  .Form{
+    padding: 5rem;
+    /*border: 1px solid rgb(57, 245, 57);
+    border-radius: 10px; */
+    margin: 0.5rem;
+
+  }
+}
+
+.Form{
+  padding: 5rem;
+ /* border: 1px solid rgb(57, 245, 57);
+  border-radius: 10px; */
+  margin: 0.5rem;
+
+  text-align: center;
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+}
+
+.form-label{
+  text-align: left;
+  padding: 0.25rem 0;
+}
+
+.form-input{
+  margin: 0.5rem 0;
+  padding: 1rem;
+  border: none;
+  border-radius: 10px;
+  background-color: rgb(212, 212, 212); 
+  color: black;
+}
+
+.form-btn{
+  border: none;
+  background-color: rgba(200, 255, 48, 0.952);
+  padding: 20px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.form-link-btn{
+  background: none;
+  color: black;
+  text-decoration: underline;
+  border: none;
+}
+
+.form-error{
+  font-size: small;
+  color: red;
+  text-align: left;
+}
