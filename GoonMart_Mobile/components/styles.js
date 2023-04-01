@@ -24,7 +24,7 @@ const {primary, secondary, tertiary, darkLight, brand, blue, red, grey} = Colour
 export const StyledContainer = styled.View`
     flex: 1;
     padding: 25px;
-    padding-top: ${StatusBarHeight + 10}px;
+    padding-top: ${StatusBarHeight + 30}px;
     background-color: ${secondary};
 `;
 export const InnerContainer = styled.View`
@@ -151,7 +151,7 @@ export const ButtonText = styled.Text`
 export const MsgBox = styled.Text`
     text-align: center;
     font-size: 13px;
-
+    color: ${props => props.type == "SUCCESS" ? tertiary : red}
 `;
 
 export const Line = styled.View`

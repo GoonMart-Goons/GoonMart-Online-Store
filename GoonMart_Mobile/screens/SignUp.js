@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import { StatusBar } from 'expo-status-bar';
+import {Alert} from 'react-native';
 
 
 import {Formik} from 'formik';
@@ -27,26 +28,40 @@ import{
     TextLinkContent
 } from './../components/styles'
 
+import KeyboardAvoidingWrapper from '../components/KeyboardAvoidingWrapper';
 
 import{Octicons, Ionicons, Fontisto} from '@expo/vector-icons';
 import {View} from 'react-native';
 
 const {brand, primary, secondary, tertiary, darkLight} = Colours;
 
-const SignUp = () =>{
+const SignUp = ({navigation}) =>{
 
     const [hidePassword, setHidePassword] = useState(true);
 
     return(
+        //<KeyboardAvoidingWrapper>
         <StyledContainer>
-            <StatusBar style="dark" />
+            <StatusBar style="light" />
             <InnerContainer>
                 <PageTitle>GoonMart</PageTitle>
                 <SubTitle>Account Sign Up</SubTitle>
                 <Formik
                     initialValues={{email: '', password:'', firstName:'', surname:'', confirmPassword:''}}
                     onSubmit= {(values) =>{
-                        console.log(values)
+                        if(values.email=='' || values.password =='' || values.firstName ==''|| values.surname ==''|| values.confirmPassword ==''){
+                            Alert.alert('Please fill in all the fields');
+                           // handleMessage("Please fill in all the fields");
+                            //setSubmitting(false);
+                        }
+                        else if(values.password !==values.confirmPassword){
+                            Alert.alert('Please make sure your passwords are the same');
+                           // handleMessage("Please fill in all the fields");
+                            //setSubmitting(false);
+                        }
+                        else{
+                            navigation.navigate("Welcome");
+                        }
                     }}
                 >{({handleChange, handleBlur, handleSubmit, values}) => (<StyledFormArea>
                     <MyTextInput
@@ -106,21 +121,21 @@ const SignUp = () =>{
                     <MsgBox>...</MsgBox>
                     <StyledButton onPress={handleSubmit}>
                         <ButtonText>
-                            Login
+                            Sign up
                         </ButtonText>
                     </StyledButton>
                     <Line/>
                     <ExtraView>
                         <ExtraText>Have an account? </ExtraText>
-                        <TextLink>
+                        <TextLink onPress={() => navigation.navigate("Login")}>
                             <TextLinkContent>Login</TextLinkContent>
                         </TextLink>
                     </ExtraView>
-                    
                 </StyledFormArea>)}
                 </Formik>
             </InnerContainer>
         </StyledContainer>
+        //</KeyboardAvoidingWrapper> 
     );
 }
 
