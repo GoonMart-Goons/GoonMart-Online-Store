@@ -48,7 +48,7 @@ export default function Register() {
         setUserInfo(data);
         console.log(data);
         if (Object.keys(errors).length === 0) { // check if errors object is empty
-            navigate('/homepage'); // navigate to the HOME page
+            navigate('/'); // navigate to the HOME page
         }
     }
 
