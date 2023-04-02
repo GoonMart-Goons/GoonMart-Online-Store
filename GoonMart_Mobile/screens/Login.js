@@ -81,7 +81,7 @@ const Login = ({navigation}) =>{
                             //setSubmitting(false);
                         }
                         else{
-                            navigation.navigate("Welcome");
+                            navigation.navigate("HomeScreen");
                         }
                     }}
                 >{({handleChange, handleBlur, handleSubmit, values, isSubmitting}) => (<StyledFormArea>

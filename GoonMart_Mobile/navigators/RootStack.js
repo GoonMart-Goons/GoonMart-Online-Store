@@ -7,6 +7,7 @@ import { Colours } from '../components/styles';
 const {primary, tertiary} = Colours;
 import Login from './../screens/Login';
 import SignUp from './../screens/SignUp';
+import HomeScreen from '../screens/Homescreen2';
 import Welcome from './../screens/Welcome';
 
 const Stack = createNativeStackNavigator();
@@ -27,8 +28,9 @@ const RootStack = () =>{
                     }
 
                 }}
-                initialRouteName='Login'
+                initialRouteName='HomeScreen'
             >
+                <Stack.Screen name="HomeScreen" component={HomeScreen} options={{headerTintColor: primary}}/>
                 <Stack.Screen name="Login" component={Login} options={{headerTintColor: primary}}/>
                 <Stack.Screen name="SignUp" component={SignUp} options={{headerTintColor: primary}}/>
                 <Stack.Screen name="Welcome" component={Welcome} />
