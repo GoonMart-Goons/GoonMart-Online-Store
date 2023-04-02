@@ -4,6 +4,8 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router-dom";
 
+import { auth, db } from './config/Config'
+
 
 const validationSchema = yup.object().shape({
     name: yup
@@ -48,12 +50,34 @@ export default function Register() {
         setUserInfo(data);
         console.log(data);
         if (Object.keys(errors).length === 0) { // check if errors object is empty
+            Signup()
             navigate('/'); // navigate to the HOME page
         }
     }
 
+    const Signup = (e) => {
+      auth.createUserWithEmailAndPassword(email, password).then((credentials) => {
+        db.collection('Users').doc(credentials.user.uid).set({
+          name: name,
+          surname: surname,
+          email: email,
+          password: password
+        }).then(() => {
+          setName('')
+          setSurname('')
+          setEmail('')
+          setPassword('')
+        })
+      })
+    }
+
     const navigate = useNavigate();
-    
+
+    const [name, setName] = useState()
+    const [surname, setSurname] = useState()
+    const [email, setEmail] = useState()
+    const [password, setPassword] = useState()
+
   return (
     <section>
         <div className="Form">
@@ -63,15 +87,18 @@ export default function Register() {
                 <form id='registerForm' className='registerForm' onSubmit={handleSubmit(onSubmit)}>
 
                     <label className="form-label" htmlFor = "name">Name</label>
-                    <input className="form-input" type="name" name="name" {...register("name")} placeholder='Name' />
+                    <input className="form-input" type="name" name="name" {...register("name")} placeholder='Name' 
+                    onChange = {(e) => setName(e.target.value)} value = {name}/>
                     {errors.name && <error className="form-error">{errors.name.message}</error>}
 
                     <label  className="form-label" htmlFor = "surnname">Surame</label>
-                    <input className="form-input" type="name" name="surname" {...register("surname")} placeholder='Surname' />
+                    <input className="form-input" type="name" name="surname" {...register("surname")} placeholder='Surname' 
+                    onChange = {(e) => setSurname(e.target.value)} value = {surname}/>
                     {errors.surname && <error className="form-error">{errors.surname.message}</error>}
 
                     <label className="form-label" htmlFor = "email">Email</label>
-                    <input className="form-input" type="email"  name="email" {...register("email")} placeholder='Email' />
+                    <input className="form-input" type="email"  name="email" {...register("email")} placeholder='Email' 
+                    onChange = {(e) => setEmail(e.target.value)} value = {email}/>
                     {errors.email && <error className="form-error">{errors.email.message}</error>}
 
                     <label className="form-label" htmlFor = "password">Password</label>
@@ -79,7 +106,8 @@ export default function Register() {
                     {errors.password && <error className="form-error">{errors.password.message}</error>}
 
                     <label className="form-label" htmlFor = "confirmPassword">Confirm Password</label>
-                    <input className="form-input" type="password" name="confirmPassword" {...register("confirmPassword")} placeholder='********' />
+                    <input className="form-input" type="password" name="confirmPassword" {...register("confirmPassword")} placeholder='********' 
+                    onChange = {(e) => setPassword(e.target.value)} value = {password}/>
                     {errors.confirmPassword && <error className="form-error">{errors.confirmPassword.message}</error>}
                     
                     <button type="submit" className="form-btn">Register</button>
