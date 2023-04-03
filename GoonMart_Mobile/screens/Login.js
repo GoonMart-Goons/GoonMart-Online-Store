@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import { StatusBar } from 'expo-status-bar';
+import {Alert} from 'react-native';
 
 
 import {Formik} from 'formik';
@@ -27,28 +28,63 @@ import{
     TextLinkContent
 } from './../components/styles'
 
+import KeyboardAvoidingWrapper from '../components/KeyboardAvoidingWrapper';
 
 import{Octicons, Ionicons, Fontisto} from '@expo/vector-icons';
-import {View} from 'react-native';
+import {View, ActivityIndicator} from 'react-native';
 
 const {brand, primary, secondary, tertiary, darkLight} = Colours;
 
-const Login = () =>{
+const Login = ({navigation}) =>{
     const [hidePassword, setHidePassword] = useState(true);
+    const {message, setMessage} = useState();
+    const {messageType, setMessageType} = useState();
+    //const handleSubmit = () =>{
+
+    //}
+
+    const handleLogin = ({credentials}, setSubmitting) => {
+        hand
+    //function that will handle the login
+
+        if(status !== "SUCCESS"){
+            handleMessage(message, status);
+        }
+        else{
+            navigation.navigate('Welcome');
+        }
+        setSubmitting(false);
+    }
+
+    const handleMessage = (message, type = "FAILED") =>{
+        setMessage(message);
+        setMessageType(type);
+    }
 
     return(
-        <StyledContainer>
-            <StatusBar style="dark" />
+
+        //<KeyboardAvoidingWrapper>
+            <StyledContainer>
+            <StatusBar style="light" />
             <InnerContainer>
                 <PageLogo resizeMode='cover' source={require('./../assets/logo512.png')}/>
                 <PageTitle>GoonMart</PageTitle>
                 <SubTitle>Account Login</SubTitle>
                 <Formik
                     initialValues={{email: '', password:''}}
-                    onSubmit= {(values) =>{
-                        console.log(values)
+                    onSubmit= {(values, {setSubmitting}) =>{
+                        //console.log(values);
+                        
+                        if(values.email=='' || values.password ==''){
+                            Alert.alert('Please fill in all the fields');
+                           // handleMessage("Please fill in all the fields");
+                            //setSubmitting(false);
+                        }
+                        else{
+                            navigation.navigate("HomeScreen");
+                        }
                     }}
-                >{({handleChange, handleBlur, handleSubmit, values}) => (<StyledFormArea>
+                >{({handleChange, handleBlur, handleSubmit, values, isSubmitting}) => (<StyledFormArea>
                     <MyTextInput
                         label="Email Address"
                         icon = "mail"
@@ -72,22 +108,20 @@ const Login = () =>{
                         hidePassword={hidePassword}
                         setHidePassword={setHidePassword}  
                     />
-                    <MsgBox>...</MsgBox>
+                    <MsgBox type={messageType}>{message}</MsgBox>
                     <StyledButton onPress={handleSubmit}>
-                        <ButtonText>
-                            Login
-                        </ButtonText>
+                        <ButtonText>Login</ButtonText>
                     </StyledButton>
                     <Line/>
                     <StyledButton google={true} onPress={handleSubmit}>
                         <Fontisto name='google' color={primary} size={25}/>
                         <ButtonText google={true} >
                             Sign in with Google
-                        </ButtonText>
+                        </ButtonText> 
                     </StyledButton>
                     <ExtraView>
                         <ExtraText>Want to create an account? </ExtraText>
-                        <TextLink>
+                        <TextLink onPress={() => navigation.navigate("SignUp")}>
                             <TextLinkContent>Sign up here!</TextLinkContent>
                         </TextLink>
                     </ExtraView>
@@ -96,6 +130,7 @@ const Login = () =>{
                 </Formik>
             </InnerContainer>
         </StyledContainer>
+        //</KeyboardAvoidingWrapper>
     );
 }
 
