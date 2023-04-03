@@ -5,6 +5,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router-dom";
 
 import { auth, db } from './config/Config'
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { doc, setDoc } from 'firebase/firestore'
 
 
 const validationSchema = yup.object().shape({
@@ -39,36 +41,34 @@ const validationSchema = yup.object().shape({
 export default function Register() {
 
     const {
-        register, handleSubmit, formState: { errors },
+        register, handleSubmit, formState: { errors }
     } = useForm({
         resolver: yupResolver(validationSchema),
     });
 
-    const [userInfo, setUserInfo] = useState();
+    // const [userInfo, setUserInfo] = useState();
 
-    const onSubmit = (data) => {
-        setUserInfo(data);
-        console.log(data);
+    const onSubmit = async (data) => {
+        // setUserInfo(data);
+        // console.log(data);
         if (Object.keys(errors).length === 0) { // check if errors object is empty
-            Signup()
+            const userCredentials = await createUserWithEmailAndPassword(auth, data.email, data.password)
+            addNewUserToDB(data.name, data.surname, data.email, data.password)
+            console.log("Added successfully")
             navigate('/'); // navigate to the HOME page
         }
     }
 
-    const Signup = (e) => {
-      auth.createUserWithEmailAndPassword(email, password).then((credentials) => {
-        db.collection('Users').doc(credentials.user.uid).set({
-          name: name,
-          surname: surname,
-          email: email,
-          password: password
-        }).then(() => {
-          setName('')
-          setSurname('')
-          setEmail('')
-          setPassword('')
-        })
-      })
+    async function addNewUserToDB(name, surname, email, password) {
+      // Create a new document in the "Users" collection with the specified data
+      const docRef = doc(db, "Users");
+      await setDoc(docRef, {
+        name: name,
+        surname: surname,
+        email: email,
+        password: password
+      });
+      console.log("User added with ID: ", docRef.id);
     }
 
     const navigate = useNavigate();
