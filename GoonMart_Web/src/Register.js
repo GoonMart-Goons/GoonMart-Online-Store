@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 import { auth, db } from './config/Config'
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { doc, setDoc } from 'firebase/firestore'
+import { setDoc, doc } from 'firebase/firestore'
 
 
 const validationSchema = yup.object().shape({
@@ -52,23 +52,25 @@ export default function Register() {
         // setUserInfo(data);
         // console.log(data);
         if (Object.keys(errors).length === 0) { // check if errors object is empty
-            const userCredentials = await createUserWithEmailAndPassword(auth, data.email, data.password)
-            addNewUserToDB(data.name, data.surname, data.email, data.password)
+            await createUserWithEmailAndPassword(auth, data.email, data.password).then((userCredentials) => {
+              const user = userCredentials.user
+              addToDB(data.name, data.surname, data.email)
+            })
+            
             console.log("Added successfully")
             navigate('/'); // navigate to the HOME page
         }
     }
 
-    async function addNewUserToDB(name, surname, email, password) {
-      // Create a new document in the "Users" collection with the specified data
-      const docRef = doc(db, "Users");
-      await setDoc(docRef, {
+    //FIXME Not working for some reason
+    async function addToDB(name, surname, email){
+      const usersRef = doc(db, "Users");
+      await setDoc(usersRef, {
         name: name,
         surname: surname,
-        email: email,
-        password: password
+        email: email
       });
-      console.log("User added with ID: ", docRef.id);
+      console.log("User added with ID: ", usersRef.id);
     }
 
     const navigate = useNavigate();

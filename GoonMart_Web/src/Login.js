@@ -4,6 +4,9 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router-dom";
 
+import { auth } from './config/Config'
+import { signInWithEmailAndPassword } from 'firebase/auth';
+
 const validationSchema = yup.object().shape({
     email: yup.string().required("Email is required").email("Invalid email"),
     password: yup
@@ -17,22 +20,36 @@ const validationSchema = yup.object().shape({
   });
 
 export default function Login() {
-
     const {
         register, handleSubmit, formState: { errors },
     } = useForm({
         resolver: yupResolver(validationSchema),
     });
 
-    const [userInfo, setUserInfo] = useState();
+    const [email, setEmail] = useState()
+    const [password, setPassword] = useState()
 
-    const onSubmit = (data) => {
-        setUserInfo(data);
-        console.log(data);
-        if (Object.keys(errors).length === 0) { // check if errors object is empty
-            navigate('/'); // navigate to the HOME page
+    const SignIn = (e) => {
+        // e.preventDefault()
+        if (Object.keys(errors).length === 0){
+            signInWithEmailAndPassword(auth, email, password)
+            .then((userCredentials) => {
+                console.log("Signed in successfully: ", userCredentials)
+                navigate('/'); // navigate to the HOME page
+            }).catch((error) => {
+                console.log("Failed to login: ", error)
+            })
         }
     }
+
+    // const onSubmit = (data) => {
+    //     setUserInfo(data);
+    //     console.log(data);
+    //     if (Object.keys(errors).length === 0) { // check if errors object is empty
+    //         SignIn()
+    //         // navigate('/'); // navigate to the HOME page
+    //     }
+    // }
 
     const navigate = useNavigate();
     
@@ -42,14 +59,16 @@ export default function Login() {
             <div className="col-1">
                 <h2>Welcome back</h2>
 
-                <form id='loginrForm' className='loginForm' onSubmit={handleSubmit(onSubmit)}>
+                <form id='loginrForm' className='loginForm' onSubmit={handleSubmit(SignIn)}>
 
                     <label className="form-label" htmlFor = "email">Email</label>
-                    <input className="form-input" type="email"  name="email" {...register("email")} placeholder='Email' />
+                    <input className="form-input" type="email"  name="email" {...register("email")} placeholder='Email' 
+                    onChange = {(e) => setEmail(e.target.value)} value = {email}/>
                     {errors.email && <error className="form-error">{errors.email.message}</error>}
 
                     <label className="form-label" htmlFor = "password">Password</label>
-                    <input className="form-input" type="password" name="password" {...register("password")} placeholder='********' />
+                    <input className="form-input" type="password" name="password" {...register("password")} placeholder='********' 
+                    onChange = {(e) => setPassword(e.target.value)} value = {password}/>
                     {errors.password && <error className="form-error">{errors.password.message}</error>}
                     
                     <button type="submit" className="form-btn">Login</button>
