@@ -159,32 +159,32 @@ const HomeScreen = ({navigation}) => {
             {/* Bottom Navigation */}
             <View style={styles.bottomNavigation}>
                 <TouchableOpacity>
-                    <Image source={homeIcon} style={styles.bottomNavigationIcon} />
-                    {/*<View>
+                    
+                    <View>
                         <Ionicons
-                            name='menu-icon'
+                            name='home-outline'
                             color={tertiary}
                             size={32}
                         />
-                    </View>*/}
+                    </View>
                 </TouchableOpacity>
                 <TouchableOpacity>
-                    {/*<View>
+                    <View>
                         <Ionicons
-                            name='menu-icon'
+                            name='search-outline'
                             color={tertiary}
                             size={32}
                         />
-                    </View>*/}
-                    <Image source={searchIcon} style={styles.bottomNavigationIcon} />
+                    </View>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
-                        {/*<Ionicons
-                            name='menu-icon'
+                    <View>
+                        <Ionicons
+                            name='person-outline'
                             color={tertiary}
                             size={32}
-                        />*/}
-                    <Image source={profileIcon} style={styles.bottomNavigationIcon} />
+                        />
+                    </View>
                 </TouchableOpacity>
             </View>
         </SafeAreaView>
