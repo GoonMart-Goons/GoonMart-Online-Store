@@ -1,21 +1,22 @@
 
 import './App.css';
+import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 
 import React from 'react';
-import NavigationBar from './NavigationBar';
-import WelcomeSection from './WelcomeSection';
-import Categories from './Categories';
-import ProductGrid from './ProductGrid';
-import ProductCard from './ProductCard';
+import Homepage from './Homepage';
+import Register from './Register';
+import Login from './Login';
 
 function App() {
   return (
     <div>
-      <NavigationBar />
-      <WelcomeSection />
-      <Categories />
-      <ProductGrid />
-      <ProductCard />
+      <Router> 
+        <Routes>
+            <Route path = "/" index element = {<Homepage />} />
+            <Route path = "/register" element = {<Register />} />
+            <Route path = "/login" element = {<Login />} />
+        </Routes>
+      </Router>
     </div>
   );
 }
