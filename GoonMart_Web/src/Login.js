@@ -35,7 +35,7 @@ export default function Login() {
             signInWithEmailAndPassword(auth, email, password)
             .then((userCredentials) => {
                 console.log("Signed in successfully: ", userCredentials)
-                navigate('/'); // navigate to the HOME page
+                navigate('/innerHomePage'); // navigate to the HOME page
             }).catch((error) => {
                 console.log("Failed to login: ", error)
             })
@@ -73,7 +73,7 @@ export default function Login() {
                     
                     <button type="submit" className="form-btn">Login</button>
                 </form>
-                <button className="form-link-btn" onClick = {() => navigate('/register')}>Don't have an account? Register here.</button>
+                Don't have an account? Register<button className="form-link-btn" onClick = {() => navigate('/register')}>here.</button>
             </div>
         </div>
     </section>
