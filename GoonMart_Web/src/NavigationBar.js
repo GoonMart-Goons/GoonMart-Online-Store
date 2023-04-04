@@ -18,8 +18,8 @@ function NavigationBar() {
         </form>
       </div>
       <div className="navbar-right">
-        <button> <a href="/login" className="nav-link">LOGIN</a></button>
-        <button><a href="/register" className="nav-link">REGISTER</a></button>
+        <button> <a href="./Login" className="nav-link">LOGIN</a></button>
+        <button><a href="./Register" className="nav-link">SIGN-UP</a></button>
       </div>
     </nav>
   );
