@@ -73,7 +73,7 @@ export default function Login() {
                     
                     <button type="submit" className="form-btn">Login</button>
                 </form>
-                Don't have an account? Register<button className="form-link-btn" onClick = {() => navigate('/register')}>here.</button>
+                <i>Don't have an account? Register</i><button className="form-link-btn" onClick = {() => navigate('/register')}><i>here</i></button>
             </div>
         </div>
     </section>

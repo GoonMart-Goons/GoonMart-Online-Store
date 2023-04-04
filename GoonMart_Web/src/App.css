@@ -283,9 +283,12 @@ nav button :hover{
 
 .form-link-btn{
   background: none;
-  color: black;
+  color: rgb(51, 201, 238);
   text-decoration: underline;
   border: none;
+  cursor: pointer;
+  font-size: 16px;
+  
 }
 
 .form-error{
