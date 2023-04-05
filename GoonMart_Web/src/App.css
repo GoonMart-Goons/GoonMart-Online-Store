@@ -304,3 +304,30 @@ nav button :hover{
 .loginLogo{
   width: 75px;
 }
+
+.form-error{
+  font-size: small;
+  color: red;
+  text-align: left;
+  width: 100% ; 
+  word-wrap: break-word; 
+  white-space: pre-line;
+}
+
+.form-input .eye-icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  background-color: rgb(212, 212, 212); 
+}
+
+.eye-icon i {
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.eye-icon i:hover {
+  color: #000;
+}
