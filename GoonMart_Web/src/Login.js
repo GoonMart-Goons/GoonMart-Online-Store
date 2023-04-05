@@ -57,10 +57,11 @@ export default function Login() {
     <section>
         <div className="Form">
             <div className="col-1">
+                <img src= "/goonmart-logo.png" className='loginLogo'/>
                 <h2>Welcome Back!</h2>
 
                 <form id='loginrForm' className='loginForm' onSubmit={handleSubmit(SignIn)}>
-
+                    
                     <label className="form-label" htmlFor = "email">Email</label>
                     <input className="form-input" type="email"  name="email" {...register("email")} placeholder='Email' 
                     onChange = {(e) => setEmail(e.target.value)} value = {email}/>

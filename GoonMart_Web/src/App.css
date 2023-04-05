@@ -300,3 +300,7 @@ nav button :hover{
   color: red;
   text-align: left;
 }
+
+.loginLogo{
+  width: 75px;
+}
