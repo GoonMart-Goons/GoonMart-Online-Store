@@ -31,6 +31,8 @@
 
 .navbar-left{
   color: black;
+  text-decoration: none;
+  justify-content: center;
 }
 
 .category-list {
@@ -131,13 +133,13 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding: 0 20px;
-  background-color: #00FF7F; /* green */
+  background: orangered;
   color: rgb(221, 217, 217);
   height: 60px;
 }
 
 nav img {
-  width: 50px;
+  width: 16px;
 }
 
 nav h1 {
@@ -156,8 +158,8 @@ nav input {
 nav button {
   padding: 5px 5px 3px 5px;
   border: none;
-  border-radius: 0px;
-  background-color: rgb(40, 83, 224);
+  border-radius: 10px;
+  background-color: rgb(23, 50, 139);
   color: rgb(221, 217, 217);
   text-decoration: none;
   margin-right: 10px;
@@ -233,41 +235,42 @@ nav button :hover{
 .Form, .loginForm, .registerForm{
   display: flex;
   flex-direction: column;
+
 }
 
 @media screen and (min-width: 600px){
   .Form{
     padding: 5rem;
-    /*border: 1px solid rgb(57, 245, 57);
-    border-radius: 10px; */
     margin: 0.5rem;
 
   }
 }
 
+
+
 .Form{
   padding: 5rem;
- /* border: 1px solid rgb(57, 245, 57);
-  border-radius: 10px; */
   margin: 0.5rem;
-
   text-align: center;
   display: flex;
-  min-height: 100vh;
+  overflow: hidden;
+  min-height: 73vh;
   align-items: center;
   justify-content: center;
-  background-color: white;
+  background: white;
 }
 
 .form-label{
   text-align: left;
   padding: 0.25rem 0;
+  color: rgb(0, 0, 0);
 }
 
 .form-input{
-  margin: 0.5rem 0;
-  padding: 1rem;
-  border: none;
+  margin: 0.2rem 0;
+  padding: 15px;
+  border-width: 2px;
+  border-color: rgb(255, 68, 0);
   border-radius: 10px;
   background-color: rgb(212, 212, 212); 
   color: black;
@@ -275,19 +278,20 @@ nav button :hover{
 
 .form-btn{
   border: none;
-  background-color: rgba(200, 255, 48, 0.952);
-  padding: 20px;
-  border-radius: 10px;
+  background-color: rgb(206, 55, 0);
+  padding: 10px 20px;
+  margin-top: 10px;
+  border-radius: 8px;
   cursor: pointer;
 }
 
 .form-link-btn{
   background: none;
-  color: rgb(51, 201, 238);
+  color: rgb(53, 34, 160);
   text-decoration: underline;
   border: none;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 15px;
   
 }
 

@@ -57,7 +57,7 @@ export default function Login() {
     <section>
         <div className="Form">
             <div className="col-1">
-                <h2>Welcome back</h2>
+                <h2>Welcome Back!</h2>
 
                 <form id='loginrForm' className='loginForm' onSubmit={handleSubmit(SignIn)}>
 
@@ -71,7 +71,7 @@ export default function Login() {
                     onChange = {(e) => setPassword(e.target.value)} value = {password}/>
                     {errors.password && <error className="form-error">{errors.password.message}</error>}
                     
-                    <button type="submit" className="form-btn">Login</button>
+                    <button type="submit" className="form-btn">LOGIN</button>
                 </form>
                 <i>Don't have an account? Register</i><button className="form-link-btn" onClick = {() => navigate('/register')}><i>here</i></button>
             </div>

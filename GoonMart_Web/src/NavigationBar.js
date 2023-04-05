@@ -7,7 +7,7 @@ function NavigationBar() {
     <nav className="navbar">
       <div className="navbar-left">
         <img src= "/goonmart-logo.png"/>
-        <span>GoonMart</span>
+        <span><b>GoonMart</b></span>
       </div>
       <div className="navbar-center">
         <form className="search-form">
@@ -19,7 +19,7 @@ function NavigationBar() {
       </div>
       <div className="navbar-right">
         <button> <a href="./Login" className="nav-link">LOGIN</a></button>
-        <button><a href="./Register" className="nav-link">SIGN-UP</a></button>
+        <button><a href="./Register" className="nav-link">REGISTER</a></button>
       </div>
     </nav>
   );
