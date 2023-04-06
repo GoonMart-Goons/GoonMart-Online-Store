@@ -1,0 +1,1 @@
+to ensure the app runs on your local, please run 'expo install formik styled-components expo-constants', 'npm install @react-navigation/native-stack', 'npx expo install react-native-screens react-native-safe-area-context'

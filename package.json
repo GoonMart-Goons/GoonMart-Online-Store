@@ -17,6 +17,7 @@
     "start": "react-scripts  --openssl-legacy-provider start",
     "build": "react-scripts  --openssl-legacy-provider build",
     "test": "jest",
+    "test:coveralls": "jest --coverage --coverageReporters=text-lcov | coveralls",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
