@@ -5,6 +5,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert, { AlertProps } from '@mui/material/Alert';
+
 import { auth, db } from './config/Config'
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { setDoc, doc } from 'firebase/firestore'
@@ -41,6 +44,14 @@ const validationSchema = yup.object().shape({
 
 export default function Register() {
 
+  //Snackbar code
+  const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState('');
+
+  const handleCloseSnackbar = () => {
+      setOpenSnackbar(false);
+    };
+
   //Eye for passwords
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -64,13 +75,22 @@ export default function Register() {
         // setUserInfo(data);
         // console.log(data);
         if (Object.keys(errors).length === 0) { // check if errors object is empty
-            await createUserWithEmailAndPassword(auth, data.email, data.password).then((userCredentials) => {
+            await createUserWithEmailAndPassword(auth, data.email, data.password)
+            .then((userCredentials) => {
               const user = userCredentials.user
               addToDB(data.name, data.surname, data.email)
-            })
-            
-            console.log("Added successfully")
-            navigate('/'); // navigate to the HOME page
+              setOpenSnackbar(true);
+                console.log("Added successfully")
+                setSnackbarMessage('Registered successfully! Welcome to GoonMart');
+                setTimeout(() => {
+                    navigate('/'); // navigate to the HOME page
+                }, 2000); //delay for 2 seconds (2000 milliseconds)
+            }).catch((error) => {
+              console.log("Failed to register: ", error)
+              setOpenSnackbar(true);
+              setSnackbarMessage('Failed to register: ' + error.message);
+              
+          })
         }
     }
 
@@ -96,6 +116,7 @@ export default function Register() {
     <section>
         <div className="Form">
             <div className="col-1">
+                <img src= "/goonmart-logo.png" className='loginLogo'/>
                 <h2>Create an account</h2>
 
                 <form id='registerForm' className='registerForm' onSubmit={handleSubmit(onSubmit)}>
@@ -135,6 +156,22 @@ export default function Register() {
                 <i>Already have an account? Login</i><button className="form-link-btn" onClick = {() => navigate('/login')}><i>here</i></button>
             </div>
         </div>
+
+        <Snackbar
+        open={openSnackbar}
+        autoHideDuration={6000}
+        onClose={handleCloseSnackbar}
+      >
+        <MuiAlert
+          elevation={6}
+          variant="filled"
+          onClose={handleCloseSnackbar}
+          severity={snackbarMessage.startsWith('Failed') ? 'error' : 'success'}
+        >
+          {snackbarMessage}
+        </MuiAlert>
+    </Snackbar> 
+
     </section>
   )
 }
