@@ -17,14 +17,14 @@ import { StatusBar } from 'expo-status-bar';
 import { Colours } from '../components/styles';
 import{Octicons, Ionicons, Fontisto} from '@expo/vector-icons';
 
-const {brand, primary, secondary, tertiary, darkLight} = Colours;
+const {brand, primary, secondary, tertiary, darkLight, badBlue, badOrange, proposedGreen} = Colours;
 
 const StatusBarHeight = Constants.statusBarHeight;
 
 const HomeScreen = ({navigation}) => {
     return (
         <SafeAreaView style={styles.container}>
-            <StatusBar style="light" backgroundColor={secondary}/>
+            <StatusBar style="dark" backgroundColor={proposedGreen}/>
             {/* Header */}
             <View style={styles.header}>
                 <TouchableOpacity>
@@ -32,7 +32,7 @@ const HomeScreen = ({navigation}) => {
                     <View>
                         <Ionicons
                             name='menu-outline'
-                            color={tertiary}
+                            color={badBlue}
                             size={32}
                         />
                     </View>
@@ -45,7 +45,7 @@ const HomeScreen = ({navigation}) => {
                     <View>
                         <Ionicons
                             name='cart-outline'
-                            color={tertiary}
+                            color={badBlue}
                             size={32}
                         />
                     </View>
@@ -163,7 +163,7 @@ const HomeScreen = ({navigation}) => {
                     <View>
                         <Ionicons
                             name='home-outline'
-                            color={tertiary}
+                            color={badBlue}
                             size={32}
                         />
                     </View>
@@ -172,7 +172,7 @@ const HomeScreen = ({navigation}) => {
                     <View>
                         <Ionicons
                             name='search-outline'
-                            color={tertiary}
+                            color={badBlue}
                             size={32}
                         />
                     </View>
@@ -181,7 +181,7 @@ const HomeScreen = ({navigation}) => {
                     <View>
                         <Ionicons
                             name='person-outline'
-                            color={tertiary}
+                            color={badBlue}
                             size={32}
                         />
                     </View>
@@ -205,7 +205,7 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         borderBottomWidth: 1,
         borderBottomColor: '#ccc',
-        backgroundColor:secondary,
+        backgroundColor:proposedGreen,
     },
     logo: {
         alignItems: 'center',
@@ -213,7 +213,7 @@ const styles = StyleSheet.create({
     logoText: {
         fontSize: 18,
         fontWeight: 'bold',
-        color: tertiary,
+        color: badBlue,
     },
     headerButton: {
         fontSize: 16,
@@ -328,7 +328,7 @@ const styles = StyleSheet.create({
         height: 60,
         borderTopWidth: 1,
         borderTopColor: '#ddd',
-        backgroundColor: secondary,
+        backgroundColor: proposedGreen,
         borderRadius: 0,
         shadowColor: '#000'
     },

@@ -70,7 +70,7 @@ margin: 15px 0;
 }
 .thumb img.active{
     opacity: 1;
-    border: 1px solid lightseagreen;
+    border: 1px solid hsl(177, 70%, 41%);
 }
 .box .cart{
     background: #333;

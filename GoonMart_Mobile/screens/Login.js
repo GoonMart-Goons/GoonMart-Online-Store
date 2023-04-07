@@ -33,7 +33,7 @@ import KeyboardAvoidingWrapper from '../components/KeyboardAvoidingWrapper';
 import{Octicons, Ionicons, Fontisto} from '@expo/vector-icons';
 import {View, ActivityIndicator} from 'react-native';
 
-const {brand, primary, secondary, tertiary, darkLight} = Colours;
+const {brand, primary, secondary, tertiary, darkLight, badBlue} = Colours;
 
 const Login = ({navigation}) =>{
     const [hidePassword, setHidePassword] = useState(true);
@@ -65,7 +65,7 @@ const Login = ({navigation}) =>{
 
         //<KeyboardAvoidingWrapper>
             <StyledContainer>
-            <StatusBar style="light" />
+            <StatusBar style="dark" />
             <InnerContainer>
                 <PageLogo resizeMode='cover' source={require('./../assets/logo512.png')}/>
                 <PageTitle>GoonMart</PageTitle>
@@ -122,7 +122,7 @@ const Login = ({navigation}) =>{
                     <ExtraView>
                         <ExtraText>Want to create an account? </ExtraText>
                         <TextLink onPress={() => navigation.navigate("SignUp")}>
-                            <TextLinkContent>Sign up here!</TextLinkContent>
+                            <TextLinkContent>Register here!</TextLinkContent>
                         </TextLink>
                     </ExtraView>
                     
@@ -138,7 +138,7 @@ const MyTextInput = ({label, icon, isPassword, hidePassword, setHidePassword, ..
     return(
         <View>
             <LeftIcon>
-                <Octicons name={icon} size={30} color={tertiary} />
+                <Octicons name={icon} size={30} color={badBlue} />
             </LeftIcon>
             <StyledInputLabel>{label}</StyledInputLabel>
             <StyledTextInput {...props}/>

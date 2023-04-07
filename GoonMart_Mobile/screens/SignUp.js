@@ -33,7 +33,7 @@ import KeyboardAvoidingWrapper from '../components/KeyboardAvoidingWrapper';
 import{Octicons, Ionicons, Fontisto} from '@expo/vector-icons';
 import {View} from 'react-native';
 
-const {brand, primary, secondary, tertiary, darkLight} = Colours;
+const {brand, primary, secondary, tertiary, darkLight, badBlue, black} = Colours;
 
 const SignUp = ({navigation}) =>{
 
@@ -42,10 +42,10 @@ const SignUp = ({navigation}) =>{
     return(
         //<KeyboardAvoidingWrapper>
         <StyledContainer>
-            <StatusBar style="light" />
+            <StatusBar style="dark" />
             <InnerContainer>
                 <PageTitle>GoonMart</PageTitle>
-                <SubTitle>Account Sign Up</SubTitle>
+                <SubTitle>Create an account</SubTitle>
                 <Formik
                     initialValues={{email: '', password:'', firstName:'', surname:'', confirmPassword:''}}
                     onSubmit= {(values) =>{
@@ -65,9 +65,9 @@ const SignUp = ({navigation}) =>{
                     }}
                 >{({handleChange, handleBlur, handleSubmit, values}) => (<StyledFormArea>
                     <MyTextInput
-                        label="First Name"
+                        label="Name"
                         icon = "person"
-                        placeholder="Devaughn"
+                        placeholder="Name"
                         placeholderTextColor = {darkLight}
                         onChangeText={handleChange('firstName')}
                         onBlur={handleBlur('firstName')}
@@ -76,16 +76,16 @@ const SignUp = ({navigation}) =>{
                     <MyTextInput
                         label="Surname"
                         icon = "person"
-                        placeholder="Hendricks"
+                        placeholder="Surname"
                         placeholderTextColor = {darkLight}
                         onChangeText={handleChange('surname')}
                         onBlur={handleBlur('surname')}
                         values={values.surname}
                     /> 
                     <MyTextInput
-                        label="Email Address"
+                        label="Email"
                         icon = "mail"
-                        placeholder="thegoat@goated.com"
+                        placeholder="Email"
                         placeholderTextColor = {darkLight}
                         onChangeText={handleChange('email')}
                         onBlur={handleBlur('email')}
@@ -118,10 +118,10 @@ const SignUp = ({navigation}) =>{
                         hidePassword={hidePassword}
                         setHidePassword={setHidePassword}  
                     />
-                    <MsgBox>...</MsgBox>
+                    {/*<MsgBox>...</MsgBox>*/}
                     <StyledButton onPress={handleSubmit}>
                         <ButtonText>
-                            Sign up
+                            Register
                         </ButtonText>
                     </StyledButton>
                     <Line/>
@@ -143,7 +143,7 @@ const MyTextInput = ({label, icon, isPassword, hidePassword, setHidePassword, ..
     return(
         <View>
             <LeftIcon>
-                <Octicons name={icon} size={30} color={tertiary} />
+                <Octicons name={icon} size={30} color={badBlue} />
             </LeftIcon>
             <StyledInputLabel>{label}</StyledInputLabel>
             <StyledTextInput {...props}/>
