@@ -3,6 +3,10 @@ import { useForm } from 'react-hook-form';
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router-dom";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert, { AlertProps } from '@mui/material/Alert';
 
 import { auth } from './config/Config'
 import { signInWithEmailAndPassword } from 'firebase/auth';
@@ -12,14 +16,30 @@ const validationSchema = yup.object().shape({
     password: yup
       .string()
       .required("Password is required")
-      .min(8, "Password must be at least 8 characters long")
+      .min(8, "Password must be at least 8 characters\n long")
       .matches(
         /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$/,
-        "Password must contain at least 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character"
+        "Password must contain at least\n 1 uppercase letter, 1 lowercase letter,\n 1 number, and 1 special character"
       ),
   });
 
 export default function Login() {
+
+    //Snackbar code
+    const [openSnackbar, setOpenSnackbar] = useState(false);
+    const [snackbarMessage, setSnackbarMessage] = useState('');
+
+    const handleCloseSnackbar = () => {
+        setOpenSnackbar(false);
+      };
+
+     //Eye for passwords
+     const [showPassword, setShowPassword] = useState(false);
+
+     const togglePasswordVisibility = () => {
+       setShowPassword(showPassword ? false : true);
+     };
+     
     const {
         register, handleSubmit, formState: { errors },
     } = useForm({
@@ -31,13 +51,21 @@ export default function Login() {
 
     const SignIn = (e) => {
         // e.preventDefault()
+        
         if (Object.keys(errors).length === 0){
             signInWithEmailAndPassword(auth, email, password)
             .then((userCredentials) => {
-                console.log("Signed in successfully: ", userCredentials)
-                navigate('/InnerHomepage'); // navigate to the HOME page
+                console.log("Signed in successfully: ", userCredentials);
+                setOpenSnackbar(true);
+                setSnackbarMessage('Signed in successfully');
+                setTimeout(() => {
+                    navigate('/'); // navigate to the HOME page
+                }, 2000); //delay for 2 seconds (2000 milliseconds)
             }).catch((error) => {
                 console.log("Failed to login: ", error)
+                setOpenSnackbar(true);
+                setSnackbarMessage('Failed to login: ' + error.message);
+                
             })
         }
     }
@@ -68,15 +96,34 @@ export default function Login() {
                     {errors.email && <error className="form-error">{errors.email.message}</error>}
 
                     <label className="form-label" htmlFor = "password">Password</label>
-                    <input className="form-input" type="password" name="password" {...register("password")} placeholder='********' 
+                    <label>
+                    <input className="form-input" type={showPassword ? "text" : "password"} name="password" {...register("password")} placeholder='********' 
                     onChange = {(e) => setPassword(e.target.value)} value = {password}/>
+                    <i  className="eye-icon" onClick = {togglePasswordVisibility} > {showPassword ? <FaEyeSlash/> : <FaEye/>} </i>
+                    </label>
                     {errors.password && <error className="form-error">{errors.password.message}</error>}
                     
                     <button type="submit" className="form-btn">LOGIN</button>
                 </form>
                 <i>Don't have an account? Register</i><button className="form-link-btn" onClick = {() => navigate('/register')}><i>here</i></button>
             </div>
+            
         </div>
+        <Snackbar
+        open={openSnackbar}
+        autoHideDuration={6000}
+        onClose={handleCloseSnackbar}
+      >
+        <MuiAlert
+          elevation={6}
+          variant="filled"
+          onClose={handleCloseSnackbar}
+          severity={snackbarMessage.startsWith('Failed') ? 'error' : 'success'}
+        >
+          {snackbarMessage}
+        </MuiAlert>
+    </Snackbar> 
+        
     </section>
   )
 }
