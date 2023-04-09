@@ -1,7 +1,7 @@
 import './App.css';
 
 import React from 'react';
-import InnerNavigationBar from './InnerNavigationBar';
+import InnerNavigationBar from './innerNavigationBar';
 import Categories from './Categories';
 import ProductGrid from './ProductGrid';
 import ProductCard from './ProductCard';
