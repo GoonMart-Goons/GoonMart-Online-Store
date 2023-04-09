@@ -38,8 +38,8 @@
 .category-list {
   display: flex;
   flex-wrap: nowrap;
-  overflow-x: scroll;
-  padding: 0.5rem;
+  overflow-x: hidden;
+  padding: 0.1rem 0.5rem;
 }
 
 .category-item {
@@ -66,11 +66,6 @@
   text-align: center;
 }
 
-.product-image {
-  font-size: 3rem;
-  
-}
-
 .product-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -86,21 +81,26 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.product-image {
+.product-image {  
+  font-size: 3rem;
   height: 100px;
   width: 100px;
-  padding-bottom: 100%;
+  padding-bottom: 80%;
   background-size:auto;
   background-repeat: no-repeat;
   background-position: center;
   margin-bottom: 10px;
   border-radius: 5px;
+  justify-content: center;
 }
+
+
 
 .product-name {
   font-size: 16px;
   font-weight: bold;
   margin-bottom: 10px;
+  
 }
 
 .product-rating {

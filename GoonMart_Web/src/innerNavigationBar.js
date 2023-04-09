@@ -2,7 +2,7 @@ import React from 'react';
 import {FaSearch} from 'react-icons/fa';
   
 
-function NavigationBar() {
+function InnerNavigationBar() {
   return (
     <nav className="navbar">
       <div className="navbar-left">
@@ -20,4 +20,4 @@ function NavigationBar() {
   );
 }
 
-export default NavigationBar;
+export default InnerNavigationBar;

@@ -35,7 +35,7 @@ export default function Login() {
             signInWithEmailAndPassword(auth, email, password)
             .then((userCredentials) => {
                 console.log("Signed in successfully: ", userCredentials)
-                navigate('/innerHomePage'); // navigate to the HOME page
+                navigate('/InnerHomepage'); // navigate to the HOME page
             }).catch((error) => {
                 console.log("Failed to login: ", error)
             })
