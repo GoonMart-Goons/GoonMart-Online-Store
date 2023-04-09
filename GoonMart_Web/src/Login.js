@@ -59,7 +59,7 @@ export default function Login() {
                 setOpenSnackbar(true);
                 setSnackbarMessage('Signed in successfully');
                 setTimeout(() => {
-                    navigate('/'); // navigate to the HOME page
+                    navigate('/InnerHomepage'); // navigate to the HOME page
                 }, 2000); //delay for 2 seconds (2000 milliseconds)
             }).catch((error) => {
                 console.log("Failed to login: ", error)
