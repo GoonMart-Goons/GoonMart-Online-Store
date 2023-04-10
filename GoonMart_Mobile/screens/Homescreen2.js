@@ -10,6 +10,10 @@ import backgroundImage from '../assets/electronics.jpg';
 import backgroundImage1 from '../assets/toys.jpg';
 import backgroundImage2 from '../assets/kithcen.jpg';
 import backgroundImage3 from '../assets/clothes.jpg';
+import backImage4 from '../assets/phone.jpg';
+import backImage5 from '../assets/toy.jpg';
+import backImage6 from '../assets/tshirt.jpg';
+
 import placeholder from '../assets/dummy.jpg';
 import Constants from 'expo-constants';
 
@@ -116,8 +120,8 @@ const HomeScreen = ({navigation}) => {
                             <TouchableOpacity>
                                 <Image source={placeholder} style={styles.productListImage} />
                             </TouchableOpacity>
-                            <Text style={styles.productTitle}>Product 1</Text>
-                            <Text style={styles.productDescription}>Description of product 1</Text>
+                            <Text style={styles.productTitle}>Laptop</Text>
+                            <Text style={styles.productDescription}>It's just a laptop.</Text>
                             <Text style={styles.productPrice}>$1000</Text>
                             <Text style={styles.productRating}>
                                 Rating: <Image source={starIcon} style={styles.productRatingIcon} />
@@ -129,10 +133,10 @@ const HomeScreen = ({navigation}) => {
                         </View>
                         <View style={styles.productTile}>
                             <TouchableOpacity>
-                                <Image source={placeholder} style={styles.productListImage} />
+                                <Image source={backImage5} style={styles.productListImage} />
                             </TouchableOpacity>
-                            <Text style={styles.productTitle}>Product 2</Text>
-                            <Text style={styles.productDescription}>Description of product 1</Text>
+                            <Text style={styles.productTitle}>Car</Text>
+                            <Text style={styles.productDescription}>It's just a car.</Text>
                             <Text style={styles.productPrice}>$10</Text>
                             <Text style={styles.productRating}>
                                 Rating: <Image source={starIcon} style={styles.productRatingIcon} />
@@ -142,10 +146,10 @@ const HomeScreen = ({navigation}) => {
                         </View>
                         <View style={styles.productTile}>
                             <TouchableOpacity>
-                                <Image source={placeholder} style={styles.productListImage} />
+                                <Image source={backImage6} style={styles.productListImage} />
                             </TouchableOpacity>
-                            <Text style={styles.productTitle}>Product 2</Text>
-                            <Text style={styles.productDescription}>Description of product 1</Text>
+                            <Text style={styles.productTitle}>T-Shirt</Text>
+                            <Text style={styles.productDescription}>It's just a t-shirt.</Text>
                             <Text style={styles.productPrice}>$10</Text>
                             <Text style={styles.productRating}>
                                 Rating: <Image source={starIcon} style={styles.productRatingIcon} />
