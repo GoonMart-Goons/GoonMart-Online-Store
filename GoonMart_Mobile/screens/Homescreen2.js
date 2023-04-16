@@ -10,46 +10,54 @@ import backgroundImage from '../assets/electronics.jpg';
 import backgroundImage1 from '../assets/toys.jpg';
 import backgroundImage2 from '../assets/kithcen.jpg';
 import backgroundImage3 from '../assets/clothes.jpg';
+import backImage4 from '../assets/phone.jpg';
+import backImage5 from '../assets/toy.jpg';
+import backImage6 from '../assets/tshirt.jpg';
+
 import placeholder from '../assets/dummy.jpg';
 import Constants from 'expo-constants';
 
 import { StatusBar } from 'expo-status-bar';
-import { Colours } from '../components/styles';
+import { Colours, PageLogoSmallest, TextHomeHeader } from '../components/styles';
 import{Octicons, Ionicons, Fontisto} from '@expo/vector-icons';
 
-const {brand, primary, secondary, tertiary, darkLight} = Colours;
+const {brand, primary, secondary, tertiary, darkLight, badBlue, badOrange, proposedGreen} = Colours;
 
 const StatusBarHeight = Constants.statusBarHeight;
 
 const HomeScreen = ({navigation}) => {
     return (
         <SafeAreaView style={styles.container}>
-            <StatusBar style="light" backgroundColor={secondary}/>
+            <StatusBar style="dark" backgroundColor={badOrange}/>
             {/* Header */}
             <View style={styles.header}>
                 <TouchableOpacity>
-                    {/*<Image source={menu} style={styles.bottomNavigationIcon} color={primary}/>*/}
+                        {/*<Image source={menu} style={styles.bottomNavigationIcon} color={primary}/>*/}
                     <View>
                         <Ionicons
                             name='menu-outline'
-                            color={tertiary}
+                            color={badBlue}
                             size={32}
                         />
                     </View>
                 </TouchableOpacity>
-                <View style={styles.logo}>
-                    <Text style={styles.logoText}>Logo</Text>
+                <View style={styles.headerWithButtons}>
+                    <PageLogoSmallest  resizeMode='cover' source={require('./../assets/goonmart-logo.png')}/>
+                    <TextHomeHeader>GoonMart</TextHomeHeader>
                 </View>
-                <TouchableOpacity>
-                    {/*<Image source={cart} style={styles.bottomNavigationIcon} />*/}
-                    <View>
-                        <Ionicons
-                            name='cart-outline'
-                            color={tertiary}
-                            size={32}
-                        />
-                    </View>
-                </TouchableOpacity>
+                    <TouchableOpacity>
+                        {/*<Image source={cart} style={styles.bottomNavigationIcon} />*/}
+                        <View paddingRight={20}>
+                            <Ionicons
+                                name='cart-outline'
+                                color={badBlue}
+                                size={32}
+                            />
+                        </View>
+                    </TouchableOpacity>
+                    {/*<View style={styles.logo}>
+                        <Text style={styles.logoText}>Logo</Text>
+                    </View>*/}
             </View>
             <ScrollView>
                 {/* Product Deals */}
@@ -112,8 +120,8 @@ const HomeScreen = ({navigation}) => {
                             <TouchableOpacity>
                                 <Image source={placeholder} style={styles.productListImage} />
                             </TouchableOpacity>
-                            <Text style={styles.productTitle}>Product 1</Text>
-                            <Text style={styles.productDescription}>Description of product 1</Text>
+                            <Text style={styles.productTitle}>Laptop</Text>
+                            <Text style={styles.productDescription}>It's just a laptop.</Text>
                             <Text style={styles.productPrice}>$1000</Text>
                             <Text style={styles.productRating}>
                                 Rating: <Image source={starIcon} style={styles.productRatingIcon} />
@@ -125,10 +133,10 @@ const HomeScreen = ({navigation}) => {
                         </View>
                         <View style={styles.productTile}>
                             <TouchableOpacity>
-                                <Image source={placeholder} style={styles.productListImage} />
+                                <Image source={backImage5} style={styles.productListImage} />
                             </TouchableOpacity>
-                            <Text style={styles.productTitle}>Product 2</Text>
-                            <Text style={styles.productDescription}>Description of product 1</Text>
+                            <Text style={styles.productTitle}>Car</Text>
+                            <Text style={styles.productDescription}>It's just a car.</Text>
                             <Text style={styles.productPrice}>$10</Text>
                             <Text style={styles.productRating}>
                                 Rating: <Image source={starIcon} style={styles.productRatingIcon} />
@@ -138,10 +146,10 @@ const HomeScreen = ({navigation}) => {
                         </View>
                         <View style={styles.productTile}>
                             <TouchableOpacity>
-                                <Image source={placeholder} style={styles.productListImage} />
+                                <Image source={backImage6} style={styles.productListImage} />
                             </TouchableOpacity>
-                            <Text style={styles.productTitle}>Product 2</Text>
-                            <Text style={styles.productDescription}>Description of product 1</Text>
+                            <Text style={styles.productTitle}>T-Shirt</Text>
+                            <Text style={styles.productDescription}>It's just a t-shirt.</Text>
                             <Text style={styles.productPrice}>$10</Text>
                             <Text style={styles.productRating}>
                                 Rating: <Image source={starIcon} style={styles.productRatingIcon} />
@@ -163,7 +171,7 @@ const HomeScreen = ({navigation}) => {
                     <View>
                         <Ionicons
                             name='home-outline'
-                            color={tertiary}
+                            color={badBlue}
                             size={32}
                         />
                     </View>
@@ -172,7 +180,7 @@ const HomeScreen = ({navigation}) => {
                     <View>
                         <Ionicons
                             name='search-outline'
-                            color={tertiary}
+                            color={badBlue}
                             size={32}
                         />
                     </View>
@@ -181,7 +189,7 @@ const HomeScreen = ({navigation}) => {
                     <View>
                         <Ionicons
                             name='person-outline'
-                            color={tertiary}
+                            color={badBlue}
                             size={32}
                         />
                     </View>
@@ -204,8 +212,13 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
         paddingVertical: 10,
         borderBottomWidth: 1,
-        borderBottomColor: '#ccc',
-        backgroundColor:secondary,
+        borderBottomColor: badOrange,
+        backgroundColor:badOrange,
+    },
+    headerWithButtons: {
+        flexDirection: 'row',
+        borderBottomColor: badOrange,
+        backgroundColor:badOrange,
     },
     logo: {
         alignItems: 'center',
@@ -213,7 +226,7 @@ const styles = StyleSheet.create({
     logoText: {
         fontSize: 18,
         fontWeight: 'bold',
-        color: tertiary,
+        color: badBlue,
     },
     headerButton: {
         fontSize: 16,
@@ -327,8 +340,8 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
         height: 60,
         borderTopWidth: 1,
-        borderTopColor: '#ddd',
-        backgroundColor: secondary,
+        borderTopColor:badOrange,
+        backgroundColor: badOrange,
         borderRadius: 0,
         shadowColor: '#000'
     },
@@ -353,5 +366,4 @@ const styles = StyleSheet.create({
 });
 
 export default HomeScreen;
-
 

@@ -4,7 +4,7 @@ import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 
 import React from 'react';
 import Homepage from './Homepage';
-import InnerHomepage from './InnerHomepage';
+import InnerHomepage from './innerHomepage';
 import Register from './Register';
 import Login from './Login';
 

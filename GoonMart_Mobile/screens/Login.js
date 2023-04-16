@@ -29,11 +29,10 @@ import{
 } from './../components/styles'
 
 import KeyboardAvoidingWrapper from '../components/KeyboardAvoidingWrapper';
-
 import{Octicons, Ionicons, Fontisto} from '@expo/vector-icons';
 import {View, ActivityIndicator} from 'react-native';
 
-const {brand, primary, secondary, tertiary, darkLight} = Colours;
+const {brand, primary, secondary, tertiary, darkLight, badBlue, badOrange} = Colours;
 
 const Login = ({navigation}) =>{
     const [hidePassword, setHidePassword] = useState(true);
@@ -65,11 +64,11 @@ const Login = ({navigation}) =>{
 
         //<KeyboardAvoidingWrapper>
             <StyledContainer>
-            <StatusBar style="light" />
+            <StatusBar style="dark" />
             <InnerContainer>
-                <PageLogo resizeMode='cover' source={require('./../assets/logo512.png')}/>
-                <PageTitle>GoonMart</PageTitle>
-                <SubTitle>Account Login</SubTitle>
+            <PageLogo width={1} height={1} resizeMode='cover' source={require('./../assets/goonmart-logo.png')}/>
+                <PageTitle>Welcome back!</PageTitle>
+                {/*<SubTitle padding={10}>Welcome back!</SubTitle>*/}
                 <Formik
                     initialValues={{email: '', password:''}}
                     onSubmit= {(values, {setSubmitting}) =>{
@@ -86,9 +85,9 @@ const Login = ({navigation}) =>{
                     }}
                 >{({handleChange, handleBlur, handleSubmit, values, isSubmitting}) => (<StyledFormArea>
                     <MyTextInput
-                        label="Email Address"
+                        label="Email"
                         icon = "mail"
-                        placeholder="thegoat@goated.com"
+                        placeholder="Email"
                         placeholderTextColor = {darkLight}
                         onChangeText={handleChange('email')}
                         onBlur={handleBlur('email')}
@@ -113,16 +112,16 @@ const Login = ({navigation}) =>{
                         <ButtonText>Login</ButtonText>
                     </StyledButton>
                     <Line/>
-                    <StyledButton google={true} onPress={handleSubmit}>
+                    {/*<StyledButton google={true} onPress={handleSubmit}>
                         <Fontisto name='google' color={primary} size={25}/>
                         <ButtonText google={true} >
                             Sign in with Google
                         </ButtonText> 
-                    </StyledButton>
+                    </StyledButton>*/}
                     <ExtraView>
-                        <ExtraText>Want to create an account? </ExtraText>
+                        <ExtraText>Don't have an account? Register </ExtraText>
                         <TextLink onPress={() => navigation.navigate("SignUp")}>
-                            <TextLinkContent>Sign up here!</TextLinkContent>
+                            <TextLinkContent>here</TextLinkContent>
                         </TextLink>
                     </ExtraView>
                     
@@ -138,7 +137,7 @@ const MyTextInput = ({label, icon, isPassword, hidePassword, setHidePassword, ..
     return(
         <View>
             <LeftIcon>
-                <Octicons name={icon} size={30} color={tertiary} />
+                <Octicons name={icon} size={30} color={badOrange} />
             </LeftIcon>
             <StyledInputLabel>{label}</StyledInputLabel>
             <StyledTextInput {...props}/>
@@ -152,4 +151,3 @@ const MyTextInput = ({label, icon, isPassword, hidePassword, setHidePassword, ..
 }
 
 export default Login;
-

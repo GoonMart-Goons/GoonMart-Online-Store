@@ -14,18 +14,24 @@ export const Colours = {
     brand: "#602809",
     blue:"#1310b9",
     red: "#ef4444",
-    grey:"#f0f0f0"
+    grey:"#f0f0f0",
+    badBlue: "#17328b",
+    badOrange:"#FF4500",
+    signInGreen: "#c8ff30f3",
+    black: "#000",
+    proposedGreen: "#08fc7c"
+
 };
 
 
-const {primary, secondary, tertiary, darkLight, brand, blue, red, grey} = Colours;
+const {primary, secondary, tertiary, darkLight, brand, blue, red, grey, badBlue, badOrange, signInGreen, black, proposedGreen} = Colours;
 
 
 export const StyledContainer = styled.View`
     flex: 1;
     padding: 25px;
     padding-top: ${StatusBarHeight + 30}px;
-    background-color: ${secondary};
+    background-color: ${primary};
 `;
 export const InnerContainer = styled.View`
     flex: 1;
@@ -37,7 +43,7 @@ export const WelcomeContainer = styled(InnerContainer)`
     padding:25px;
     padding_top: 10px;
     justify-content:center;   
-    background-color: ${secondary} 
+    background-color: ${badOrange} 
 `;
 
 export const Avatar = styled.Image`
@@ -46,7 +52,7 @@ export const Avatar = styled.Image`
     margin: auto;
     border-radius: 50px;
     border-width: 2px;
-    border-color: ${secondary}
+    border-color: ${badOrange}
     margin-bottom:10px;
     margin-top: 10px;
 `;
@@ -61,11 +67,21 @@ export const PageLogo = styled.Image`
     height: 250px;
 `;
 
+export const PageLogoSmall = styled.Image`
+    width: 100px;
+    height: 100px;
+`;
+
+export const PageLogoSmallest = styled.Image`
+    width: 30px;
+    height: 30px;
+`;
+
 export const PageTitle = styled.Text`
     font-size: 30px;
     text-align: center;
     font-weight: bold;
-    color: ${primary};
+    color: ${black};
     padding: 10px;
 
     ${(props) => props.welcome &&`
@@ -73,12 +89,23 @@ export const PageTitle = styled.Text`
     `} 
 `;
 
+export const Search = styled.TextInput`
+    background-color: ${grey};
+    color: ${secondary};
+    width: 220px;
+    height: 30px;
+    border-radius: 20px;
+    border-width: 2px;
+    border-color: ${badOrange}
+`;
+
 export const SubTitle = styled.Text`
     font-size: 18px;
     margin-bottom: 20px;
     letter-spacing: 1px;
     font-weight: bold;
-    color: ${tertiary}
+    color: ${black}}
+    
 
     ${(props) => props.welcome &&`
         margin-bottom: 5px;
@@ -101,10 +128,12 @@ export const StyledTextInput = styled.TextInput`
     margin-vertical: 1px;
     margin-bottom: 10px;
     color: ${secondary};
+    border-width: 2px;
+    border-color: ${badOrange}
 `;
 
 export const StyledInputLabel = styled.Text`
-    color: ${secondary};
+    color: ${black};
     font-size: 13px;
     text-align: left;
 `;
@@ -125,7 +154,7 @@ export const RightIcon = styled.TouchableOpacity`
 
 export const StyledButton = styled.TouchableOpacity`
     padding:15px;
-    background-color: ${tertiary};
+    background-color: ${badOrange};
     justify-content: center;
     align-items: center;
     border-radius: 5px;
@@ -133,18 +162,19 @@ export const StyledButton = styled.TouchableOpacity`
     height: 60px;
 
     ${(props) => props.google == true && `
-    background-color: ${blue};
+    background-color: ${badBlue};
     flex-direction: row;
     justify-content: center;
     `}
 `;
 
 export const ButtonText = styled.Text`
-    color: ${primary};
+    color: ${black};
     font-size: 16px;
 
     ${(props) => props.google == true && `
     padding: 5px;
+    color: ${primary};
     `}
 `;
 
@@ -171,7 +201,7 @@ export const ExtraView = styled.View`
 export const ExtraText = styled.Text`
     justify-content: center;
     align-content: center;
-    color: ${primary};
+    color: ${black};
     font-size: 15px;
 `; 
 
@@ -181,6 +211,14 @@ export const TextLink = styled.TouchableOpacity`
 `;
 
 export const TextLinkContent= styled.Text`
-    color: ${tertiary};
+    color: ${badBlue};
     font-size: 15px;
+    text-decoration: underline;
+`;
+
+
+export const TextHomeHeader= styled.Text`
+    color: ${badBlue}};
+    padding-left: 10px;
+    font-size: 20px;
 `;
