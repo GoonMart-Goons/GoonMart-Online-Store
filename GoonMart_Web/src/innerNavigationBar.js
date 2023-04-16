@@ -6,28 +6,7 @@ function InnerNavigationBar() {
   return (
     <nav className="navbar">
       <div className="navbar-left">
-        <img src= "/goonmart-logo.png"/>
-      </div>
-      <div className="navbar-center">
-        <ul className="navbar-menu">
-          <li className="navbar-menu-item">
-            <a href="/InnerHomepage">Home</a>
-          </li>
-          <li className="navbar-menu-item">
-            <a href="/InnerHomepage">Orders</a>
-          </li>
-          <li className="navbar-menu-item">
-            <a href="/InnerHomepage">My Account</a>
-          </li>
-          <li className="navbar-menu-item">
-            <a href="/InnerHomepage">About</a>
-          </li>
-          <li className="navbar-menu-item">
-            <a href="/InnerHomepage">Contact Us</a>
-          </li>
-        </ul>
-      </div>
-      <div className="navbar-right">
+        <div><img src= "/goonmart-logo.png" width = {200}/></div>
         <form className="search-form">
           <input type="text" className="search-input" placeholder="Search" />
           <button type="submit" className="search-button">
@@ -35,6 +14,29 @@ function InnerNavigationBar() {
           </button>
         </form>
       </div>
+      <div className="navbar-right">
+        <ul className="navbar-menu">
+          <li >
+            <a className="navbar-menu-item" href="/InnerHomepage">HOME</a>
+          </li>
+          <li>
+            <a className="navbar-menu-item" href="/InnerHomepage">ORDERS</a>
+          </li>
+          <li>
+            <a className="navbar-menu-item" href="/InnerHomepage">MY ACCOUNT</a>
+          </li>
+          <li>
+            <a className="navbar-menu-item" href="/InnerHomepage">ABOUT</a>
+          </li>
+          <li>
+            <a className="navbar-menu-item" href="/InnerHomepage">CONTACT US</a>
+          </li>
+          <li>
+            <a className="navbar-menu-item" href="/">LOG OUT</a>
+          </li>
+        </ul>
+      </div>
+      
     </nav>
   );
 }
