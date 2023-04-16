@@ -171,6 +171,14 @@ nav button :hover{
   border-radius: 0px;
 }
 
+.navbar-menu{
+  text-decoration: none;
+}
+
+.navbar-menu-item{
+  text-decoration: none;
+}
+
 .search-button {
   border-radius: 20px;
   box-shadow: 0;
