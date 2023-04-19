@@ -6,7 +6,7 @@ jobs:
   build:
     docker:
       - image: circleci/node:14.17.6
-    working_directory: ~/app
+    working_directory: ~/GoonMart-Online-Store
     steps:
       - checkout
       - restore_cache:
