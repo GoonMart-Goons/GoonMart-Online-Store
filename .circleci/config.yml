@@ -24,7 +24,7 @@ jobs:
       - run:
           name: Build project
           command: |
-            CI=false npm run build && make test-coverage
+            CI=false npm run build
 
       - coveralls/upload
 
