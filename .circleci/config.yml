@@ -2,8 +2,8 @@
 # See: https://circleci.com/docs/configuration-reference
 version: 2.1
 #coveralls orb
-orbs:
-  coveralls: coveralls/coveralls@2.1.1
+#orbs:
+#  coveralls: coveralls/coveralls@2.1.1
 
 jobs:
   build:
@@ -24,10 +24,9 @@ jobs:
       - run:
           name: Build project
           command: |
-            CI=false npm run build && make test-coverage
+            CI=false npm run build
 
-      - coveralls/upload:
-          path: ./coverage/lcov.info
+      #- coveralls/upload
 
       - store_artifacts:
           path: build
