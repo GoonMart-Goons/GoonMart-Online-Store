@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 import Snackbar from '@mui/material/Snackbar';
-import MuiAlert, { AlertProps } from '@mui/material/Alert';
+//import MuiAlert, { AlertProps } from '@mui/material/Alert';
 
 import { auth, db } from './config/Config'
 import { createUserWithEmailAndPassword } from 'firebase/auth';
@@ -77,7 +77,7 @@ export default function Register() {
         if (Object.keys(errors).length === 0) { // check if errors object is empty
             await createUserWithEmailAndPassword(auth, data.email, data.password)
             .then((userCredentials) => {
-              const user = userCredentials.user
+              //const user = userCredentials.user
               addToDB(data.name, data.surname, data.email)
               setOpenSnackbar(true);
                 console.log("Added successfully")
@@ -116,7 +116,7 @@ export default function Register() {
     <section>
         <div className="Form">
             <div className="col-1">
-                <img src= "/goonmart-logo.png" className='loginLogo'/>
+                <img src= "/goonmart-logo.png" className='loginLogo' alt='goonmart logo'/>
                 <h2>Create an account</h2>
 
                 <form id='registerForm' className='registerForm' onSubmit={handleSubmit(onSubmit)}>
