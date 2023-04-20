@@ -6,7 +6,7 @@ function InnerNavigationBar() {
   return (
     <nav className="navbar">
       <div className="navbar-left">
-        <div><img src= "/goonmart-logo.png" width = {200}/></div>
+        <div><img src= "/goonmart-logo.png" width = {200} alt='goonmart logo'/></div>
         <form className="search-form">
           <input type="text" className="search-input" placeholder="Search" />
           <button type="submit" className="search-button">

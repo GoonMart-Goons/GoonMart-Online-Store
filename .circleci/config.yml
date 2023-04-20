@@ -6,20 +6,21 @@ jobs:
   build:
     docker:
       - image: circleci/node:14.17.6
-    working_directory: ~/app
+    working_directory: ~/GoonMart-Online-Store
     steps:
       - checkout
       - restore_cache:
           key: dependency-cache-{{ checksum "package-lock.json" }}
       - run:
           name: Install Dependencies
-          command: npm ci
+          command: npm install
       - save_cache:
           key: dependency-cache-{{ checksum "package-lock.json" }}
           paths:
             - node_modules
       - run:
-          name: Build App
-          command: npm run build
+          name: Build project
+          command: |
+            CI=false npm run build
       - store_artifacts:
           path: build
