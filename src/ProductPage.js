@@ -2,6 +2,19 @@ import React from 'react';
 import './ProductPage.css';
 import Colors from './components/Colors'
 import DetailsThumb from './components/DetailsThumb';
+import Star from './components/Star';
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
+import {
+    Card,
+    CardSubtitle,
+    CardText,
+    CardTitle,
+    CardBody,
+    CardImg,
+} from "reactstrap";
+
+
 
 
 class ProductPage extends React.Component{
@@ -40,42 +53,63 @@ class ProductPage extends React.Component{
         this.myRef.current.children[index].className = "active";
     }
 
+
     render() {
+
         const { products, index } = this.state;
-       // console.log(products)
+        const responsive = {
+            desktop: {
+                breakpoint: { max: 3000, min: 1024 },
+                items: 3
+            }
+        };
+
         return (  
-            <div className="app">
-                {
-                    products.map(item => (
-                        <div className="details" key={item._id}>
-                            <div className="big-img">
-                                <img src={item.src[index]} alt=""/>
+            <><div className="app">
+                {products.map(item => (
+                    <div className="details" key={item._id}>
+                        <div className="big-img">
+                            <img src={item.src[index]} alt="" />
+                        </div>
+
+
+                        <div className="box">
+                            <div className="row">
+                                <h2>{item.title}</h2>
+                                <span>R {item.price}</span>
                             </div>
+                            <Colors colors={item.colors} />
+                            <Star stars="2" />
 
-
-                            <div className="box">
-                                <div className="row">
-                                    <h2>{item.title}</h2>
-                                    <span>R {item.price}</span>
-                                </div>
-                                <Colors colors={item.colors}/>
-                                  
-                    
-                                <p>{item.description}</p>
-                                <p>{item.content}</p>
-
-                                <DetailsThumb images={item.src} tab={this.handleTab} myRef={this.myRef} />
-                                <button className="cart"> Add to Cart</button>
-                               
-
-                                </div>
+                            <p>{item.description}</p>
+                            <div className="Box">
+                                <button type="button" className="Dec">-</button>
+                                <div className="control text">quantity</div>
+                                <button type="button" className="Inc">+</button>
                             </div>
-                        ))
-                }
-            
-            </div>
+                            <p>In Stock</p>
+                            <p>{item.content}</p>
+
+                            <DetailsThumb images={item.src} tab={this.handleTab} myRef={this.myRef} />
+                            <button className="cart"> Add to Cart</button>
+
+
+                        </div>
+                    </div>
+                ))}
+
+            </div><Carousel className="Carousel" responsive={responsive}>
+                    <div>Item 1</div>
+                    <div>Item 2</div>
+                    <div>Item 3</div>
+                    <div>Item 4</div>
+                </Carousel></>
+
+       
+        
         );
     };
 }
+
 
 export default ProductPage;
