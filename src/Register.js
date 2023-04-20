@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 import Snackbar from '@mui/material/Snackbar';
-//import MuiAlert, { AlertProps } from '@mui/material/Alert';
+import MuiAlert from '@mui/material/Alert';
 
 import { auth, db } from './config/Config'
 import { createUserWithEmailAndPassword } from 'firebase/auth';
