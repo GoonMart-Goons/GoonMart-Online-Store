@@ -5,6 +5,10 @@ import { FaTshirt} from 'react-icons/fa';
 import { FaCoffee} from 'react-icons/fa';
 import { FaGamepad } from 'react-icons/fa';
 
+//Firebase Imports
+import { db } from './config/Config';
+import { collection, query, where, getDocs } from '@firebase/firestore';
+
 const categories = [
   { id: 0, name: 'All', icon: <FaGlobe/> },
   { id: 1, name: 'Electronics', icon: <FaLaptop/> },
@@ -17,9 +21,22 @@ function CategoryList() {
   const [activeCategoryId, setActiveCategoryId] = useState(0);
 
   const handleClick = (categoryId) => {
+    filterProdsByCategory(categories[categoryId].name)
     setActiveCategoryId(categoryId);
     // Call a function to filter products by category
-  };
+  }; 
+
+  //Query products that == selected category
+  async function filterProdsByCategory(category){
+    console.log(category)
+    const prodsRef = collection(db, 'Products')
+    const q = query(prodsRef, where('category', '==', category))
+    const qSnapshot = await getDocs(q)
+    //Queried documents
+    qSnapshot.forEach((doc) => {
+      console.log(doc.data())
+  })
+}
 
   return (
     <div className="category-list">
