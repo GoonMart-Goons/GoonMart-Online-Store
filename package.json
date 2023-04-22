@@ -45,6 +45,11 @@
     ]
   },
   "devDependencies": {
-    "coveralls": "^3.1.1"
+    "@babel/preset-env": "^7.21.4",
+    "@babel/preset-react": "^7.18.6",
+    "babel-jest": "^29.5.0",
+    "coveralls": "^3.1.1",
+    "jest": "^27.5.1",
+    "react-test-renderer": "^18.2.0"
   }
 }
