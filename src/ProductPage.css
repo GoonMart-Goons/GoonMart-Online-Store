@@ -1,7 +1,7 @@
 .app {
  max-width: 1200px;
  width:100%;
- margin: 100px auto;
+ margin:5em auto 1em;
  box-shadow: 0 0 5px #ccc;
 }
 .details{
@@ -12,7 +12,7 @@
 .details .big-img{
     max-width:500px;
     min-width:290px;
-    overflow:hidden;
+    overflow: auto;
     margin:25px;
 }
 .big-img img{
@@ -77,13 +77,27 @@ margin: 15px 0;
     justify-content: center;
 }
 .box .cart{
-    background: #333;
+    background: rgb(255, 68, 0);;
     color: white;
     outline: none;
     border: none;
     cursor: pointer;
     padding: 10px 25px;
     margin-top:15px;
+}
+
+.star .starHalf{
+    /*background: linear-gradient(to right, rgb(255, 68, 0) 50%, rgb(156, 156, 156) 50%);*/
+    color:  rgb(255, 68, 0);
+    clip-path: polygon(0 0,50% 0,50% 100%,0% 100%);
+}
+
+.star .starEmpty{
+    color: rgb(156, 156, 156);
+}
+
+.star .starFull{
+    color: rgb(255, 68, 0);
 }
 
  @media (max-width: 500px){
@@ -95,8 +109,10 @@ margin: 15px 0;
      }
  }
 .Carousel {
+    transform: scale(0.5);
+    transform-origin: top;
     width: 100%;
-    height: fit-content;
-    margin: 100px auto;
+    height:fit-content;
+    margin: 0 auto 1em;
     box-shadow: 0 0 5px #ccc;
 }
