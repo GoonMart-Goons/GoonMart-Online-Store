@@ -14,6 +14,28 @@ export const categories = [
   { id: 4, name: 'Toys & Games', icon: <FaGamepad/> },
 ];
 
+//Query products that == selected category
+async function filterProdsByCategory(category){
+  const prodsRef = collection(db, 'Products')
+  const q = query(prodsRef, where('category', '==', category))
+  const qSnapshot = await getDocs(q)
+  //Queried documents
+  qSnapshot.forEach((doc) => {
+    console.log(doc.data())
+  })
+}
+
+//Query products that == selected category
+async function filterProdsByCategory(category){
+  const prodsRef = collection(db, 'Products')
+  const q = query(prodsRef, where('category', '==', category))
+  const qSnapshot = await getDocs(q)
+  //Queried documents
+  qSnapshot.forEach((doc) => {
+    console.log(doc.data())
+  })
+}
+
 function Categories() {
   const [activeCategoryId, setActiveCategoryId] = useState(0);
 
@@ -23,14 +45,8 @@ function Categories() {
   const handleClick = (categoryId) => {
     setActiveCategoryId(categoryId);
     // Call a function to filter products by category
-    /* const filteredProducts = products.filter(product => {
-      if (categoryId === 0) {
-        return true;
-      } else {
-        return product.category === categories[categoryId].name;
-      }
-    });
-    setFilteredProducts(filteredProducts); */ 
+    // console.log(categories[categoryId].name)
+    filterProdsByCategory(categories[categoryId].name)
   };
 
   return (
