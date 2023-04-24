@@ -3,6 +3,7 @@ import {FaSearch} from 'react-icons/fa';
   
 
 function NavigationBar() {
+
   return (
     <nav className="navbar">
       <div className="navbar-left">
