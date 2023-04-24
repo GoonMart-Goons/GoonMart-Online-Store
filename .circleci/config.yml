@@ -2,13 +2,15 @@
 # See: https://circleci.com/docs/configuration-reference
 version: 2.1
 orbs:
-  codecov: codecov/codecov@3.2.4
-  #coveralls orb
-#orbs:
-  #coveralls: coveralls/coveralls@2.1.1
-
+  codecov: codecov/codecov@3.2.3
 jobs:
   node-v12:
+    docker:
+      - image: circleci/node:12
+    steps:
+      - test
+      - store-coverage-data
+      - upload-coverage
   build:
     docker:
       - image: circleci/node:14.17.6
