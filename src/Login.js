@@ -88,17 +88,17 @@ export default function Login() {
                 <img src= "/goonmart-logo.png" className='loginLogo' alt='goonmart logo'/>
                 <h2>Welcome Back!</h2>
 
-                <form id='loginrForm' className='loginForm' onSubmit={handleSubmit(SignIn)}>
+                <form id='loginrForm' data-testid="login-form" className='loginForm' onSubmit={handleSubmit(SignIn)}>
                     
                     <label className="form-label" htmlFor = "email">Email</label>
-                    <input className="form-input" type="email"  name="email" {...register("email")} placeholder='Email' 
-                    onChange = {(e) => setEmail(e.target.value)} value = {email}/>
+                    <input className="form-input" type="email"  name="email" {...register("email")} placeholder='Email' value = {email}
+                    onChange = {(e) => setEmail(e.target.value)} />
                     {errors.email && <error className="form-error">{errors.email.message}</error>}
 
                     <label className="form-label" htmlFor = "password">Password</label>
                     <label>
-                    <input className="form-input" type={showPassword ? "text" : "password"} name="password" {...register("password")} placeholder='********' 
-                    onChange = {(e) => setPassword(e.target.value)} value = {password}/>
+                    <input className="form-input" type={showPassword ? "text" : "password"} name="password" {...register("password")} placeholder='********' value = {password}
+                    onChange = {(e) => setPassword(e.target.value)} />
                     <i  className="eye-icon" onClick = {togglePasswordVisibility} > {showPassword ? <FaEyeSlash/> : <FaEye/>} </i>
                     </label>
                     {errors.password && <error className="form-error">{errors.password.message}</error>}

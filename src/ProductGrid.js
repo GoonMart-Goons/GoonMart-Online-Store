@@ -30,7 +30,7 @@ const products = [
     price: '$15.00'
   },
   {
-    id: 1,
+    id: 4,
     name: 'Product 1',
     image: phoneSale,
     rating: 4,
@@ -38,7 +38,7 @@ const products = [
     price: '$10.00'
   },
   {
-    id: 2,
+    id: 5,
     name: 'Product 2',
     image: shirt,
     rating: 3,
@@ -46,7 +46,7 @@ const products = [
     price: '$20.00'
   },
   {
-    id: 3,
+    id: 6,
     name: 'Product 3',
     image: cookWare,
     rating: 5,
@@ -54,7 +54,7 @@ const products = [
     price: '$15.00'
   },
   {
-    id: 1,
+    id: 7,
     name: 'Product 1',
     image: phoneSale,
     rating: 4,
@@ -62,7 +62,7 @@ const products = [
     price: '$10.00'
   },
   {
-    id: 2,
+    id: 8,
     name: 'Product 2',
     image: shirt,
     rating: 3,
@@ -70,7 +70,7 @@ const products = [
     price: '$20.00'
   },
   {
-    id: 3,
+    id: 9,
     name: 'Product 3',
     image: cookWare,
     rating: 5,
@@ -78,7 +78,7 @@ const products = [
     price: '$15.00'
   },
   {
-    id: 1,
+    id: 10,
     name: 'Product 1',
     image: phoneSale,
     rating: 4,
@@ -86,7 +86,7 @@ const products = [
     price: '$10.00'
   },
   {
-    id: 2,
+    id: 11,
     name: 'Product 2',
     image: shirt,
     rating: 3,
@@ -94,7 +94,7 @@ const products = [
     price: '$20.00'
   },
   {
-    id: 3,
+    id: 12,
     name: 'Product 3',
     image: cookWare,
     rating: 5,
@@ -102,7 +102,7 @@ const products = [
     price: '$15.00'
   },
   {
-    id: 1,
+    id: 13,
     name: 'Product 1',
     image: phoneSale,
     rating: 4,
@@ -110,7 +110,7 @@ const products = [
     price: '$10.00'
   },
   {
-    id: 2,
+    id: 14,
     name: 'Product 2',
     image: shirt,
     rating: 3,
@@ -118,7 +118,7 @@ const products = [
     price: '$20.00'
   },
   {
-    id: 3,
+    id: 15,
     name: 'Product 3',
     image: cookWare,
     rating: 5,
@@ -126,7 +126,7 @@ const products = [
     price: '$15.00'
   },
   {
-    id: 1,
+    id: 16,
     name: 'Product 1',
     image: phoneSale,
     rating: 4,
@@ -134,7 +134,7 @@ const products = [
     price: '$10.00'
   },
   {
-    id: 2,
+    id: 17,
     name: 'Product 2',
     image: shirt,
     rating: 3,
@@ -142,7 +142,7 @@ const products = [
     price: '$20.00'
   },
   {
-    id: 3,
+    id: 18,
     name: 'Product 3',
     image: cookWare,
     rating: 5,
@@ -150,7 +150,7 @@ const products = [
     price: '$15.00'
   },
   {
-    id: 1,
+    id: 19,
     name: 'Product 1',
     image: phoneSale,
     rating: 4,
@@ -158,7 +158,7 @@ const products = [
     price: '$10.00'
   },
   {
-    id: 2,
+    id: 20,
     name: 'Product 2',
     image: shirt,
     rating: 3,
@@ -166,7 +166,7 @@ const products = [
     price: '$20.00'
   },
   {
-    id: 3,
+    id: 21,
     name: 'Product 3',
     image: cookWare,
     rating: 5,
@@ -174,7 +174,7 @@ const products = [
     price: '$15.00'
   },
   {
-    id: 1,
+    id: 22,
     name: 'Product 1',
     image: phoneSale,
     rating: 4,
@@ -182,7 +182,7 @@ const products = [
     price: '$10.00'
   },
   {
-    id: 2,
+    id: 23,
     name: 'Product 2',
     image: shirt,
     rating: 3,
@@ -190,7 +190,7 @@ const products = [
     price: '$20.00'
   },
   {
-    id: 3,
+    id: 24,
     name: 'Product 3',
     image: cookWare,
     rating: 5,
@@ -198,7 +198,7 @@ const products = [
     price: '$15.00'
   },
   {
-    id: 1,
+    id: 25,
     name: 'Product 1',
     image: phoneSale,
     rating: 4,
@@ -206,7 +206,7 @@ const products = [
     price: '$10.00'
   },
   {
-    id: 2,
+    id: 26,
     name: 'Product 2',
     image: shirt,
     rating: 3,
@@ -214,7 +214,7 @@ const products = [
     price: '$20.00'
   },
   {
-    id: 3,
+    id: 27,
     name: 'Product 3',
     image: cookWare,
     rating: 5,
