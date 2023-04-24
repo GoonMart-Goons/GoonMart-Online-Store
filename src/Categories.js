@@ -6,6 +6,10 @@ import { FaCoffee} from 'react-icons/fa';
 import { FaGamepad } from 'react-icons/fa';
 import ProductGrid from './ProductGrid';
 
+//FireBase imports
+import { db } from './config/Config'
+import { collection, query, where, getDocs } from 'firebase/firestore';
+
 export const categories = [
   { id: 0, name: 'All', icon: <FaGlobe/> },
   { id: 1, name: 'Electronics', icon: <FaLaptop/> },
@@ -13,6 +17,17 @@ export const categories = [
   { id: 3, name: 'Home & Kitchen', icon: <FaCoffee/> },
   { id: 4, name: 'Toys & Games', icon: <FaGamepad/> },
 ];
+
+//Query products that == selected category
+async function filterProdsByCategory(category){
+  const prodsRef = collection(db, 'Products')
+  const q = query(prodsRef, where('category', '==', category))
+  const qSnapshot = await getDocs(q)
+  //Queried documents
+  qSnapshot.forEach((doc) => {
+    console.log(doc.data())
+  })
+}
 
 function Categories() {
   const [activeCategoryId, setActiveCategoryId] = useState(0);
@@ -24,14 +39,8 @@ function Categories() {
     filterProdsByCategory(categories[categoryId].name)
     setActiveCategoryId(categoryId);
     // Call a function to filter products by category
-    /* const filteredProducts = products.filter(product => {
-      if (categoryId === 0) {
-        return true;
-      } else {
-        return product.category === categories[categoryId].name;
-      }
-    });
-    setFilteredProducts(filteredProducts); */ 
+    // console.log(categories[categoryId].name)
+    filterProdsByCategory(categories[categoryId].name)
   };
 
   return (

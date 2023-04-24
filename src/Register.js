@@ -10,7 +10,7 @@ import MuiAlert from '@mui/material/Alert';
 
 import { auth, db } from './config/Config'
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { setDoc, doc } from 'firebase/firestore'
+import { collection, addDoc } from 'firebase/firestore'
 
 
 const validationSchema = yup.object().shape({
@@ -78,12 +78,13 @@ export default function Register() {
             await createUserWithEmailAndPassword(auth, data.email, data.password)
             .then((userCredentials) => {
               //const user = userCredentials.user
+              console.log(userCredentials)
               addToDB(data.name, data.surname, data.email)
               setOpenSnackbar(true);
                 console.log("Added successfully")
                 setSnackbarMessage('Registered successfully! Welcome to GoonMart');
                 setTimeout(() => {
-                    navigate('/'); // navigate to the HOME page
+                  navigate('/InnerHomepage'); // navigate to the HOME page
                 }, 2000); //delay for 2 seconds (2000 milliseconds)
             }).catch((error) => {
               console.log("Failed to register: ", error)
@@ -94,15 +95,19 @@ export default function Register() {
         }
     }
 
-    //FIXME Not working for some reason
+    //adds user's data to db for lookup purposes
     async function addToDB(name, surname, email){
-      const usersRef = doc(db, "Users");
-      await setDoc(usersRef, {
+      addDoc(collection(db, 'Users'), {
         name: name,
         surname: surname,
-        email: email
-      });
-      console.log("User added with ID: ", usersRef.id);
+        email, email
+      })
+      .then((docRef) => {
+        console.log("Doc written with ID: ", docRef.id)
+      })
+      .catch((error) => {
+        console.error("Error adding doc: ", error)
+      })
     }
 
     const navigate = useNavigate();
