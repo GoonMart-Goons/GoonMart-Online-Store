@@ -1,18 +1,18 @@
 import React from 'react';
 import './ProductPage.css';
-import Colors from './components/Colors'
-import DetailsThumb from './components/DetailsThumb';
-import Star from './components/Star';
+import Colors from './Colors'
+import DetailsThumb from './DetailsThumb';
+import Star from './Star';
 import Carousel from 'react-multi-carousel';
-import 'react-multi-carousel/lib/styles.css';
-import {
-    Card,
-    CardSubtitle,
-    CardText,
-    CardTitle,
-    CardBody,
-    CardImg,
-} from "reactstrap";
+//import 'react-multi-carousel/lib/styles.css';
+//import {
+//    Card,
+//    CardSubtitle,
+//    CardText,
+//    CardTitle,
+//    CardBody,
+//    CardImg,
+//} from "reactstrap";
 
 
 

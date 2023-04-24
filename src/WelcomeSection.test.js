@@ -1,6 +1,8 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import WelcomeSection from './ProductPage';
+import WelcomeSection from './WelcomeSection';
+import '@testing-library/jest-dom/extend-expect'; // import jest-dom for toBeInTheDocument()
+
 
 describe('WelcomeSection', () => {
     it('renders the welcome message', () => {
@@ -11,7 +13,7 @@ describe('WelcomeSection', () => {
 
     it('renders the happy shopping message', () => {
         const { getByText } = render(<WelcomeSection />);
-        const happyShoppingMessage = getByText('Happy Shopping :)');
+        const happyShoppingMessage = getByText("Happy Shopping :)");
         expect(happyShoppingMessage).toBeInTheDocument();
     });
 });
