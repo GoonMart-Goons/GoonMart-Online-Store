@@ -27,7 +27,10 @@ const suggestedProducts = [
       rating: 4,
       reviews: 10,
       price: '$10.00',
-      category: 1
+      category: 1,
+      description: "Latest of the Apple iPhone range",
+      content: "This is a premium cellular device with an aluminium frame and ultra tempered protective glass. The phone comes with 128GB of storage and I have ran out of lies to say so I am just going to end this reasonably sized paragraph here.",
+                
     },
     {
       id: 2,
@@ -53,9 +56,9 @@ class ProductPage extends React.Component{
     state = {
         products: [
             {
-                id: 1,
+                /*id: 1,
                 name: "Nike Shoes",
-                src: [
+                image (src) : [
                     "https://www.upsieutoc.com/images/2020/06/27/img1.jpg",
                     "https://www.upsieutoc.com/images/2020/06/27/img2.jpg",
                     "https://www.upsieutoc.com/images/2020/06/27/img3.jpg",
@@ -66,14 +69,25 @@ class ProductPage extends React.Component{
                 price: 1323,
                 rating: 3.5,
                 colors: ["red", "black", "crimson", "teal"],
-                count: 1
+                count: 1 */
+
+                id: 1,
+                name: 'Product 1',
+                image: phoneSale,
+                rating: 4,
+                reviews: 10,
+                price: 18900,
+                category: 1,
+                description: "Latest of the Apple iPhone range",
+                content: "This is a premium cellular device with an aluminium frame and ultra tempered protective glass. The phone comes with 128GB of storage and I have ran out of lies to say so I am just going to end this reasonably sized paragraph here.",
+                
             },
     
         ],
         index: 0, 
         quantityCount: 1
     };
-    myRef = React.createRef();
+    /*myRef = React.createRef();
 
     handleTab = index => {
         this.setState({ index: index })
@@ -82,7 +96,7 @@ class ProductPage extends React.Component{
             images[i].className = images[i].className.replace("active", "");
         }
         images[index].className = "active";
-    };
+    };*/
 
     handleIncrement = () => {
         this.setState(prevState => {
@@ -103,10 +117,10 @@ class ProductPage extends React.Component{
     }
        
 
-    componentDidMount() {
+    /*componentDidMount() {
         const { index } = this.state;
         this.myRef.current.children[index].className = "active";
-    }
+    }*/
 
 
     render() {
@@ -124,8 +138,8 @@ class ProductPage extends React.Component{
                 {products.map(item => (
                     <div className="details" key={item.id}>
                         <div className="big-img">
-                            <img src={item.src[index]} alt="" />
-                           <DetailsThumb images={item.src} tab={this.handleTab} myRef={this.myRef} />
+                            <img src={item.image /*[index]*/} alt="" />
+                          {/*} <DetailsThumb images={item.src} tab={this.handleTab} myRef={this.myRef} />*/}
                         </div>
 
 

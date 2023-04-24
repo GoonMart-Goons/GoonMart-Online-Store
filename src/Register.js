@@ -131,7 +131,7 @@ export default function Register() {
                     onChange = {(e) => setName(e.target.value)} value = {name}/>
                     {errors.name && <error className="form-error">{errors.name.message}</error>}
 
-                    <label  className="form-label" htmlFor = "surnname">Surame</label>
+                    <label  className="form-label" htmlFor = "surnname">Surname</label>
                     <input className="form-input" type="name" name="surname" {...register("surname")} placeholder='Surname' 
                     onChange = {(e) => setSurname(e.target.value)} value = {surname}/>
                     {errors.surname && <error className="form-error">{errors.surname.message}</error>}
