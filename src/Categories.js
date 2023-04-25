@@ -10,7 +10,7 @@ import { db } from './config/Config'
 import { collection, query, where, getDocs } from 'firebase/firestore';
 
 //Catagories available
-const categories = [
+export const categories = [
   { id: 0, name: 'All', icon: <FaGlobe/> },
   { id: 1, name: 'Electronics', icon: <FaLaptop/> },
   { id: 2, name: 'Clothing', icon: <FaTshirt/> },
