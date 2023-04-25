@@ -7,6 +7,14 @@ version: 2.1
 orbs:
   codecov: codecov/codecov@1.0.5
 
+  version: '2.1'
+
+workflows:
+  upload-to-codecov:
+    jobs:
+      
+
+
 jobs:
   build:
     docker:
@@ -32,7 +40,9 @@ jobs:
       - test # test the code
       - store-coverage-data # store coverage files outside of the container command
       - upload-coverage # upload files to the codecov.io command
-
+  - node/test:
+      post-steps:
+        - codecov/upload
       #- coveralls/upload:
         #  path: ./coverage/lcov.info
         #  token: $COVERALLS_REPO_TOKEN
