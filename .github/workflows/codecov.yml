@@ -22,4 +22,4 @@ jobs:
       - name: Upload coverage report to Codecov
         uses: codecov/codecov-action@v2.1.0
         with:
-          token: ${{ secrets.5a24003f-ed0f-46ee-be33-df3c5d112ac5 }}
+          token: ${{ secrets.CODECOV_TOKEN }}
