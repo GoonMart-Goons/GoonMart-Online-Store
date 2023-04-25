@@ -4,9 +4,9 @@ version: 2.1
 #orbs:
   #coveralls: coveralls/coveralls@2.1.1
 
- orbs:
-   codecov: codecov/codecov@3.2.3
-   node: circleci/node@4.7.0
+orbs:
+  codecov: codecov/codecov@3.2.3
+  node: circleci/node@4.7.0
 
 jobs:
   build:
@@ -27,19 +27,29 @@ jobs:
       - run:
           name: Build project
           command: |
-            CI=false npm run build && npm run test -- --coverage
+            CI=false npm run build 
+            #&& npm run test -- --coverage
 
-      - store_artifacts:
-          path: coverage
-      - codecov/upload:
-          file: coverage/coverage-final.json
-      - store_artifacts:
-          path: build
-      - node/test:
-          post-steps:
-            - codecov/upload
+      - test # test the code
+      - store-coverage-data # store coverage files outside of the container command
+          - store_artifacts:
+    #          path: coverage
+      - upload-coverage # upload files to the codecov.io command
+          - codecov/upload:
+              file: coverage/coverage-final.json
+          - store_artifacts:
+              path: build
+      # - node/test:
+      #     post-steps:
+      #       - codecov/upload
 
       #- coveralls/upload:
         #  path: ./coverage/lcov.info
         #  token: $COVERALLS_REPO_TOKEN
-        
+    # commands:
+    #   store-coverage-data:
+    #     steps:
+    #       
+    #   upload-coverage:
+    #     steps:
+    #       
