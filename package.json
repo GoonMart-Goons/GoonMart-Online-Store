@@ -24,6 +24,7 @@
     "start": "react-scripts  --openssl-legacy-provider start",
     "build": "react-scripts build",
     "test": "jest",
+    "ci:test": "jest --runInBand --ci  --reporters=default  --coverage --coverageDirectory=coverage",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
