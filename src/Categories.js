@@ -40,7 +40,7 @@ function CategoryList() {
   };
 
   return (
-    <div className="category-list">
+    <div className="category-list" data-testid="categories">
       {categories.map((category) => (
         <div
           key={category.id}

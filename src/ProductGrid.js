@@ -225,7 +225,7 @@ const products = [
 
 const ProductGrid = () => {
   return (
-    <div className="product-grid">
+    <div className="product-grid" data-testid="product-grid">
       {products.map(product => {
         return (
           <ProductCard
