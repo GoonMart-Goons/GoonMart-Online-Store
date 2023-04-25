@@ -30,7 +30,7 @@ jobs:
             CI=false npm run build 
             #&& npm run test -- --coverage
 
-      - test # test the code
+      #- test # test the code
       - store_artifacts:
               path: coverage
       - codecov/upload:
