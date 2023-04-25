@@ -12,7 +12,7 @@ Kudzai Saurombe;
 Kaylin Klein;
 Milisa Sithole.
 
-[![Coverage Status](https://coveralls.io/repos/github/GoonMart-Goons/GoonMart-Online-Store/badge.svg?branch=main)](https://coveralls.io/github/GoonMart-Goons/GoonMart-Online-Store?branch=main)
+[![codecov](https://codecov.io/gh/GoonMart-Goons/GoonMart-Online-Store/branch/main/graph/badge.svg?token=SXO53Q26W8)](https://codecov.io/gh/GoonMart-Goons/GoonMart-Online-Store)
 
 
 [![CircleCI](https://dl.circleci.com/status-badge/img/gh/GoonMart-Goons/GoonMart-Online-Store/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/GoonMart-Goons/GoonMart-Online-Store/tree/main)
