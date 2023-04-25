@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="jest tests" tests="20" failures="1" errors="0" time="39.507">
+  <testsuite name="Login Component" errors="0" failures="1" skipped="0" timestamp="2023-04-25T11:21:36" time="17.774" tests="5">
+    <testcase classname="Login Component renders Login form" name="Login Component renders Login form" time="0.188">
+    </testcase>
+    <testcase classname="Login Component submitting empty form shows validation errors" name="Login Component submitting empty form shows validation errors" time="0.494">
+    </testcase>
+    <testcase classname="Login Component submitting short password form shows validation error" name="Login Component submitting short password form shows validation error" time="0.152">
+    </testcase>
+    <testcase classname="Login Component submitting valid form calls SignIn function" name="Login Component submitting valid form calls SignIn function" time="1.113">
+      <failure>Error: expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+Expected: {&quot;email&quot;: &quot;test@example.com&quot;, &quot;password&quot;: &quot;StrongPassword1#&quot;}
+
+Number of calls: 0
+
+Ignored nodes: comments, script, style
+&lt;html&gt;
+  &lt;head /&gt;
+  &lt;body&gt;
+    &lt;div&gt;
+       
+      &lt;section&gt;
+        &lt;div
+          class=&quot;Form&quot;
+        &gt;
+          &lt;div
+            class=&quot;col-1&quot;
+          &gt;
+            &lt;img
+              alt=&quot;goonmart logo&quot;
+              class=&quot;loginLogo&quot;
+              src=&quot;/goonmart-logo.png&quot;
+            /&gt;
+            &lt;h2&gt;
+              Welcome Back!
+            &lt;/h2&gt;
+            &lt;form
+              class=&quot;loginForm&quot;
+              data-testid=&quot;login-form&quot;
+              id=&quot;loginrForm&quot;
+            &gt;
+              &lt;label
+                class=&quot;form-label&quot;
+                for=&quot;email&quot;
+              &gt;
+                Email
+              &lt;/label&gt;
+              &lt;input
+                class=&quot;form-input&quot;
+                name=&quot;email&quot;
+                placeholder=&quot;Email&quot;
+                type=&quot;email&quot;
+                value=&quot;test@example.com&quot;
+              /&gt;
+              &lt;error
+                class=&quot;form-error&quot;
+              &gt;
+                Email is required
+              &lt;/error&gt;
+              &lt;label
+                class=&quot;form-label&quot;
+                for=&quot;password&quot;
+              &gt;
+                Password
+              &lt;/label&gt;
+              &lt;label&gt;
+                &lt;input
+                  class=&quot;form-input&quot;
+                  name=&quot;password&quot;
+                  placeholder=&quot;********&quot;
+                  type=&quot;password&quot;
+                  value=&quot;StrongPassword1#&quot;
+                /&gt;
+                &lt;i
+                  class=&quot;eye-icon&quot;
+                &gt;
+                   
+                  &lt;svg
+                    fill=&quot;currentColor&quot;
+                    height=&quot;1em&quot;
+                    stroke=&quot;currentColor&quot;
+                    stroke-width=&quot;0&quot;
+                    viewBox=&quot;0 0 576 512&quot;
+                    width=&quot;1em&quot;
+                    xmlns=&quot;http://www.w3.org/2000/svg&quot;
+                  &gt;
+                    &lt;path
+                      d=&quot;M572.52 241.4C518.29 135.59 410.93 64 288 64S57.68 135.64 3.48 241.41a32.35 32.35 0 0 0 0 29.19C57.71 376.41 165.07 448 288 448s230.32-71.64 284.52-177.41a32.35 32.35 0 0 0 0-29.19zM288 400a144 144 0 1 1 144-144 143.93 143.93 0 0 1-144 144zm0-240a95.31 95.31 0 0 0-25.31 3.79 47.85 47.85 0 0 1-66.9 66.9A95.78 95.78 0 1 0 288 160z&quot;
+                    /&gt;
+                  &lt;/svg&gt;
+                   
+                &lt;/i&gt;
+              &lt;/label&gt;
+              &lt;error
+                class=&quot;form-error&quot;
+              &gt;
+                Password is required
+              &lt;/error&gt;
+              &lt;button
+                class=&quot;form-btn&quot;
+                type=&quot;submit&quot;
+              &gt;
+                LOGIN
+              &lt;/button&gt;
+            &lt;/form&gt;
+            &lt;i&gt;
+              Don&apos;t have an account? Register
+            &lt;/i&gt;
+            &lt;button
+              class=&quot;form-link-btn&quot;
+            &gt;
+              &lt;i&gt;
+                here
+              &lt;/i&gt;
+            &lt;/button&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/section&gt;
+       
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+    at C:\Users\Michelle\Documents\BSc Computer Science\YOS3\SD\Online Store Project\GoonMart-Online-Store\src\Login.test.js:71:32
+    at runWithExpensiveErrorDiagnosticsDisabled (C:\Users\Michelle\Documents\BSc Computer Science\YOS3\SD\Online Store Project\GoonMart-Online-Store\node_modules\@testing-library\dom\dist\config.js:47:12)
+    at checkCallback (C:\Users\Michelle\Documents\BSc Computer Science\YOS3\SD\Online Store Project\GoonMart-Online-Store\node_modules\@testing-library\dom\dist\wait-for.js:127:77)
+    at checkRealTimersCallback (C:\Users\Michelle\Documents\BSc Computer Science\YOS3\SD\Online Store Project\GoonMart-Online-Store\node_modules\@testing-library\dom\dist\wait-for.js:121:16)
+    at Timeout.task [as _onTimeout] (C:\Users\Michelle\Documents\BSc Computer Science\YOS3\SD\Online Store Project\GoonMart-Online-Store\node_modules\jsdom\lib\jsdom\browser\Window.js:516:19)
+    at listOnTimeout (node:internal/timers:573:17)
+    at processTimers (node:internal/timers:514:7)</failure>
+    </testcase>
+    <testcase classname="Login Component clicking on &quot;Register&quot; button navigates to registration page" name="Login Component clicking on &quot;Register&quot; button navigates to registration page" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2023-04-25T11:21:55" time="6.314" tests="1">
+    <testcase classname=" renders GoonMart logo" name=" renders GoonMart logo" time="0.289">
+    </testcase>
+  </testsuite>
+  <testsuite name="ProductCard" errors="0" failures="0" skipped="0" timestamp="2023-04-25T11:22:01" time="1.674" tests="6">
+    <testcase classname="ProductCard renders product image with correct alt text" name="ProductCard renders product image with correct alt text" time="0.051">
+    </testcase>
+    <testcase classname="ProductCard renders product name, rating, reviews, and price" name="ProductCard renders product name, rating, reviews, and price" time="0.057">
+    </testcase>
+    <testcase classname="ProductCard renders the number of reviews with &quot;reviews&quot; appended" name="ProductCard renders the number of reviews with &quot;reviews&quot; appended" time="0.014">
+    </testcase>
+    <testcase classname="ProductCard renders the correct number of stars" name="ProductCard renders the correct number of stars" time="0.028">
+    </testcase>
+    <testcase classname="ProductCard renders the image and name" name="ProductCard renders the image and name" time="0.032">
+    </testcase>
+    <testcase classname="ProductCard renders the price with a dollar sign and two decimal places" name="ProductCard renders the price with a dollar sign and two decimal places" time="0.052">
+    </testcase>
+  </testsuite>
+  <testsuite name="ProductPage component" errors="0" failures="0" skipped="0" timestamp="2023-04-25T11:22:03" time="2.727" tests="2">
+    <testcase classname="ProductPage component renders product details correctly" name="ProductPage component renders product details correctly" time="0.135">
+    </testcase>
+    <testcase classname="ProductPage component changes active image when thumbnail is clicked" name="ProductPage component changes active image when thumbnail is clicked" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="NavigationBar" errors="0" failures="0" skipped="0" timestamp="2023-04-25T11:22:06" time="1.505" tests="4">
+    <testcase classname="NavigationBar renders the GoonMart logo" name="NavigationBar renders the GoonMart logo" time="0.055">
+    </testcase>
+    <testcase classname="NavigationBar renders the search input" name="NavigationBar renders the search input" time="0.04">
+    </testcase>
+    <testcase classname="NavigationBar renders the search button with FaSearch icon" name="NavigationBar renders the search button with FaSearch icon" time="0.034">
+    </testcase>
+    <testcase classname="NavigationBar renders the LOGIN and REGISTER buttons" name="NavigationBar renders the LOGIN and REGISTER buttons" time="0.048">
+    </testcase>
+  </testsuite>
+  <testsuite name="WelcomeSection" errors="0" failures="0" skipped="0" timestamp="2023-04-25T11:22:08" time="1.419" tests="2">
+    <testcase classname="WelcomeSection renders the welcome message" name="WelcomeSection renders the welcome message" time="0.039">
+    </testcase>
+    <testcase classname="WelcomeSection renders the happy shopping message" name="WelcomeSection renders the happy shopping message" time="0.038">
+    </testcase>
+  </testsuite>
+</testsuites>

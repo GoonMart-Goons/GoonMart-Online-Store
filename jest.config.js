@@ -8,7 +8,8 @@ module.exports = {
     },  "transformIgnorePatterns": [
         "/node_modules/(?!jest-transform-file)",
         "/node_modules/(?!@testing-library)/"
-    ]
+    ],        
+    moduleDirectories: ['node_modules']
 };
 
 //"^.+\\.js$": "babel-jest"

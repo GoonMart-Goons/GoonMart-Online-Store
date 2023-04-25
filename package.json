@@ -23,8 +23,7 @@
   "scripts": {
     "start": "react-scripts  --openssl-legacy-provider start",
     "build": "react-scripts build",
-    "test": "jest",
-    "ci:test": "jest --runInBand --ci",
+    "test": "jest --runInBand --ci  --reporters=default --reporters=jest-junit --coverage --coverageDirectory=coverage",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -32,6 +31,10 @@
       "react-app",
       "react-app/jest"
     ]
+  },
+  "jest-junit": {
+    "outputDirectory": "./reports/junit",
+    "outputName": "test-results.xml"
   },
   "browserslist": {
     "production": [
@@ -54,6 +57,7 @@
     "coveralls": "^3.1.1",
     "jest": "^27.5.0",
     "jest-css-modules-transform": "^4.4.2",
+    "jest-junit": "^16.0.0",
     "jest-transform-file": "^1.1.1",
     "jest-transform-stub": "^2.0.0",
     "react-test-renderer": "^18.2.0"
