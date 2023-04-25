@@ -31,14 +31,12 @@ jobs:
             #&& npm run test -- --coverage
 
       - test # test the code
-      - store-coverage-data # store coverage files outside of the container command
-          - store_artifacts:
+      - store_artifacts:
               path: coverage
-      - upload-coverage # upload files to the codecov.io command
-          - codecov/upload:
-              file: coverage/coverage-final.json
-          - store_artifacts:
-              path: build
+      - codecov/upload:
+          file: coverage/coverage-final.json
+      - store_artifacts:
+          path: build
       # - node/test:
       #     post-steps:
       #       - codecov/upload
