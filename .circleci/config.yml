@@ -30,9 +30,9 @@ jobs:
             CI=false npm run build 
             #&& npm run test -- --coverage
 
-      # - test # test the code
-      # - store-coverage-data # store coverage files outside of the container command
-      # - upload-coverage # upload files to the codecov.io command
+      - test # test the code
+      - store-coverage-data # store coverage files outside of the container command
+      - upload-coverage # upload files to the codecov.io command
       # - node/test:
       #     post-steps:
       #       - codecov/upload
@@ -40,14 +40,14 @@ jobs:
       #- coveralls/upload:
         #  path: ./coverage/lcov.info
         #  token: $COVERALLS_REPO_TOKEN
-    # commands:
-    #   store-coverage-data:
-    #     steps:
-    #       - store_artifacts:
-    #           path: coverage
-    #   upload-coverage:
-    #     steps:
-    #       - codecov/upload:
-    #           file: coverage/coverage-final.json
-    #       - store_artifacts:
-    #           path: build
+    commands:
+      store-coverage-data:
+        steps:
+          - store_artifacts:
+              path: coverage
+      upload-coverage:
+        steps:
+          - codecov/upload:
+              file: coverage/coverage-final.json
+          - store_artifacts:
+              path: build
