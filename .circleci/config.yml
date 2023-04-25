@@ -27,19 +27,17 @@ jobs:
       - run:
           name: Build project
           command: |
-            CI=false npm run build 
-            #&& npm run test -- --coverage
-
-      - test # test the code
+            CI=false npm run build && npm run test -- --coverage
+            
       - store_artifacts:
           path: coverage
       - codecov/upload:
           file: coverage/coverage-final.json
       - store_artifacts:
           path: build
-      # - node/test:
-      #     post-steps:
-      #       - codecov/upload
+      - node/test:
+          post-steps:
+            - codecov/upload
 
       #- coveralls/upload:
         #  path: ./coverage/lcov.info
