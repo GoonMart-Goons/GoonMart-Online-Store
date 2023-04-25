@@ -6,6 +6,11 @@ module.exports = {
         "\\.(jpg|jpeg|png|gif|webp|svg)$": "jest-transform-stub",
         "^.+\\.(js|jsx|ts|tsx)$": "babel-jest"
     },  "transformIgnorePatterns": [
-        "/node_modules/(?!jest-transform-file)"
+        "/node_modules/(?!jest-transform-file)",
+        "/node_modules/(?!@testing-library)/"
     ]
 };
+
+//"^.+\\.js$": "babel-jest"
+
+  
