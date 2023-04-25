@@ -4,9 +4,9 @@ version: 2.1
 #orbs:
   #coveralls: coveralls/coveralls@2.1.1
 
-orbs:
-  codecov: codecov/codecov@3.2.3
-  node: circleci/node@4.7.0
+# orbs:
+#   codecov: codecov/codecov@3.2.3
+#   node: circleci/node@4.7.0
 
 jobs:
   build:
@@ -33,9 +33,9 @@ jobs:
       - test # test the code
       - store-coverage-data # store coverage files outside of the container command
       - upload-coverage # upload files to the codecov.io command
-      - node/test:
-          post-steps:
-            - codecov/upload
+      # - node/test:
+      #     post-steps:
+      #       - codecov/upload
 
       #- coveralls/upload:
         #  path: ./coverage/lcov.info
