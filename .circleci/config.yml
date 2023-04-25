@@ -33,7 +33,7 @@ jobs:
       - test # test the code
       - store-coverage-data # store coverage files outside of the container command
           - store_artifacts:
-    #          path: coverage
+              path: coverage
       - upload-coverage # upload files to the codecov.io command
           - codecov/upload:
               file: coverage/coverage-final.json
