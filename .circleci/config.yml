@@ -30,16 +30,25 @@ jobs:
             CI=false npm run build 
             #&& npm run test -- --coverage
 
-      #- test # test the code
-      - store_artifacts:
-              path: coverage
-      - codecov/upload:
+      # test the code
+  - run:
+      name: Run tests
+      command: npm run test
+      post-steps:
+        - store_artifacts:
+          path: coverage
+        - codecov/upload:
           file: coverage/coverage-final.json
-      - store_artifacts:
+        - store_artifacts:
           path: build
-      # - node/test:
-      #     post-steps:
-      #       - codecov/upload
+        - node/test:
+          post-steps:
+            - codecov/upload
+
+      - run:
+          name: Upload coverage to Codecov
+          command: bash <(curl -s https://codecov.io/bash)
+
 
       #- coveralls/upload:
         #  path: ./coverage/lcov.info
