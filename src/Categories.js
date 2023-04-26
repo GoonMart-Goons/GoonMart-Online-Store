@@ -58,7 +58,7 @@ function Categories() {
         </div>
       ))}
 
-    </div><ProductGrid activeCategoryId={activeCategoryId} /></>
+    </div><ProductGrid /*activeCategoryId={activeCategoryId}*//></>
   );
 }
 
