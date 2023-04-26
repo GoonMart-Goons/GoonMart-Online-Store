@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import ProductCard from './ProductCard';
 //import { categories } from './Categories';
 
@@ -43,24 +43,33 @@ import { collection, query, where, getDocs } from 'firebase/firestore';
     category: 3
   } ];*/
 
-const ProductGrid = (/*{activeCategoryId}*/) => {
+const ProductGrid = ({activeCategoryName}) => {
+
+  const [DBproducts, setDBproducts] = React.useState([]);
 
   async function dataBase(){
     const prodsRef = collection(db, 'Products')
-    const q = query(prodsRef, where('category', 'in', ["Electronics", "Clothing", "Home & Kitchen", "Toys & Games"]))
+    console.log(activeCategoryName);
+    let q
+    if (activeCategoryName === "All"){
+      q = query(prodsRef, where('category', 'in', ["Electronics", "Clothing", "Home & Kitchen", "Toys & Games"]))
+    } else {
+      q = query(prodsRef, where('category', '==', activeCategoryName))
+    }
+    
     const querySnapshot = await getDocs(q)
     //Queried documents
     const DBproducts = querySnapshot.docs.map(doc => doc.data());
+    //console.log(DBproducts);
     return DBproducts;
   }
   
-  const [DBproducts, setDBproducts] = React.useState([]);
 
   React.useEffect(() => {
     dataBase().then(products => {
       setDBproducts(products);
     });
-  }, []);
+  }, [activeCategoryName]);
 
   /*const filteredProducts = activeCategoryId === 0 
   ?  products : products.filter(product => product.category === activeCategoryId);*/
