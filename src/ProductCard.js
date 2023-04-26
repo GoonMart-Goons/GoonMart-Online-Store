@@ -2,7 +2,7 @@ import React from 'react';
 
 const ProductCard = ({ image, name, rating, reviews, price }) => {
   return (
-    <div className="product-card">
+    <div className="product-card" data-testid="product-cardx">
       <div className="product-image">
         <img src={image} alt={name} height={400}/>
       </div>
@@ -14,7 +14,7 @@ const ProductCard = ({ image, name, rating, reviews, price }) => {
           })}
           <div className="product-reviews">{reviews}</div>
         </div>
-        
+
         <div className="product-price">{price}</div>
       </div>
     </div>

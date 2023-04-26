@@ -9,7 +9,7 @@ import ProductCard from './ProductCard';
 export default function InnerHomepage() {
   return (
     <div>
-      <InnerNavigationBar />
+      <InnerNavigationBar/>
       <Categories />
       <ProductGrid />
       <ProductCard />
