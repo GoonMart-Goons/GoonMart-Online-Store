@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import {FaSearch} from 'react-icons/fa';
+import ProductGrid from './ProductGrid';
 
 //FireBase Imports
 import { db } from './config/Config';
@@ -12,29 +13,21 @@ function NavigationBar() {
 
   const handleSearch = async(e) => {
     e.preventDefault()
-
-    filterBySearch()
-    console.log(results)
+    ProductGrid(searchTerm)
+    // filterBySearch()
   }
   
-
-  async function filterBySearch(){
-    const prodsRef = collection(db, 'Products')
-    const q = query(
-      prodsRef,
-      where('prodName', '>=', searchTerm),
-      where('prodName', '<=', searchTerm + '\uf8ff'),
-    )
-    const querySnapshot = await getDocs(q)
-    const DBproducts = querySnapshot.docs.map(doc => doc.data());
-    return DBproducts
-  }
-
-  React.useEffect(() => {
-    filterBySearch().then(products => {
-      setResults(products);
-    });
-  });
+  // async function filterBySearch(){
+  //   const prodsRef = collection(db, 'Products')
+  //   const q = query(
+  //     prodsRef,
+  //     where('prodName', '>=', searchTerm),
+  //     where('prodName', '<=', searchTerm + '\uf8ff'),
+  //   )
+  //   const querySnapshot = await getDocs(q)
+  //   const DBproducts = querySnapshot.docs.map(doc => doc.data());
+  //   return DBproducts
+  // }
 
   return (
     <nav className="navbar" onSubmit={handleSearch}>

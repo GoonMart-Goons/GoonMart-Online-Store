@@ -46,10 +46,19 @@ const ProductGrid = ({activeCategoryName}) => {
     const prodsRef = collection(db, 'Products')
     // console.log(activeCategoryName);
     let q
-    if (activeCategoryName === "All"){
-      q = query(prodsRef, where('category', 'in', ["Electronics", "Clothing", "Home & Kitchen", "Toys & Games"]))
+    if (activeCategoryName in ["All", "Electronics", "Clothing", "Home & Kitchen", "Toys & Games"]){
+      if (activeCategoryName === "All"){
+        q = query(prodsRef, where('category', 'in', ["Electronics", "Clothing", "Home & Kitchen", "Toys & Games"]))
+      } else {
+        q = query(prodsRef, where('category', '==', activeCategoryName))
+      }
+    //If activeCategoryName not a category, does search instead
     } else {
-      q = query(prodsRef, where('category', '==', activeCategoryName))
+      q = query(
+        prodsRef,
+        where('prodName', '>=', activeCategoryName),
+        where('prodName', '<=', activeCategoryName + '\uf8ff'),
+      )
     }
     
     const querySnapshot = await getDocs(q)
