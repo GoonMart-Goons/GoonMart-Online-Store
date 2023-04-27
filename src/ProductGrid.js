@@ -1,10 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import ProductCard from './ProductCard';
-//import { categories } from './Categories';
-
-import phoneSale from './phone.jpg';
-import cookWare from './cookware.jpg';
-import shirt from './tshirt.jpg';
 
 //FireBase imports
 import { db } from './config/Config'
@@ -49,7 +44,7 @@ const ProductGrid = ({activeCategoryName}) => {
 
   async function dataBase(){
     const prodsRef = collection(db, 'Products')
-    console.log(activeCategoryName);
+    // console.log(activeCategoryName);
     let q
     if (activeCategoryName === "All"){
       q = query(prodsRef, where('category', 'in', ["Electronics", "Clothing", "Home & Kitchen", "Toys & Games"]))
@@ -64,12 +59,11 @@ const ProductGrid = ({activeCategoryName}) => {
     return DBproducts;
   }
   
-
   React.useEffect(() => {
     dataBase().then(products => {
       setDBproducts(products);
     });
-  }, [activeCategoryName]);
+  });
 
   /*const filteredProducts = activeCategoryId === 0 
   ?  products : products.filter(product => product.category === activeCategoryId);*/
@@ -78,8 +72,10 @@ const ProductGrid = ({activeCategoryName}) => {
     <div className="product-grid">
       {DBproducts.map(product => {
           return (
+            //FIXME product.imageURL works perfectly fine when logging here, idk why it breaks
+            // console.log(product.prodName, product.imageURL),
             <ProductCard
-              /*key={product.id}*/
+              // key={product.id}
               prodName={product.prodName}
               image={product.imageURL}
               ratingSum={product.ratingSum}

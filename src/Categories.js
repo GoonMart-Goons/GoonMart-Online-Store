@@ -38,7 +38,7 @@ function Categories() {
   const handleClick = (categoryName) => {
     setActiveCategoryName(categoryName);
     // Call a function to filter products by category
-     console.log(activeCategoryName)
+    //  console.log(activeCategoryName)
     //filterProdsByCategory(categories[categoryId].name)
   };
 
