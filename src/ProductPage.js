@@ -55,7 +55,7 @@ const suggestedProducts = [
 class ProductPage extends React.Component{
     state = {
         products: [
-            {
+            
                 /*id: 1,
                 name: "Nike Shoes",
                 image (src) : [
@@ -70,20 +70,12 @@ class ProductPage extends React.Component{
                 rating: 3.5,
                 colors: ["red", "black", "crimson", "teal"],
                 count: 1 */
-
-                id: 1,
-                name: 'Product 1',
-                image: phoneSale,
-                rating: 4,
-                reviews: 10,
-                price: 18900,
-                category: 1,
-                description: "Latest of the Apple iPhone range",
-                content: "This is a premium cellular device with an aluminium frame and ultra tempered protective glass. The phone comes with 128GB of storage and I have ran out of lies to say so I am just going to end this reasonably sized paragraph here.",
-                
-            },
+            
+            
+            suggestedProducts[0]
     
         ],
+        
         index: 0, 
         quantityCount: 1
     };
