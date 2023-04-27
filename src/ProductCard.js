@@ -1,9 +1,8 @@
 import React, {useState, useEffect} from 'react';
-import React, {useState, useEffect} from 'react';
 import { useNavigate } from "react-router-dom";
 import Star from './Star';
 
-const ProductCard = ({ image, name, rating, reviews, price }) => {
+const ProductCard = ({ imageURL, prodName, ratingSum, ratingCount , price }) => {
   const navigate = useNavigate();
 
   //  MY FAILED ATTEMPT AT IMPORTING PICTURES
@@ -20,7 +19,7 @@ const ProductCard = ({ image, name, rating, reviews, price }) => {
   return (
     <div className="product-card" onClick = {() => navigate('/productpage')}>
       <div className="product-image">
-        <img src={image} alt={name} height={400}/>
+        <img src={imageURL} alt={prodName} height={400}/>
       </div>
       <div className="product-info">
         <div className="product-name">{prodName}</div>

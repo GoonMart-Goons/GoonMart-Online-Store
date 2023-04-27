@@ -20,7 +20,6 @@ export const categories = [
 
 //Query products that == selected category
 /*async function filterProdsByCategory(category){
-/*async function filterProdsByCategory(category){
   const prodsRef = collection(db, 'Products')
   const q = query(prodsRef, where('category', '==', category))
   const qSnapshot = await getDocs(q)
@@ -29,17 +28,13 @@ export const categories = [
     console.log(doc.data())
   })
 }*/
-}*/
 
 function Categories() {
-  const [activeCategoryName, setActiveCategoryName] = useState("All");
   const [activeCategoryName, setActiveCategoryName] = useState("All");
 
   //State to hold filtered products
   //const [filteredProducts, setFilteredProducts] = useState(products);
 
-  const handleClick = (categoryName) => {
-    setActiveCategoryName(categoryName);
   const handleClick = (categoryName) => {
     setActiveCategoryName(categoryName);
     // Call a function to filter products by category
@@ -54,9 +49,6 @@ function Categories() {
           key={category.name}
           className={`category-item ${category.name === activeCategoryName ? 'active' : ''}`}
           onClick={() => handleClick(category.name)}
-          key={category.name}
-          className={`category-item ${category.name === activeCategoryName ? 'active' : ''}`}
-          onClick={() => handleClick(category.name)}
         >
           <React.Fragment>
             {category.icon}
@@ -66,7 +58,6 @@ function Categories() {
         </div>
       ))}
 
-    </div><ProductGrid activeCategoryName={activeCategoryName}/></>
     </div><ProductGrid activeCategoryName={activeCategoryName}/></>
   );
 }
