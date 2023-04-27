@@ -1,14 +1,26 @@
 import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import { useNavigate } from "react-router-dom";
 import Star from './Star';
 
-const ProductCard = ({ imageURL, prodName, ratingSum, ratingCount /*reviews*/, price }) => {
+const ProductCard = ({ image, name, rating, reviews, price }) => {
   const navigate = useNavigate();
+
+  //  MY FAILED ATTEMPT AT IMPORTING PICTURES
+ /* const [imageURL, setImageURL] = useState('');
+
+  useEffect(() => {
+    const storageRef = getStorage(firebase).ref();
+    const imageRef = storageRef.child(image);
+    imageRef.getDownloadURL()
+      .then(url => setImageURL(url))
+      .catch(error => console.log(error));
+  }, []);*/
 
   return (
     <div className="product-card" onClick = {() => navigate('/productpage')}>
-      <div className="product-image" id='prodImg'>
-        {imageURL && <img src={imageURL} alt={prodName} height={400}/>}
+      <div className="product-image">
+        <img src={image} alt={name} height={400}/>
       </div>
       <div className="product-info">
         <div className="product-name">{prodName}</div>
