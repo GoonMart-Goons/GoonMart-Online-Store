@@ -4,15 +4,15 @@ import Colors from './Colors'
 import DetailsThumb from './DetailsThumb';
 import Star from './Star';
 import Carousel from 'react-multi-carousel';
-import 'react-multi-carousel/lib/styles.css';
-import {
-    Card,
-    CardSubtitle,
-    CardText,
-    CardTitle,
-    CardBody,
-    CardImg,
-} from "reactstrap";
+//import 'react-multi-carousel/lib/styles.css';
+//import {
+//    Card,
+//    CardSubtitle,
+//    CardText,
+//    CardTitle,
+//    CardBody,
+//    CardImg,
+//} from "reactstrap";
 
 import phoneSale from './phone.jpg';
 import cookWare from './cookware.jpg';

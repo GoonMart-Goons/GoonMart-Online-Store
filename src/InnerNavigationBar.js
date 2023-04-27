@@ -4,7 +4,7 @@ import {FaSearch} from 'react-icons/fa';
 
 function InnerNavigationBar() {
   return (
-    <nav className="navbar">
+    <nav className="navbar" data-testid="inner-nav-bar">
       <div className="navbar-left">
         <div><img src= "/goonmart-logo.png" width = {200} alt='goonmart logo'/></div>
         <form className="search-form">

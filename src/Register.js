@@ -4,14 +4,11 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
-
 import { auth, db } from './config/Config'
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { collection, addDoc } from 'firebase/firestore'
-
 
 const validationSchema = yup.object().shape({
     name: yup
@@ -78,16 +75,16 @@ export default function Register() {
             await createUserWithEmailAndPassword(auth, data.email, data.password)
             .then((userCredentials) => {
               //const user = userCredentials.user
-              console.log(userCredentials)
+              //console.log(userCredentials)
               addToDB(data.name, data.surname, data.email)
               setOpenSnackbar(true);
-                console.log("Added successfully")
+                //console.log("Added successfully")
                 setSnackbarMessage('Registered successfully! Welcome to GoonMart');
                 setTimeout(() => {
                   navigate('/InnerHomepage'); // navigate to the HOME page
                 }, 2000); //delay for 2 seconds (2000 milliseconds)
             }).catch((error) => {
-              console.log("Failed to register: ", error)
+              //console.log("Failed to register: ", error)
               setOpenSnackbar(true);
               setSnackbarMessage('Failed to register: ' + error.message);
               
@@ -100,13 +97,13 @@ export default function Register() {
       addDoc(collection(db, 'Users'), {
         name: name,
         surname: surname,
-        email, email
+        email: email
       })
       .then((docRef) => {
-        console.log("Doc written with ID: ", docRef.id)
+        //console.log("Doc written with ID: ", docRef.id)
       })
       .catch((error) => {
-        console.error("Error adding doc: ", error)
+        //console.error("Error adding doc: ", error)
       })
     }
 
@@ -156,7 +153,7 @@ export default function Register() {
                     </label>
                     {errors.confirmPassword && <error className="form-error">{errors.confirmPassword.message}</error>}
                                
-                    <button type="submit" className="form-btn">Register</button>
+                    <button type="submit" className="form-btn" data-testid="subbutton">Register</button>
                 </form>
                 <i>Already have an account? Login</i><button className="form-link-btn" onClick = {() => navigate('/login')}><i>here</i></button>
             </div>

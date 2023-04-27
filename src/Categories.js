@@ -10,6 +10,7 @@ import ProductGrid from './ProductGrid';
 import { db } from './config/Config'
 import { collection, query, where, getDocs } from 'firebase/firestore';
 
+//Catagories available
 export const categories = [
   { id: 0, name: 'All', icon: <FaGlobe/> },
   { id: 1, name: 'Electronics', icon: <FaLaptop/> },
@@ -43,7 +44,7 @@ function Categories() {
   };
 
   return (
-    <><div className="category-list">
+    <><div className="category-list" data-testid="categories">
       {categories.map((category) => (
         <div
           key={category.name}

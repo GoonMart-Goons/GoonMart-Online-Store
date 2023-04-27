@@ -26,7 +26,7 @@ const ProductCard = ({ image, prodName, ratingSum, ratingCount /*reviews*/, pric
     <div className="product-card" onClick = {() => navigate('/productpagenew', {
       state: {image, prodName, ratingSum, ratingCount, price, id, quantity, prodDesc }
     
-    })}>
+    })} data-testid="product-cardx">
       <div className="product-image">
         {/*{imageURL && <img  src={imageURL} alt={prodName} height={400}/>}*/}
         <img  src={image} alt={prodName} height={300}/>

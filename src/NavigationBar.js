@@ -13,9 +13,9 @@ function NavigationBar() {
       <div className="navbar-center">
         <form className="search-form">
           <input type="text" className="search-input" placeholder="Search" />
-          <button type="submit" className="search-button">
-            <FaSearch/>
-          </button>
+            <button type="submit" className="search-button" data-testid="search-button">
+                <FaSearch data-testid="fa-search-icon" />
+            </button>
         </form>
       </div>
       <div className="navbar-right">
