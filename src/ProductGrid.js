@@ -86,6 +86,9 @@ const ProductGrid = ({activeCategoryName}) => {
               ratingCount={product.ratingCount}
               /*reviews={product.reviews}*/
               price={product.price}
+              id ={product.id}
+              quantity = {product.quantity}
+              prodDesc = {product.prodDesc}
             />
           );
         })

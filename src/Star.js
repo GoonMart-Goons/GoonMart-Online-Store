@@ -9,11 +9,11 @@ const Star = ({rating}) => {
 
   return (
     <div className="star">
-      {[...Array(fullStars)].map((_, i) => (
+      {fullStars >0 && [...Array(fullStars)].map((_, i) => (
         <FaStar key={i} className = "starFull" />
       ))}
-      {halfStar && <FaStar className = "starHalf" />}
-      {[...Array(emptyStars)].map((_, i) => (
+      {halfStar >0  && <FaStar className = "starHalf" />}
+      {emptyStars > 0 && [...Array(emptyStars)].map((_, i) => (
         <FaStar key={i} className = "starEmpty" />
       ))}
     </div>
