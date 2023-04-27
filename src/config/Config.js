@@ -13,6 +13,13 @@ import { getStorage } from 'firebase/storage';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
+  // apiKey: "AIzaSyDRskK2aTlOQ6OwZjwCzykNAlnXNPMGuvE",
+  // authDomain: "goonmarket-eb1f8.firebaseapp.com",
+  // projectId: "goonmarket-eb1f8",
+  // storageBucket: "goonmarket-eb1f8.appspot.com",
+  // messagingSenderId: "362131737109",
+  // appId: "1:362131737109:web:0f36a22199f39576515c1c",
+  // measurementId: "G-NYBXE2MXFT"
   apiKey: "AIzaSyCJINkKd-P7fdg-ApDk1rWaoFg3NR427Ic",
   authDomain: "testmarket-bfdcf.firebaseapp.com",
   projectId: "testmarket-bfdcf",

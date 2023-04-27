@@ -46,38 +46,42 @@ const ProductGrid = ({activeCategoryName}) => {
     const prodsRef = collection(db, 'Products')
     // console.log(activeCategoryName);
     let q
-    if (activeCategoryName in ["All", "Electronics", "Clothing", "Home & Kitchen", "Toys & Games"]){
+    // if (activeCategoryName in ["All", "Electronics", "Clothing", "Home & Kitchen", "Toys & Games"]){
       if (activeCategoryName === "All"){
         q = query(prodsRef, where('category', 'in', ["Electronics", "Clothing", "Home & Kitchen", "Toys & Games"]))
       } else {
         q = query(prodsRef, where('category', '==', activeCategoryName))
       }
     //If activeCategoryName not a category, does search instead
-    } else {
-      q = query(
-        prodsRef,
-        where('prodName', '>=', activeCategoryName),
-        where('prodName', '<=', activeCategoryName + '\uf8ff'),
-      )
-    }
+    // } else {
+    //   q = query(
+    //     prodsRef,
+    //     where('prodName', '>=', activeCategoryName),
+    //     where('prodName', '<=', activeCategoryName + '\uf8ff'),
+    //   )
+    // }
     
     const querySnapshot = await getDocs(q)
     //Queried documents
     const DBproducts = querySnapshot.docs.map(doc => doc.data());
     //console.log(DBproducts);
+    setDBproducts(DBproducts)
+    console.log(DBproducts)
     return DBproducts;
   }
   
-  React.useEffect(() => {
-    dataBase().then(products => {
-      setDBproducts(products);
-    });
-  });
+  // React.useEffect(() => {
+  //   dataBase().then(products => {
+  //     setDBproducts(products);
+  //     console.log("Help", products)
+  //   });
+  // }, [DBproducts]);
 
   /*const filteredProducts = activeCategoryId === 0 
   ?  products : products.filter(product => product.category === activeCategoryId);*/
 
   return (
+    dataBase(),
     <div className="product-grid">
       {DBproducts.map(product => {
           return (
