@@ -75,16 +75,16 @@ export default function Register() {
             await createUserWithEmailAndPassword(auth, data.email, data.password)
             .then((userCredentials) => {
               //const user = userCredentials.user
-              console.log(userCredentials)
+              //console.log(userCredentials)
               addToDB(data.name, data.surname, data.email)
               setOpenSnackbar(true);
-                console.log("Added successfully")
+                //console.log("Added successfully")
                 setSnackbarMessage('Registered successfully! Welcome to GoonMart');
                 setTimeout(() => {
                   navigate('/InnerHomepage'); // navigate to the HOME page
                 }, 2000); //delay for 2 seconds (2000 milliseconds)
             }).catch((error) => {
-              console.log("Failed to register: ", error)
+              //console.log("Failed to register: ", error)
               setOpenSnackbar(true);
               setSnackbarMessage('Failed to register: ' + error.message);
               
@@ -100,10 +100,10 @@ export default function Register() {
         email: email
       })
       .then((docRef) => {
-        console.log("Doc written with ID: ", docRef.id)
+        //console.log("Doc written with ID: ", docRef.id)
       })
       .catch((error) => {
-        console.error("Error adding doc: ", error)
+        //console.error("Error adding doc: ", error)
       })
     }
 

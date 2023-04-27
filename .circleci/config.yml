@@ -31,19 +31,19 @@ jobs:
             #&& npm run test -- --coverage
 
       # test the code
-  - run:
-      name: Run tests
-      command: npm run test
-      post-steps:
-        - store_artifacts:
-          path: coverage
-        - codecov/upload:
-          file: coverage/coverage-final.json
-        - store_artifacts:
-          path: build
-        - node/test:
+      - run:
+          name: Run tests
+          command: npm run test
           post-steps:
-            - codecov/upload
+            - store_artifacts:
+              path: coverage
+            - codecov/upload:
+              file: coverage/coverage-final.json
+            - store_artifacts:
+              path: build
+            - node/test:
+              post-steps:
+                - codecov/upload
 
       - run:
           name: Upload coverage to Codecov

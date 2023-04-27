@@ -55,14 +55,14 @@ export default function Login() {
         if (Object.keys(errors).length === 0){
             signInWithEmailAndPassword(auth, email, password)
             .then((userCredentials) => {
-                console.log("Signed in successfully: ", userCredentials);
+                //console.log("Signed in successfully: ", userCredentials);
                 setOpenSnackbar(true);
                 setSnackbarMessage('Signed in successfully');
                 setTimeout(() => {
                     navigate('/InnerHomepage'); // navigate to the HOME page
                 }, 2000); //delay for 2 seconds (2000 milliseconds)
             }).catch((error) => {
-                console.log("Failed to login: ", error)
+                //console.log("Failed to login: ", error)
                 setOpenSnackbar(true);
                 setSnackbarMessage('Failed to login: ' + error.message);
                 
