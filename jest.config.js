@@ -9,7 +9,8 @@ module.exports = {
         "/node_modules/(?!jest-transform-file)",
         "/node_modules/(?!@testing-library)/"
     ],        
-    moduleDirectories: ['node_modules']
+    moduleDirectories: ['node_modules'],
+    forceExit: true
 };
 
 //"^.+\\.js$": "babel-jest"

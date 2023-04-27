@@ -53,7 +53,6 @@ describe('Login Component', () => {
         await act(() => {
             fireEvent.change(emailInput, { target: { value: 'invalid-email' } });
             fireEvent.change(passwordInput, { target: { value: 'short' } });
-            console.log(passwordInput.value)
             fireEvent.click(submitButton);
         });
 
