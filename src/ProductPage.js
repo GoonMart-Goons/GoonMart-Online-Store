@@ -19,6 +19,7 @@ import Carousel from 'react-multi-carousel';
 
 class ProductPage extends React.Component{
     state = {
+        //Array contaning info on product being displayed
         products: [
             {
                 "_id": "1",
@@ -40,6 +41,7 @@ class ProductPage extends React.Component{
     };
     myRef = React.createRef();
 
+    //Handles the small pictues that display on the page
     handleTab = index => {
         this.setState({ index: index })
         const images = this.myRef.current.children;
@@ -55,7 +57,7 @@ class ProductPage extends React.Component{
 
 
     render() {
-
+        //Brings in products into the function
         const { products, index } = this.state;
         const responsive = {
             desktop: {
@@ -67,12 +69,13 @@ class ProductPage extends React.Component{
         return (  
             <><div className="app">
                 {products.map(item => (
+                    //Image portion of product page
                     <div className="details" key={item._id}>
                         <div className="big-img">
                             <img src={item.src[index]} alt="" />
                         </div>
 
-
+                        {/*Details prtion of product page*/}
                         <div className="box">
                             <div className="row">
                                 <h2>{item.title}</h2>
@@ -98,6 +101,7 @@ class ProductPage extends React.Component{
                     </div>
                 ))}
 
+            {/*This is the suggested items section*/}
             </div><Carousel className="Carousel" responsive={responsive}>
                     <div>Item 1</div>
                     <div>Item 2</div>
