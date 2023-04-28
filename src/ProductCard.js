@@ -8,7 +8,7 @@ import { collection, query, where, getDocs } from 'firebase/firestore';
 import { getStorage, ref, getDownloadURL } from '@firebase/storage';*/
 
 
-const ProductCard = ({ image, prodName, ratingSum, ratingCount /*reviews*/, price, id, quantity, prodDesc }) => {
+const ProductCard = ({ image, prodName, ratingSum, ratingCount /*reviews*/, price, id, quantity, prodDesc, category }) => {
   const navigate = useNavigate();
 
   //  MY FAILED ATTEMPT AT IMPORTING PICTURES
@@ -24,7 +24,7 @@ const ProductCard = ({ image, prodName, ratingSum, ratingCount /*reviews*/, pric
 
   return (
     <div className="product-card" onClick = {() => navigate('/productpagenew', {
-      state: {image, prodName, ratingSum, ratingCount, price, id, quantity, prodDesc }
+      state: {image, prodName, ratingSum, ratingCount, price, id, quantity, prodDesc, category }
     
     })} data-testid="product-cardx">
       <div className="product-image">

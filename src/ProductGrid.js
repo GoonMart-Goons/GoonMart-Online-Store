@@ -89,6 +89,7 @@ const ProductGrid = ({activeCategoryName}) => {
               id ={product.id}
               quantity = {product.quantity}
               prodDesc = {product.prodDesc}
+              category = {product.category}
             />
           );
         })
