@@ -119,8 +119,6 @@ class ProductPage extends React.Component{
 
     render() {
         //Brings in products into the function
-        const { products, index } = this.state;
-
         const { products, index, quantityCount } = this.state;
         const responsive = {
             desktop: {
