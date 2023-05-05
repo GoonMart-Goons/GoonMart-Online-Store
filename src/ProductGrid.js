@@ -2,9 +2,9 @@ import React, {useState, useEffect} from 'react';
 import ProductCard from './ProductCard';
 //import { categories } from './Categories';
 
-import phoneSale from './phone.jpg';
-import cookWare from './cookware.jpg';
-import shirt from './tshirt.jpg';
+import phoneSale from './imgs/phone.jpg';
+import cookWare from './imgs/cookware.jpg';
+import shirt from './imgs/tshirt.jpg';
 
 //FireBase imports
 import { db } from './config/Config'

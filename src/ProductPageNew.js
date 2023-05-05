@@ -6,9 +6,9 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 
 
-import phoneSale from './phone.jpg';
-import cookWare from './cookware.jpg';
-import shirt from './tshirt.jpg';
+import phoneSale from './imgs/phone.jpg';
+import cookWare from './imgs/cookware.jpg';
+import shirt from './imgs/tshirt.jpg';
 import ProductCard from './ProductCard';
 
 //FireBase imports

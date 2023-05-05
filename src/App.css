@@ -1,7 +1,7 @@
 @import url("ProductPage.css");
 
 .welcome-section {
-  background-image: url('welcome.jpg');
+  background-image: url('imgs/welcome.jpg');
   background-size: cover;
   background-position: center;
   height: 300px;

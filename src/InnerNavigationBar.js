@@ -7,7 +7,7 @@ function InnerNavigationBar() {
     // Logo
     <nav className="navbar" data-testid="inner-nav-bar">
       <div className="navbar-left">
-        <div><img src= "/goonmart-logo.png" width = {200} alt='goonmart logo'/></div>
+        <div><img src= '/imgs/goonmart-logo.png' width = {200} alt='goonmart logo'/></div>
         <form className="search-form">
           {/*Search function*/}
           <input type="text" className="search-input" placeholder="Search" />
@@ -22,7 +22,7 @@ function InnerNavigationBar() {
             <a className="navbar-menu-item" href="/InnerHomepage">HOME</a>
           </li>
           <li>
-            <a className="navbar-menu-item" href="/InnerHomepage">ORDERS</a>
+            <a className="navbar-menu-item" href="/InnerHomepage">why</a>
           </li>
           <li>
             <a className="navbar-menu-item" href="/InnerHomepage">MY ACCOUNT</a>

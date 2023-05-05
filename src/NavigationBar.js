@@ -7,7 +7,7 @@ function NavigationBar() {
   return (
     <nav className="navbar">
       <div className="navbar-left">
-        <img src= "/goonmart-logo.png" alt='goonmart logo'/>
+        <img src= "/imgs/goonmart-logo.png" alt='goonmart logo'/>
         <span><b>GoonMart</b></span>
       </div>
       <div className="navbar-center">
