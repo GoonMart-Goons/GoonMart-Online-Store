@@ -4,6 +4,7 @@ import './ProductPage.css';
 import Star from './Star';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
+import ReviewGrid from './ReviewGrid';
 
 
 import phoneSale from './phone.jpg';
@@ -111,11 +112,11 @@ const ProductPageNew = () => {
 
 
                         </div>
+
                     </div>
 
-                    <div>
-                    <h2>Suggested Products</h2>
-                    <Carousel className="Carousel" responsive={responsive}>
+                    <h2 className="heading">Suggested Products</h2>
+                    <Carousel className = "Carousel-container" responsive={responsive}>
                     
                     {DBproducts.map(product => {
                         return (
@@ -134,11 +135,14 @@ const ProductPageNew = () => {
                         />
                         );
                     })}
-                  
-                </Carousel></div>
+                    
+                    </Carousel>
 
-            </div>
-            </>
+                    <h2 className='heading'>Reviews</h2>
+                    <ReviewGrid />
+
+                </div>
+                </>
 
         );
     };

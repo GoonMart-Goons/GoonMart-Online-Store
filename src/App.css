@@ -1,4 +1,5 @@
 @import url("ProductPage.css");
+@import url("Reviews.css");
 
 .welcome-section {
   background-image: url('welcome.jpg');

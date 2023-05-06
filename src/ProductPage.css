@@ -109,11 +109,19 @@ margin: 15px 0;
      }
  }
 
-.Carousel {
+ .heading{
+    padding: 0px 3em;
+ }
+
+
+
+.Carousel-container {
+    padding: 0px 3em;
+    margin-left: 0;
     transform: scale(0.5);
     transform-origin: top;
     width: 100%;
     height:fit-content;
-    margin: 0 auto 1em;
     box-shadow: 0 0 5px #ccc;
+
 }

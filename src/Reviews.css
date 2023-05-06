@@ -1,0 +1,33 @@
+
+.review-grid {
+    display:flexbox;
+    padding: 0px 3em;
+  }
+  
+  .review-card {
+    display:flex;
+    flex-direction: column;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .review-customer {
+    font-size: 16px;
+    font-weight:lighter;
+    margin-bottom: 10px;
+    text-align: right;
+    
+  }
+  
+  .review-rating {
+    display: flex;
+    align-items: left;
+    margin-bottom: 10px;
+  }
+  
+  .review-description {
+    font-size: 18px;
+    font-weight:lighter;
+  }
