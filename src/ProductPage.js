@@ -54,6 +54,7 @@ const suggestedProducts = [
 
 class ProductPage extends React.Component{
     state = {
+        //Array contaning info on product being displayed
         products: [
             
                 /*id: 1,
@@ -81,6 +82,7 @@ class ProductPage extends React.Component{
     };
     /*myRef = React.createRef();
 
+    //Handles the small pictues that display on the page
     handleTab = index => {
         this.setState({ index: index })
         const images = this.myRef.current.children;
@@ -116,7 +118,7 @@ class ProductPage extends React.Component{
 
 
     render() {
-
+        //Brings in products into the function
         const { products, index, quantityCount } = this.state;
         const responsive = {
             desktop: {
@@ -134,7 +136,7 @@ class ProductPage extends React.Component{
                           {/*} <DetailsThumb images={item.src} tab={this.handleTab} myRef={this.myRef} />*/}
                         </div>
 
-
+                        {/*Details prtion of product page*/}
                         <div className="box">
                             {/* <div className="row"> */}
                                 <h2>{item.name}</h2>
