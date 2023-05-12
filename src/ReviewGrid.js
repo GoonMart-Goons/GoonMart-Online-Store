@@ -19,7 +19,7 @@ const reviews = [
     id: 2,
     customer: 'Mango Pear',
     stars: 1,
-    description: "It cam delivered already in seven pieces",
+    description: "It came delivered already in seven pieces",
     date: "23 Aug 2022"
   },
   {
