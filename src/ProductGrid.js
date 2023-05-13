@@ -2,80 +2,76 @@ import React, {useState, useEffect} from 'react';
 import ProductCard from './ProductCard';
 //import { categories } from './Categories';
 
-import phoneSale from './phone.jpg';
-import cookWare from './cookware.jpg';
-import shirt from './tshirt.jpg';
-
 //FireBase imports
 import { db } from './config/Config'
 import { collection, query, where, getDocs } from 'firebase/firestore';
 
 
-/*const products = [
-  {
-    id: 1,
-    name: 'Product 1',
-    image: phoneSale,
-    rating: 4,
-    reviews: 10,
-    price: 18900,
-    category: 1,
-    description: "Latest of the Apple iPhone range",
-    content: "This is a premium cellular device with an aluminium frame and ultra tempered protective glass. The phone comes with 128GB of storage and I have ran out of lies to say so I am just going to end this reasonably sized paragraph here.",
-    
-  },
-  {
-    id: 2,
-    name: 'Product 2',
-    image: shirt,
-    rating: 3,
-    reviews: 5,
-    price: '$20.00',
-    category: 2
-  },
-  {
-    id: 3,
-    name: 'Product 3',
-    image: cookWare,
-    rating: 5,
-    reviews: 20,
-    price: '$15.00',
-    category: 3
-  } ];*/
+const ProductGrid = ({activeCategoryName, searchQuery}) => {
 
-const ProductGrid = ({activeCategoryName}) => {
-
+  //Initialise empty array of database products
   const [DBproducts, setDBproducts] = React.useState([]);
 
-  async function dataBase(){
-    const prodsRef = collection(db, 'Products')
-    console.log(activeCategoryName);
-    let q
-    if (activeCategoryName === "All"){
-      q = query(prodsRef, where('category', 'in', ["Electronics", "Clothing", "Home & Kitchen", "Toys & Games"]))
+  const dataBase = async () => {
+
+    //Enter the Products collection in the database
+    const prodsRef = collection(db, 'Products');
+    let q;
+
+    /*
+    //---CASE SENSITIVE IMPLEMENTATION---
+    if (searchQuery !== '') {
+      q = query(prodsRef, where('prodName', '>=', searchQuery), where('prodName', '<=', searchQuery + '\uf8ff'));
+    } else if (activeCategoryName === 'All') {
+      q = query(prodsRef, where('category', 'in', ['Electronics', 'Clothing', 'Home & Kitchen', 'Toys & Games']));
     } else {
-      q = query(prodsRef, where('category', '==', activeCategoryName))
+      q = query(prodsRef, where('category', '==', activeCategoryName));
+    }
+
+    const querySnapshot = await getDocs(q);
+    const DBproducts = querySnapshot.docs.map(doc => doc.data());
+    return DBproducts; */
+
+    //When no item is being searched for explicitly
+    if (searchQuery === '') {
+      if (activeCategoryName === 'All') {
+        //Recover the products from all our categories
+        q = query(prodsRef, where('category', 'in', ['Electronics', 'Clothing', 'Home & Kitchen', 'Toys & Games']));
+      } else {
+        //Recover the products from the current category
+        q = query(prodsRef, where('category', '==', activeCategoryName));
+      }
+  
+      const querySnapshot = await getDocs(q);
+      //Fill the array with recovered products
+      const DBproducts = querySnapshot.docs.map(doc => doc.data());
+      return DBproducts;
     }
     
-    const querySnapshot = await getDocs(q)
-    //Queried documents
-    const DBproducts = querySnapshot.docs.map(doc => doc.data());
-    //console.log(DBproducts);
-    return DBproducts;
-  }
-  
+    //Else if the search ar is being used to search for a specific product
+    //Get all products
+    q = query(prodsRef, where('category', 'in', ['Electronics', 'Clothing', 'Home & Kitchen', 'Toys & Games']));
+    const querySnapshot = await getDocs(q);
+    const DBproducts = querySnapshot.docs.map((doc) => doc.data());
 
+    //this allows for a case insensitive search of the seach term and database
+    const filteredProducts = searchQuery
+    ? DBproducts.filter((product) => product.prodName.toLowerCase().includes(searchQuery.toLowerCase()))
+    : DBproducts;
+
+    return filteredProducts;
+  };
+
+  //call the dataBase function and set the DBproducts array to the array that is returned
   React.useEffect(() => {
     dataBase().then(products => {
       setDBproducts(products);
     });
-  }, [activeCategoryName]);
-
-  /*const filteredProducts = activeCategoryId === 0 
-  ?  products : products.filter(product => product.category === activeCategoryId);*/
+  }, [activeCategoryName, searchQuery]);
 
   return (
     <div className="product-grid">
+      {/* Iterate through all the products in the array and display each product card */}
       {DBproducts.map(product => {
           return (
             <ProductCard

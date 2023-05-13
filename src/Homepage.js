@@ -1,18 +1,24 @@
 import './App.css';
 
-import React from 'react';
+import React,  {useState} from 'react';
 import NavigationBar from './NavigationBar';
 import WelcomeSection from './WelcomeSection';
 import Categories from './Categories';
-//import ProductGrid from './ProductGrid';
-//import ProductCard from './ProductCard';
 
 export default function Homepage() {
+
+  //This set of variables is used to connect the Navigation bar to the Product Grid through Categories section
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const handleSearch = (query) => {
+    setSearchQuery(query);
+  };
+
   return (
     <div>
-      <NavigationBar />
+      <NavigationBar onSearch = {handleSearch} />
       <WelcomeSection />
-      <Categories />
+      <Categories searchQuery = {searchQuery} />
       
     </div>
   );
