@@ -1,36 +1,38 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import './Cart.css';
+import { CartContext } from './CartContext';
 
-export default function Cart() {
-  const [cartItems, setCartItems] = useState([]);
 
-  const handleAddToCart = (item) => {
-    setCartItems([...cartItems, item]);
-  };
+const Cart = () => {
+  const { cartItems, removeItem, incrementItem, decrementItem } = useContext(CartContext);
+  const navigate = useNavigate();
 
-  const handleRemoveFromCart = (index) => {
-    const newCartItems = [...cartItems];
-    newCartItems.splice(index, 1);
-    setCartItems(newCartItems);
-  };
+
+  const navigateToProductPage = (id) => {
+    navigate(`/product/${id}`);
+  }
 
   return (
-    <div  className='cart-container'>
-      <h1>Cart</h1>
-      {cartItems.length === 0 && <p>Your cart is empty</p>}
-      {cartItems.length > 0 &&
-        <ul className='cart-items' >
-          {cartItems.map((item, index) => (
-            <li  className='cart-item'key={index}>
-              <span>{item.quantity} {item.name} @ R{item.price} each</span>
-              <button className='cart-buttons' onClick={() => handleRemoveFromCart(index)}>X</button>
-            </li>
-          ))}
-        </ul>
-      }
-      <button className="form-btn" onClick={() => handleAddToCart({ name: 'Shoes', price: 10, quantity: 5 })}>Add Shoes to Cart</button>
-      <button className="form-btn" onClick={() => handleAddToCart({ name: 'Car Toy', price: 20, quantity: 9 })}>Add Car Toy to Cart</button>
-      <button className="form-btn" onClick={() => handleAddToCart({ name: 'Phone', price: 2000, quantity: 1 })}>Add Phone to Cart</button>
-    </div>
+      <div className="cart-container">
+        {cartItems.map(item => (
+            <div className="cart-item" key={item.id}>
+              <img src={item.image} alt={item.name} />
+              <div className="item-info">
+                <h2>{item.name}</h2>
+                <p>{item.price}</p>
+                <div className="quantity-control">
+                  <button onClick={() => decrementItem(item.id)}>-</button>
+                  <span>{item.quantity}</span>
+                  <button onClick={() => incrementItem(item.id)}>+</button>
+                </div>
+                <button onClick={() => removeItem(item.id)}>Remove from cart</button>
+                <button onClick={() => navigateToProductPage(item.id)}>View Product</button>
+              </div>
+            </div>
+        ))}
+      </div>
   );
-};
+}
 
+export default Cart;
