@@ -29,7 +29,7 @@ const ProductCard = ({ image, prodName, ratingSum, ratingCount /*reviews*/, pric
     })} data-testid="product-cardx">
       <div className="product-image">
         {/*{imageURL && <img  src={imageURL} alt={prodName} height={400}/>}*/}
-        <img src='/imgs/products/God of War Ragnarok.jpg' alt={prodName} height={300}/>
+        <img src={image} alt={prodName} height={300}/>
       </div>
       <div className="product-info">
         <div className="product-name">{prodName}</div>
@@ -41,7 +41,7 @@ const ProductCard = ({ image, prodName, ratingSum, ratingCount /*reviews*/, pric
           {/*<div className="product-reviews">{reviews}</div>*/}
         </div>
         
-        <div className="product-price">R {price}</div>
+        <div className="product-price">{price}</div>
       </div>
     </div>
   );

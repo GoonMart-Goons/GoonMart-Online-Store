@@ -7,9 +7,13 @@ module.exports = {
         "^.+\\.(js|jsx|ts|tsx)$": "babel-jest"
     },  "transformIgnorePatterns": [
         "/node_modules/(?!jest-transform-file)",
-        "/node_modules/(?!@testing-library)/"
-    ],        
+        "/node_modules/(?!@testing-library)/",
+        "/node_modules/(?!react-multi-carousel)/",
+      ],    
     moduleDirectories: ['node_modules'],
+    moduleNameMapper: {
+        '\\.(css|less|scss)$': 'identity-obj-proxy',
+      },
     forceExit: true
 };
 

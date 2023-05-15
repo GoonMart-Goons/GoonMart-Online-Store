@@ -2,7 +2,6 @@ import React, {useState, useContext} from 'react';
 import './ProductPage.css';
 import Star from './Star';
 import Carousel from 'react-multi-carousel';
-import 'react-multi-carousel/lib/styles.css';
 import {useLocation, useNavigate} from 'react-router-dom';
 import 'react-multi-carousel/lib/styles.css';
 import ProductCard from './ProductCard';
