@@ -6,6 +6,9 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import ReviewGrid from './ReviewGrid';
 
+import phoneSale from './imgs/phone.jpg';
+import cookWare from './imgs/cookware.jpg';
+import shirt from './imgs/tshirt.jpg';
 import ProductCard from './ProductCard';
 
 //FireBase imports
@@ -56,6 +59,12 @@ const ProductPageNew = () => {
             
             const querySnapshot = await getDocs(q)
             //Queried documents
+            const DBproducts = querySnapshot.docs.map(doc => {
+                const data = doc.data();
+                //Adds the id property to each product
+                data.id = doc.id;
+                return data;
+            });
             const DBproducts = querySnapshot.docs.map(doc => {
                 const data = doc.data();
                 //Adds the id property to each product

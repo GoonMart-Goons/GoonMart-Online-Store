@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {FaSearch} from 'react-icons/fa';
+import {FaCartPlus, FaSearch} from 'react-icons/fa';
   
 
 function InnerNavigationBar({onSearch}) {
@@ -35,20 +35,18 @@ function InnerNavigationBar({onSearch}) {
       {/*The navigation section to head over to different pages*/}
       <div className="navbar-right">
         <ul className="navbar-menu">
-          <li >
-            <a className="navbar-menu-item" href="/InnerHomepage">HOME</a>
+          <li>
+            <a className="navbar-menu-item" href="./Cart"><FaCartPlus/></a>
           </li>
           <li>
-            <a className="navbar-menu-item" href="/InnerHomepage">ORDERS</a>
+            <a className="navbar-menu-item" href="./Orders">ORDERS</a>
+          </li>
+          
+          <li>
+            <a className="navbar-menu-item" href="./InnerHomepage">MY ACCOUNT</a>
           </li>
           <li>
-            <a className="navbar-menu-item" href="/InnerHomepage">MY ACCOUNT</a>
-          </li>
-          <li>
-            <a className="navbar-menu-item" href="/InnerHomepage">ABOUT</a>
-          </li>
-          <li>
-            <a className="navbar-menu-item" href="/InnerHomepage">CONTACT US</a>
+            <a className="navbar-menu-item" href="./InnerHomepage">ABOUT</a>
           </li>
           <li>
             <a className="navbar-menu-item" href="/">LOG OUT</a>

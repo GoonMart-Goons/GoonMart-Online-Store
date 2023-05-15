@@ -2,6 +2,10 @@ import React, {useState, useEffect} from 'react';
 import ProductCard from './ProductCard';
 //import { categories } from './Categories';
 
+import phoneSale from './imgs/phone.jpg';
+import cookWare from './imgs/cookware.jpg';
+import shirt from './imgs/tshirt.jpg';
+
 //FireBase imports
 import { db } from './config/Config'
 import { collection, query, where, getDocs } from 'firebase/firestore';

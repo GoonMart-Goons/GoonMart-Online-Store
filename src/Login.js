@@ -85,7 +85,7 @@ export default function Login() {
     <section>
         <div className="Form">
             <div className="col-1">
-                <img src= "/goonmart-logo.png" className='loginLogo' alt='goonmart logo'/>
+                <img src= "/imgs/goonmart-logo.png" className='loginLogo' alt='goonmart logo'/>
                 <h2>Welcome Back!</h2>
 
                 <form id='loginrForm' data-testid="login-form" className='loginForm' onSubmit={handleSubmit(SignIn)}>

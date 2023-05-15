@@ -17,7 +17,7 @@ function NavigationBar({ onSearch }) {
     //The logo section of the navigation bar
     <nav className="navbar">
       <div className="navbar-left">
-        <img src= "/goonmart-logo.png" alt='goonmart logo'/>
+        <img src= "/imgs/goonmart-logo.png" alt='goonmart logo'/>
         <span><b>GoonMart</b></span>
       </div>
 

@@ -9,6 +9,8 @@ import Register from './Register';
 import Login from './Login';
 import ProductPage from './ProductPage';
 import ProductPageNew from './ProductPageNew';
+import Cart from './Cart';
+import Orders from './Orders';
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
             <Route path = "/InnerHomepage" element = {<InnerHomepage />} />
             <Route path = "/productpage" element = {<ProductPage />} />
             <Route path = "/productpagenew" element = {<ProductPageNew />} />
+            <Route path = "/cart" element = {<Cart />} />
+            <Route path = "/orders" element = {<Orders />} />
         </Routes>
       </Router>
     </div>
