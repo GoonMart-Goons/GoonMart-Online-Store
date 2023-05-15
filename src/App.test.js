@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import React, {useState} from 'react'
 import App from './App';
 import '@testing-library/jest-dom/extend-expect'; // import jest-dom for toBeInTheDocument()
-
+import 'react-multi-carousel/lib/styles.css';
 
 test('renders GoonMart logo', () => {
   render(<App />);

@@ -1,55 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="19" failures="0" errors="0" time="59.04">
-  <testsuite name="Register" errors="0" failures="0" skipped="0" timestamp="2023-05-15T16:44:27" time="17.261" tests="2">
-    <testcase classname="Register should invalidate empty name field" name="Register should invalidate empty name field" time="1.117">
+<testsuites name="jest tests" tests="19" failures="0" errors="0" time="56.566">
+  <testsuite name="Login Component" errors="0" failures="0" skipped="0" timestamp="2023-05-15T15:49:58" time="18.178" tests="5">
+    <testcase classname="Login Component renders Login form" name="Login Component renders Login form" time="0.182">
     </testcase>
-    <testcase classname="Register should invalidate empty fields" name="Register should invalidate empty fields" time="0.252">
+    <testcase classname="Login Component submitting empty form shows validation errors" name="Login Component submitting empty form shows validation errors" time="0.884">
     </testcase>
-  </testsuite>
-  <testsuite name="ProductCard" errors="0" failures="0" skipped="0" timestamp="2023-05-15T16:44:45" time="3.606" tests="3">
-    <testcase classname="ProductCard renders product image with correct alt text" name="ProductCard renders product image with correct alt text" time="0.115">
-    </testcase>
-    <testcase classname="ProductCard renders product name, rating, reviews, and price" name="ProductCard renders product name, rating, reviews, and price" time="0.117">
-    </testcase>
-    <testcase classname="ProductCard renders the image and name" name="ProductCard renders the image and name" time="0.081">
-    </testcase>
-  </testsuite>
-  <testsuite name="Login Component" errors="0" failures="0" skipped="0" timestamp="2023-05-15T16:44:49" time="6.53" tests="5">
-    <testcase classname="Login Component renders Login form" name="Login Component renders Login form" time="0.202">
-    </testcase>
-    <testcase classname="Login Component submitting empty form shows validation errors" name="Login Component submitting empty form shows validation errors" time="0.474">
-    </testcase>
-    <testcase classname="Login Component submitting short password form shows validation error" name="Login Component submitting short password form shows validation error" time="0.207">
+    <testcase classname="Login Component submitting short password form shows validation error" name="Login Component submitting short password form shows validation error" time="0.213">
     </testcase>
     <testcase classname="Login Component submitting valid form calls SignIn function" name="Login Component submitting valid form calls SignIn function" time="0.001">
     </testcase>
-    <testcase classname="Login Component clicking on &quot;Register&quot; button navigates to registration page" name="Login Component clicking on &quot;Register&quot; button navigates to registration page" time="0">
+    <testcase classname="Login Component clicking on &quot;Register&quot; button navigates to registration page" name="Login Component clicking on &quot;Register&quot; button navigates to registration page" time="0.001">
     </testcase>
   </testsuite>
-  <testsuite name="CategoryList" errors="0" failures="0" skipped="0" timestamp="2023-05-15T16:44:56" time="6.623" tests="2">
-    <testcase classname="CategoryList renders all categories" name="CategoryList renders all categories" time="0.468">
+  <testsuite name="Register" errors="0" failures="0" skipped="0" timestamp="2023-05-15T15:50:17" time="6.735" tests="2">
+    <testcase classname="Register should invalidate empty name field" name="Register should invalidate empty name field" time="0.483">
     </testcase>
-    <testcase classname="CategoryList filters products by category when clicked" name="CategoryList filters products by category when clicked" time="1.444">
-    </testcase>
-  </testsuite>
-  <testsuite name="NavigationBar" errors="0" failures="0" skipped="0" timestamp="2023-05-15T16:45:03" time="2.837" tests="4">
-    <testcase classname="NavigationBar renders the GoonMart logo" name="NavigationBar renders the GoonMart logo" time="0.121">
-    </testcase>
-    <testcase classname="NavigationBar renders the search input" name="NavigationBar renders the search input" time="0.087">
-    </testcase>
-    <testcase classname="NavigationBar renders the search button with FaSearch icon" name="NavigationBar renders the search button with FaSearch icon" time="0.038">
-    </testcase>
-    <testcase classname="NavigationBar renders the LOGIN and REGISTER buttons" name="NavigationBar renders the LOGIN and REGISTER buttons" time="0.041">
+    <testcase classname="Register should invalidate empty fields" name="Register should invalidate empty fields" time="0.212">
     </testcase>
   </testsuite>
-  <testsuite name="WelcomeSection" errors="0" failures="0" skipped="0" timestamp="2023-05-15T16:45:06" time="2.166" tests="2">
-    <testcase classname="WelcomeSection renders the welcome message" name="WelcomeSection renders the welcome message" time="0.083">
+  <testsuite name="CategoryList" errors="0" failures="0" skipped="0" timestamp="2023-05-15T15:50:24" time="6.842" tests="2">
+    <testcase classname="CategoryList renders all categories" name="CategoryList renders all categories" time="0.559">
     </testcase>
-    <testcase classname="WelcomeSection renders the happy shopping message" name="WelcomeSection renders the happy shopping message" time="0.076">
+    <testcase classname="CategoryList filters products by category when clicked" name="CategoryList filters products by category when clicked" time="1.274">
     </testcase>
   </testsuite>
-  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2023-05-15T16:45:08" time="10.613" tests="1">
-    <testcase classname=" renders GoonMart logo" name=" renders GoonMart logo" time="0.469">
+  <testsuite name="NavigationBar" errors="0" failures="0" skipped="0" timestamp="2023-05-15T15:50:31" time="2.459" tests="4">
+    <testcase classname="NavigationBar renders the GoonMart logo" name="NavigationBar renders the GoonMart logo" time="0.101">
+    </testcase>
+    <testcase classname="NavigationBar renders the search input" name="NavigationBar renders the search input" time="0.054">
+    </testcase>
+    <testcase classname="NavigationBar renders the search button with FaSearch icon" name="NavigationBar renders the search button with FaSearch icon" time="0.06">
+    </testcase>
+    <testcase classname="NavigationBar renders the LOGIN and REGISTER buttons" name="NavigationBar renders the LOGIN and REGISTER buttons" time="0.083">
+    </testcase>
+  </testsuite>
+  <testsuite name="ProductCard" errors="0" failures="0" skipped="0" timestamp="2023-05-15T15:50:34" time="2.403" tests="3">
+    <testcase classname="ProductCard renders product image with correct alt text" name="ProductCard renders product image with correct alt text" time="0.111">
+    </testcase>
+    <testcase classname="ProductCard renders product name, rating, reviews, and price" name="ProductCard renders product name, rating, reviews, and price" time="0.067">
+    </testcase>
+    <testcase classname="ProductCard renders the image and name" name="ProductCard renders the image and name" time="0.033">
+    </testcase>
+  </testsuite>
+  <testsuite name="WelcomeSection" errors="0" failures="0" skipped="0" timestamp="2023-05-15T15:50:36" time="2.163" tests="2">
+    <testcase classname="WelcomeSection renders the welcome message" name="WelcomeSection renders the welcome message" time="0.061">
+    </testcase>
+    <testcase classname="WelcomeSection renders the happy shopping message" name="WelcomeSection renders the happy shopping message" time="0.082">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2023-05-15T15:50:39" time="9.589" tests="1">
+    <testcase classname=" renders GoonMart logo" name=" renders GoonMart logo" time="0.53">
     </testcase>
   </testsuite>
 </testsuites>

@@ -3,6 +3,7 @@ import { render, screen } from '@testing-library/react';
 import ProductCard from './ProductCard';
 import '@testing-library/jest-dom/extend-expect'; // import jest-dom for toBeInTheDocument()
 import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 
 describe('ProductCard', () => {
@@ -17,6 +18,8 @@ describe('ProductCard', () => {
     test('renders product image with correct alt text', () => {
         render(<Router> <ProductCard {...product} /> </Router> );
         const image = screen.getByAltText('Example Product');
+        render(<Router> <ProductCard {...product} /> </Router> );
+        const image = screen.getByAltText('Example Product');
         expect(image).toHaveAttribute('src', product.image);
 
     });
@@ -25,7 +28,12 @@ describe('ProductCard', () => {
         render(<Router> <ProductCard {...product} /> </Router> );
         const prodName = screen.getByAltText('Example Product');
         //const rating = screen.getAllByText('★').length;
+        render(<Router> <ProductCard {...product} /> </Router> );
+        const prodName = screen.getByAltText('Example Product');
+        //const rating = screen.getAllByText('★').length;
         const price = screen.getByText(product.price);
+        expect(prodName).toBeInTheDocument();
+        //expect(rating).toBe(product.rating);
         expect(prodName).toBeInTheDocument();
         //expect(rating).toBe(product.rating);
         expect(price).toBeInTheDocument();
