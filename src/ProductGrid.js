@@ -43,8 +43,13 @@ const ProductGrid = ({activeCategoryName, searchQuery}) => {
       }
   
       const querySnapshot = await getDocs(q);
-      //Fill the array with recovered products
-      const DBproducts = querySnapshot.docs.map(doc => doc.data());
+      //Fill the array with recovered products (and add the id property)
+      const DBproducts = querySnapshot.docs.map((doc) =>  {
+        const data = doc.data();
+        //Adds the id property to each product
+        data.id = doc.id;
+        return data;
+      });
       return DBproducts;
     }
     
@@ -52,7 +57,12 @@ const ProductGrid = ({activeCategoryName, searchQuery}) => {
     //Get all products
     q = query(prodsRef, where('category', 'in', ['Electronics', 'Clothing', 'Home & Kitchen', 'Toys & Games']));
     const querySnapshot = await getDocs(q);
-    const DBproducts = querySnapshot.docs.map((doc) => doc.data());
+    const DBproducts = querySnapshot.docs.map((doc) => {
+      const data = doc.data();
+      //Adds the id property to each product
+      data.id = doc.id;
+      return data;
+    });
 
     //this allows for a case insensitive search of the seach term and database
     const filteredProducts = searchQuery

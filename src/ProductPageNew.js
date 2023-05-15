@@ -6,30 +6,12 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import ReviewGrid from './ReviewGrid';
 
-
-import phoneSale from './phone.jpg';
-import cookWare from './cookware.jpg';
-import shirt from './tshirt.jpg';
 import ProductCard from './ProductCard';
 
 //FireBase imports
 import { db } from './config/Config'
 import { collection, query, where, getDocs } from 'firebase/firestore';
 
-/*const suggestedProducts = [
-    {
-      id: 1,
-      name: 'Product 1',
-      image: phoneSale,
-      rating: 4,
-      reviews: 10,
-      price: '$10.00',
-      category: 1,
-      description: "Latest of the Apple iPhone range",
-      content: "This is a premium cellular device with an aluminium frame and ultra tempered protective glass. The phone comes with 128GB of storage and I have ran out of lies to say so I am just going to end this reasonably sized paragraph here.",
-                
-    }
-]*/
 
 const ProductPageNew = () => {
 
@@ -37,6 +19,8 @@ const ProductPageNew = () => {
 
     //Access the props from state object
     const {image, prodName, ratingSum, ratingCount, price, id, quantity, prodDesc, category } = state;
+
+    //console.log("id: ", id);
     
     //const {image, prodName, ratingSum, ratingCount /*reviews*/, price, id, quantity, prodDesc } = location.state;
     const [products, setProducts] = useState([/*suggestedProducts[0]*/]);
@@ -72,7 +56,12 @@ const ProductPageNew = () => {
             
             const querySnapshot = await getDocs(q)
             //Queried documents
-            const DBproducts = querySnapshot.docs.map(doc => doc.data());
+            const DBproducts = querySnapshot.docs.map(doc => {
+                const data = doc.data();
+                //Adds the id property to each product
+                data.id = doc.id;
+                return data;
+            });
             //console.log(DBproducts);
             return DBproducts;
         }
