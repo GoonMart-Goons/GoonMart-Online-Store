@@ -61,11 +61,6 @@ const ProductPageNew = () => {
 
     const [DBproducts, setDBproducts] = React.useState([]);
 
-    async function dataBase(){
-        const prodsRef = collection(db, 'Products')
-        console.log(category);
-        const q  = query(prodsRef, where('category', '==', category))
-
         const querySnapshot = await getDocs(q)
         //Queried documents
         const DBproducts = querySnapshot.docs.map(doc => doc.data());
@@ -98,10 +93,6 @@ const ProductPageNew = () => {
 
                     <p>{prodDesc}</p>
 
-                    <div className="Box">
-                        <button type="button" className="Dec" onClick = {handleDecrement} >-</button>
-                        <div className="control text">{quantityCount}</div>
-                        <button type="button" className="Inc" onClick={handleIncrement}>+</button>
                     </div>
                     <p>In Stock</p>
                     <button className="cart" onClick={() => {
@@ -141,11 +132,6 @@ const ProductPageNew = () => {
                             />
                         );
                     })}
-
-                </Carousel></div>
-
-        </div>
-        </>
 
     );
 };

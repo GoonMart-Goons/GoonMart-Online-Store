@@ -30,7 +30,7 @@ export const categories = [
   })
 }*/
 
-function Categories() {
+function Categories({searchQuery}) {
   const [activeCategoryName, setActiveCategoryName] = useState("All");
 
   //State to hold filtered products
@@ -59,7 +59,7 @@ function Categories() {
         </div>
       ))}
 
-    </div><ProductGrid activeCategoryName={activeCategoryName}/></>
+    </div><ProductGrid activeCategoryName={activeCategoryName} searchQuery={searchQuery}/></>
   );
 }
 
