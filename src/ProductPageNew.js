@@ -71,7 +71,12 @@ const ProductPageNew = () => {
             
             const querySnapshot = await getDocs(q)
             //Queried documents
-            const DBproducts = querySnapshot.docs.map(doc => doc.data());
+            const DBproducts = querySnapshot.docs.map(doc => {
+                const data = doc.data();
+                //Adds the id property to each product
+                data.id = doc.id;
+                return data;
+            });
             //console.log(DBproducts);
             return DBproducts;
         }
