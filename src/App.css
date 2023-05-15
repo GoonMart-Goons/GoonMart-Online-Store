@@ -254,7 +254,7 @@ nav button :hover{
   margin-top: 10px;
 }
 
-/* Cart styling */
+/* Cart styling ................................................................*/
 .cart-container {
   display: flex;
   flex-direction: column;
@@ -265,26 +265,37 @@ nav button :hover{
   align-items: center;
   justify-content: center;
   border-width: 2px;
-  border-color: rgb(255, 68, 0);
   border-radius: 10px;
+}
+.view-cart {
+  margin-top: 10px;
+  background-color: #00ff00;
+  color: #ffffff;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  text-align: center;
 }
 
 .cart-container h1{
   color: orangered;
 }
 
-.cart-items {
+.cart-item {
   display: flex;
-  flex-direction: column;
-  gap: 20px;
+  align-items: center;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: calc(33.33% - 20px);
 }
 
 .cart-item {
   display: flex;
   gap: 20px;
   padding: 20px 60px;
-  color: hsl(226, 72%, 32%);
-  background-color: rgb(255, 68, 0);
+  color: hsl(0, 0%, 4%);
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
   text-decoration: none;
@@ -295,10 +306,33 @@ nav button :hover{
   height: 100px;
 }
 
-.cart-buttons {
-  margin-left: auto;
-  background-color: black;
-  color: white;
+.cart-item img {
+  width: 100px;
+  height: 100px;
+  margin-right: 10px;
+}
+
+.item-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+.item-info h2 {
+  margin: 0;
+  padding: 0;
+}
+.quantity-control {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+.quantity-control button {
+  background-color: #f0f0f0;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
 }
 
 /* Form pages styling */
