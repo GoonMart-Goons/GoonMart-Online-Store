@@ -305,12 +305,6 @@ nav button :hover{
   height: 100px;
 }
 
-.cart-buttons {
-  margin-left: auto;
-  background-color: black;
-  color: white;
-}
-
 .cart-item img {
   width: 100px;
   height: 100px;

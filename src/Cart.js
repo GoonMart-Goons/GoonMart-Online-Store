@@ -15,20 +15,28 @@ const Cart = () => {
 
   return (
       <div className="cart-container">
+        <h1>Cart</h1>
         {cartItems.map(item => (
-            <div className="cart-item" key={item.id}>
+          <div className = "cart-item">
+            <div className="product" key={item.id}>
               <img src={item.image} alt={item.name} />
               <div className="item-info">
-                <h2>{item.name}</h2>
-                <p>{item.price}</p>
-                <div className="quantity-control">
-                  <button onClick={() => decrementItem(item.id)}>-</button>
-                  <span>{item.quantity}</span>
-                  <button onClick={() => incrementItem(item.id)}>+</button>
-                </div>
-                <button onClick={() => removeItem(item.id)}>Remove from cart</button>
-                <button onClick={() => navigateToProductPage(item.id)}>View Product</button>
+                <p>{item.name}</p>
               </div>
+              </div>
+                
+              <div className="quantity-control">
+                <p>R {item.price}</p>
+                <button onClick={() => decrementItem(item.id)}>-</button>
+                <span>{item.quantity}</span>
+                <button onClick={() => incrementItem(item.id)}>+</button>
+              </div>
+              
+              <div className='extras'>
+                <button onClick={() => navigateToProductPage(item.id)} className='view-cart'>View Product</button>
+                <button onClick={() => removeItem(item.id)} className='rmv-btn'>Remove</button>
+              </div>
+              
             </div>
         ))}
       </div>
