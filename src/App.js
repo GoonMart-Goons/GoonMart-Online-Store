@@ -11,13 +11,14 @@ import ProductPage from './ProductPage';
 import ProductPageNew from './ProductPageNew';
 import Cart from './Cart';
 import Orders from './Orders';
+import Checkout from './Checkout';
 
 function App() {
   return (
     <div>
       <Router> 
         <Routes>
-            <Route path = "/" index element = {<Homepage />} />
+            <Route path = "/d" index element = {<Homepage />} />
             <Route path = "/register" element = {<Register />} />
             <Route path = "/login" element = {<Login />} />
             <Route path = "/InnerHomepage" element = {<InnerHomepage />} />
@@ -25,6 +26,7 @@ function App() {
             <Route path = "/productpagenew" element = {<ProductPageNew />} />
             <Route path = "/cart" element = {<Cart />} />
             <Route path = "/orders" element = {<Orders />} />
+            <Route path="/" element = {<Checkout/>}/>
         </Routes>
       </Router>
     </div>
