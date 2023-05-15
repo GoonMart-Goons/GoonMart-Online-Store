@@ -10,6 +10,10 @@ module.exports = {
         "/node_modules/(?!@testing-library)/"
     ],        
     moduleDirectories: ['node_modules'],
+    moduleNameMapper: {
+      '\\.(css|less|scss)$': 'identity-obj-proxy',
+    },
+      
     forceExit: true
 };
 
