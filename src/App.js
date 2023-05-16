@@ -23,7 +23,6 @@ function App() {
                     <Route path = "/register" element = {<Register />} />
                     <Route path = "/login" element = {<Login />} />
                     <Route path = "/InnerHomepage" element = {<InnerHomepage />} />
-                    <Route path = "/productpage" element = {<ProductPage />} />
                     <Route path = "/productpagenew" element = {<ProductPageNew />} />
                     <Route path = "/product/:id" element = {<ProductPageNew />} />
                     <Route path = "/cart" element = {<Cart />} />
