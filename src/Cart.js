@@ -40,9 +40,7 @@ const Cart = () => {
                                 <button onClick={() => incrementItem(item.id)}>+</button>
                             </div>
                             <div className="extras">
-                                <button onClick={() => navigateToProductPage(item.id)} className="view-cart">
-                                    View Product
-                                </button>
+
                                 <button onClick={() => removeItem(item.id)} className="rmv-btn">
                                     Remove
                                 </button>
