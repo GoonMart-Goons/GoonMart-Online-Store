@@ -7,7 +7,7 @@ import { db } from './config/Config'
 import { collection, query, where, getDocs } from 'firebase/firestore';
 
 
-const reviews = [
+/*const reviews = [
   {
     id: 1,
     customer: 'Banana Apricot',
@@ -28,39 +28,52 @@ const reviews = [
     stars: 3,
     description: "It came on time and works well",
     date: "12 Mar 2023"
-  } ];
+  } ];*/
 
-const ReviewGrid = ({productName, stars}) => {
+const ReviewGrid = ({id}) => {
   
   const [DBreviews, setDBreviews] = React.useState([])
 
-  React.useEffect(() => {
-    getProductReviews(productName)
-  }, [])
+  /*React.useEffect(() => {
+    getProductReviews(id)
+  }, []) */
   
-  async function getProductReviews(prodName){
-    console.log("prodname:", prodName)
-    const prodsRef = collection(db, 'Products')
+  async function getProductReviews(){
+    
+    console.log("prodID:", id)
+    
+    /*const prodsRef = collection(db, 'Products')
     const q = query(prodsRef, where('prodName', '==', prodName))
     const prodSnapshot = await getDocs(q)
 
     const prodDoc = prodSnapshot.docs[0]
+    console.log("prodDoc", prodDoc) */
 
-    const reviewsRef = collection(db, 'Products', prodDoc.id, 'Reviews')
+    const reviewsRef = collection(db, 'Products', id, 'Reviews')
+
     const reviewsSnapshot = await getDocs(reviewsRef)
+
     if (reviewsSnapshot.empty){
       console.log('This product has no reviews')
-      return
+      return []
     }
 
-    const reviewsData = reviewsSnapshot.docs.map((reviewDoc) => ({
-      id: reviewDoc.id,
-      ...reviewDoc.data()
-    }))
-
-    setDBreviews(reviewsData)
-    console.log("DBreviews:", DBreviews)
+    const reviewsData = reviewsSnapshot.docs.map((reviewDoc) => {
+      const data = reviewDoc.data()
+      data.id = reviewDoc.id;
+      return data;
+    });
+    //console.log("reviews:", reviewsData)
+    return reviewsData
   }
+
+  //call the getProductReviews function and set the DBreviews array to the array that is returned
+  React.useEffect(() => {
+    getProductReviews().then(reviews => {
+      setDBreviews(reviews);
+      console.log("DBreviews: ", DBreviews)
+    });
+  }, [id]);
 
   //Returns HTML components to be displayed with relevant data
   return (
@@ -68,11 +81,11 @@ const ReviewGrid = ({productName, stars}) => {
       {DBreviews.map((review) => {
           return (
             <ReviewCard
-                key = {review.id}
+                id = {review.id}
                 customer = {review.User}
-                stars = {5}
+                stars = {review.Stars}
                 description = {review.Review}
-                date = {"16/05/2023"}
+                date = {review.Date}
             />
           );
         })

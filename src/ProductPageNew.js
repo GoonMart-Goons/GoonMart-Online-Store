@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {useLocation} from 'react-router-dom';
 import './ProductPage.css';
 import Star from './Star';
@@ -47,7 +47,7 @@ const ProductPageNew = () => {
         }
     };
          
-    const [DBproducts, setDBproducts] = React.useState([]);
+    const [DBproducts, setDBproducts] = useState([]);
 
         async function dataBase(){
             const prodsRef = collection(db, 'Products')
@@ -62,14 +62,15 @@ const ProductPageNew = () => {
                 data.id = doc.id;
                 return data;
             });
-            //console.log(DBproducts);
+            //console.log("Suggested prod:", DBproducts);
             return DBproducts;
         }
         
 
-        React.useEffect(() => {
+        useEffect(() => {
             dataBase().then(products => {
             setDBproducts(products);
+            console.log("Suggested prod:", DBproducts);
             });
         }, [category]);
 
@@ -128,7 +129,7 @@ const ProductPageNew = () => {
                     </Carousel>
 
                     <h2 className='heading'>Reviews</h2>
-                    <ReviewGrid productName={prodName}/>
+                    <ReviewGrid id={id}/>
 
                 </div>
                 </>

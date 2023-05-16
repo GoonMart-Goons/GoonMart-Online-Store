@@ -9,8 +9,11 @@ import { collection, query, where, getDocs } from 'firebase/firestore';
 import { getStorage, ref, getDownloadURL } from '@firebase/storage';*/
 
 
-const ReviewCard = ({ customer, description, stars, date }) => {
+const ReviewCard = ({ id, customer, description, stars, date }) => {
  // const navigate = useNavigate();
+
+  const d = new Date(date);
+
   return (
       <div className="review-card">
 
