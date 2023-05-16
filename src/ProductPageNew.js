@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {useLocation} from 'react-router-dom';
 import './ProductPage.css';
 import Star from './Star';
@@ -11,7 +11,8 @@ import ProductCard from './ProductCard';
 //FireBase imports
 import { db } from './config/Config'
 import { collection, query, where, getDocs } from 'firebase/firestore';
-
+import { storage } from './config/Config';
+import { ref, getDownloadURL } from 'firebase/storage';
 
 const ProductPageNew = () => {
 
@@ -20,7 +21,19 @@ const ProductPageNew = () => {
     //Access the props from state object
     const {image, prodName, ratingSum, ratingCount, price, id, quantity, prodDesc, category } = state;
 
-    //console.log("id: ", id);
+    const [imageURL, setImageURL] = useState(null)
+
+    useEffect(() => {
+        const imgRef = ref(storage, image)
+
+        getDownloadURL(imgRef)
+        .then((url) => {
+            setImageURL(url)
+        })
+        .catch((error) => {
+            console.error(error)
+        })
+    }, [image])
     
     //const {image, prodName, ratingSum, ratingCount /*reviews*/, price, id, quantity, prodDesc } = location.state;
     const [products, setProducts] = useState([/*suggestedProducts[0]*/]);
@@ -77,7 +90,8 @@ const ProductPageNew = () => {
             <><div className="app">
                     <div className="details" key={id}>
                         <div className="big-img">
-                            <img src={image} alt={prodName} />
+                            {imageURL && <img src={imageURL} alt={prodName}/>}
+                            {/* <img src={image} alt={prodName} /> */}
                           
                         </div>
 
