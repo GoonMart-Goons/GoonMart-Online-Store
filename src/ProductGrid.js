@@ -74,9 +74,9 @@ const ProductGrid = ({activeCategoryName, searchQuery}) => {
               /*key={product.id}*/
               prodName={product.prodName}
               image={product.imageURL}
-              ratingSum={product.ratingSum}
+              /*ratingSum={product.ratingSum}
               ratingCount={product.ratingCount}
-              /*reviews={product.reviews}*/
+              reviews={product.reviews}*/
               price={product.price}
               id ={product.id}
               quantity = {product.quantity}

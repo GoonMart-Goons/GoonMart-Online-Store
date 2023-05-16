@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {useLocation} from 'react-router-dom';
+import {useLocation, useNavigate} from 'react-router-dom';
 import './ProductPage.css';
 import Star from './Star';
 import Carousel from 'react-multi-carousel';
@@ -19,7 +19,7 @@ const ProductPageNew = () => {
     const {state} = useLocation();
 
     //Access the props from state object
-    const {image, prodName, ratingSum, ratingCount, price, id, quantity, prodDesc, category } = state;
+    const {image, prodName, averageRating, price, id, quantity, prodDesc, category } = state;
 
     const [imageURL, setImageURL] = useState(null)
 
@@ -59,7 +59,7 @@ const ProductPageNew = () => {
             items: 3
         }
     };
-         
+     
     const [DBproducts, setDBproducts] = React.useState([]);
 
         async function dataBase(){
@@ -79,13 +79,12 @@ const ProductPageNew = () => {
             return DBproducts;
         }
         
-
         React.useEffect(() => {
             dataBase().then(products => {
             setDBproducts(products);
             });
         }, [category]);
-
+        
         return (  
             <><div className="app">
                     <div className="details" key={id}>
@@ -101,7 +100,7 @@ const ProductPageNew = () => {
                                 <h2>{prodName}</h2>
                                 <h2>R {price}</h2>
                     
-                           <h6><Star rating={ratingSum/ratingCount} /></h6> 
+                           <h6><Star rating={averageRating} /></h6> 
 
                             <p>{prodDesc}</p>
 
@@ -127,9 +126,9 @@ const ProductPageNew = () => {
                             /*key={product.id}*/
                             prodName={product.prodName}
                             image={product.imageURL}
-                            ratingSum={product.ratingSum}
+                            /*ratingSum={product.ratingSum}
                             ratingCount={product.ratingCount}
-                            /*reviews={product.reviews}*/
+                            reviews={product.reviews}*/
                             price={product.price}
                             id ={product.id}
                             quantity = {product.quantity}
