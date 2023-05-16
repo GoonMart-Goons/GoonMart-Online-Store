@@ -83,7 +83,7 @@ const ReviewGrid = ({productName}) => {
             <ReviewCard
                 key = {review.id}
                 customer = {review.User}
-                stars = {5}
+                stars = {review.Stars}
                 description = {review.Review}
                 date = {review.Date}
             />
