@@ -11,6 +11,7 @@ import ProductPageNew from './ProductPageNew';
 import Cart from './Cart';
 import Orders from './Orders';
 import { CartProvider } from './CartContext';  // import CartProvider
+import Checkout from './Checkout';
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
                     <Route path = "/product/:id" element = {<ProductPageNew />} />
                     <Route path = "/cart" element = {<Cart />} />
                     <Route path = "/orders" element = {<Orders />} />
+                    <Route path = "/checkout" /*element = {<Checkout/>}*/ element={<Checkout/>}/>
                 </Routes>
             </Router>
         </CartProvider>  {/* wrap your main App component with CartProvider */}
