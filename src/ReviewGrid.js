@@ -30,46 +30,49 @@ const reviews = [
     date: "12 Mar 2023"
   } ];
 
-const ReviewGrid = () => {
-
-  /*const [DBproducts, setDBproducts] = React.useState([]);
-
-  async function dataBase(){
-    const prodsRef = collection(db, 'Products')
-    console.log(activeCategoryName);
-    let q
-    if (activeCategoryName === "All"){
-      q = query(prodsRef, where('category', 'in', ["Electronics", "Clothing", "Home & Kitchen", "Toys & Games"]))
-    } else {
-      q = query(prodsRef, where('category', '==', activeCategoryName))
-    }
-    
-    const querySnapshot = await getDocs(q)
-    //Queried documents
-    const DBproducts = querySnapshot.docs.map(doc => doc.data());
-    //console.log(DBproducts);
-    return DBproducts;
-  }
+const ReviewGrid = ({productName, stars}) => {
   
+  const [DBreviews, setDBreviews] = React.useState([])
 
   React.useEffect(() => {
-    dataBase().then(products => {
-      setDBproducts(products);
-    });
-  }, [activeCategoryName]);*/
+    getProductReviews(productName)
+  }, [])
+  
+  async function getProductReviews(prodName){
+    console.log("prodname:", prodName)
+    const prodsRef = collection(db, 'Products')
+    const q = query(prodsRef, where('prodName', '==', prodName))
+    const prodSnapshot = await getDocs(q)
 
-  /*const filteredProducts = activeCategoryId === 0 
-  ?  products : products.filter(product => product.category === activeCategoryId);*/
+    const prodDoc = prodSnapshot.docs[0]
 
+    const reviewsRef = collection(db, 'Products', prodDoc.id, 'Reviews')
+    const reviewsSnapshot = await getDocs(reviewsRef)
+    if (reviewsSnapshot.empty){
+      console.log('This product has no reviews')
+      return
+    }
+
+    const reviewsData = reviewsSnapshot.docs.map((reviewDoc) => ({
+      id: reviewDoc.id,
+      ...reviewDoc.data()
+    }))
+
+    setDBreviews(reviewsData)
+    console.log("DBreviews:", DBreviews)
+  }
+
+  //Returns HTML components to be displayed with relevant data
   return (
     <div className="review-grid">
-      {reviews.map(review => {
+      {DBreviews.map((review) => {
           return (
             <ReviewCard
-                customer = {review.customer}
-                stars = {review.stars}
-                description = {review.description}
-                date = {review.date}
+                key = {review.id}
+                customer = {review.User}
+                stars = {5}
+                description = {review.Review}
+                date = {"16/05/2023"}
             />
           );
         })

@@ -139,7 +139,7 @@ const ProductPageNew = () => {
                     </Carousel>
 
                     <h2 className='heading'>Reviews</h2>
-                    <ReviewGrid />
+                    <ReviewGrid productName={prodName}/>
 
                 </div>
                 </>
