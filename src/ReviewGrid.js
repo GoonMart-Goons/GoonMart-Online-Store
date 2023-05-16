@@ -4,7 +4,7 @@ import './Reviews.css';
 
 //FireBase imports
 import { db } from './config/Config'
-import { collection, query, where, getDocs } from 'firebase/firestore';
+import { collection, query, where, getDocs, Timestamp } from 'firebase/firestore';
 
 
 const reviews = [
@@ -30,7 +30,7 @@ const reviews = [
     date: "12 Mar 2023"
   } ];
 
-const ReviewGrid = ({productName, stars}) => {
+const ReviewGrid = ({productName}) => {
   
   const [DBreviews, setDBreviews] = React.useState([])
 
@@ -53,10 +53,23 @@ const ReviewGrid = ({productName, stars}) => {
       return
     }
 
-    const reviewsData = reviewsSnapshot.docs.map((reviewDoc) => ({
-      id: reviewDoc.id,
-      ...reviewDoc.data()
-    }))
+    const reviewsData = reviewsSnapshot.docs.map((reviewDoc) => {
+      const reviewData = reviewDoc.data()
+      const timestamp = reviewData.Date
+
+      //Convert FB timestamp to JS date
+      const date = timestamp instanceof Timestamp ? timestamp.toDate() : new Date(timestamp)
+      
+      //Formats date to dd/mm/yyyy
+      const formattedDate = date.toLocaleDateString('en-GB')
+      console.log("Date:", formattedDate)
+
+      return {
+        id: reviewDoc.id,
+        ...reviewData,
+        Date: formattedDate
+      }
+    })
 
     setDBreviews(reviewsData)
     console.log("DBreviews:", DBreviews)
@@ -72,7 +85,7 @@ const ReviewGrid = ({productName, stars}) => {
                 customer = {review.User}
                 stars = {5}
                 description = {review.Review}
-                date = {"16/05/2023"}
+                date = {review.Date}
             />
           );
         })

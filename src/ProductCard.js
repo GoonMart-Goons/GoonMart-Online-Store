@@ -11,16 +11,15 @@ import { getStorage, ref, getDownloadURL } from '@firebase/storage';*/
 const ProductCard = ({ image, prodName, ratingSum, ratingCount /*reviews*/, price, id, quantity, prodDesc, category }) => {
   const navigate = useNavigate();
 
-  //  MY FAILED ATTEMPT AT IMPORTING PICTURES
- /* const [imageURL, setImageURL] = useState('');
+  function getImagePath(imageName) {
+    while (imageName.includes(" ")) {
+      imageName = imageName.replace(' ', '%20');
+    }
+    return 'imgs/products/' + imageName + '.jpg';
+  }
 
-  useEffect(() => {
-    const storageRef = getStorage(firebase).ref();
-    const imageRef = storageRef.child(image);
-    imageRef.getDownloadURL()
-      .then(url => setImageURL(url))
-      .catch(error => console.log(error));
-  }, []);*/
+  image = getImagePath(prodName)
+  console.log("Image file name:", image)
 
   return (
     <div className="product-card" onClick = {() => navigate('/productpagenew', {
