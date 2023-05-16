@@ -1,55 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="19" failures="0" errors="0" time="56.566">
-  <testsuite name="Login Component" errors="0" failures="0" skipped="0" timestamp="2023-05-15T15:49:58" time="18.178" tests="5">
-    <testcase classname="Login Component renders Login form" name="Login Component renders Login form" time="0.182">
+<testsuites name="jest tests" tests="19" failures="0" errors="0" time="6.025">
+  <testsuite name="Login Component" errors="0" failures="0" skipped="0" timestamp="2023-05-16T17:12:15" time="1.664" tests="5">
+    <testcase classname="Login Component renders Login form" name="Login Component renders Login form" time="0.036">
     </testcase>
-    <testcase classname="Login Component submitting empty form shows validation errors" name="Login Component submitting empty form shows validation errors" time="0.884">
+    <testcase classname="Login Component submitting empty form shows validation errors" name="Login Component submitting empty form shows validation errors" time="0.095">
     </testcase>
-    <testcase classname="Login Component submitting short password form shows validation error" name="Login Component submitting short password form shows validation error" time="0.213">
+    <testcase classname="Login Component submitting short password form shows validation error" name="Login Component submitting short password form shows validation error" time="0.015">
     </testcase>
-    <testcase classname="Login Component submitting valid form calls SignIn function" name="Login Component submitting valid form calls SignIn function" time="0.001">
+    <testcase classname="Login Component submitting valid form calls SignIn function" name="Login Component submitting valid form calls SignIn function" time="0">
     </testcase>
-    <testcase classname="Login Component clicking on &quot;Register&quot; button navigates to registration page" name="Login Component clicking on &quot;Register&quot; button navigates to registration page" time="0.001">
-    </testcase>
-  </testsuite>
-  <testsuite name="Register" errors="0" failures="0" skipped="0" timestamp="2023-05-15T15:50:17" time="6.735" tests="2">
-    <testcase classname="Register should invalidate empty name field" name="Register should invalidate empty name field" time="0.483">
-    </testcase>
-    <testcase classname="Register should invalidate empty fields" name="Register should invalidate empty fields" time="0.212">
+    <testcase classname="Login Component clicking on &quot;Register&quot; button navigates to registration page" name="Login Component clicking on &quot;Register&quot; button navigates to registration page" time="0">
     </testcase>
   </testsuite>
-  <testsuite name="CategoryList" errors="0" failures="0" skipped="0" timestamp="2023-05-15T15:50:24" time="6.842" tests="2">
-    <testcase classname="CategoryList renders all categories" name="CategoryList renders all categories" time="0.559">
+  <testsuite name="ProductCard" errors="0" failures="0" skipped="0" timestamp="2023-05-16T17:12:17" time="0.309" tests="3">
+    <testcase classname="ProductCard renders product image with correct alt text" name="ProductCard renders product image with correct alt text" time="0.014">
     </testcase>
-    <testcase classname="CategoryList filters products by category when clicked" name="CategoryList filters products by category when clicked" time="1.274">
+    <testcase classname="ProductCard renders product name, rating, reviews, and price" name="ProductCard renders product name, rating, reviews, and price" time="0.004">
     </testcase>
-  </testsuite>
-  <testsuite name="NavigationBar" errors="0" failures="0" skipped="0" timestamp="2023-05-15T15:50:31" time="2.459" tests="4">
-    <testcase classname="NavigationBar renders the GoonMart logo" name="NavigationBar renders the GoonMart logo" time="0.101">
-    </testcase>
-    <testcase classname="NavigationBar renders the search input" name="NavigationBar renders the search input" time="0.054">
-    </testcase>
-    <testcase classname="NavigationBar renders the search button with FaSearch icon" name="NavigationBar renders the search button with FaSearch icon" time="0.06">
-    </testcase>
-    <testcase classname="NavigationBar renders the LOGIN and REGISTER buttons" name="NavigationBar renders the LOGIN and REGISTER buttons" time="0.083">
+    <testcase classname="ProductCard renders the image and name" name="ProductCard renders the image and name" time="0.003">
     </testcase>
   </testsuite>
-  <testsuite name="ProductCard" errors="0" failures="0" skipped="0" timestamp="2023-05-15T15:50:34" time="2.403" tests="3">
-    <testcase classname="ProductCard renders product image with correct alt text" name="ProductCard renders product image with correct alt text" time="0.111">
+  <testsuite name="NavigationBar" errors="0" failures="0" skipped="0" timestamp="2023-05-16T17:12:17" time="0.267" tests="4">
+    <testcase classname="NavigationBar renders the GoonMart logo" name="NavigationBar renders the GoonMart logo" time="0.016">
     </testcase>
-    <testcase classname="ProductCard renders product name, rating, reviews, and price" name="ProductCard renders product name, rating, reviews, and price" time="0.067">
+    <testcase classname="NavigationBar renders the search input" name="NavigationBar renders the search input" time="0.003">
     </testcase>
-    <testcase classname="ProductCard renders the image and name" name="ProductCard renders the image and name" time="0.033">
+    <testcase classname="NavigationBar renders the search button with FaSearch icon" name="NavigationBar renders the search button with FaSearch icon" time="0.004">
     </testcase>
-  </testsuite>
-  <testsuite name="WelcomeSection" errors="0" failures="0" skipped="0" timestamp="2023-05-15T15:50:36" time="2.163" tests="2">
-    <testcase classname="WelcomeSection renders the welcome message" name="WelcomeSection renders the welcome message" time="0.061">
-    </testcase>
-    <testcase classname="WelcomeSection renders the happy shopping message" name="WelcomeSection renders the happy shopping message" time="0.082">
+    <testcase classname="NavigationBar renders the LOGIN and REGISTER buttons" name="NavigationBar renders the LOGIN and REGISTER buttons" time="0.004">
     </testcase>
   </testsuite>
-  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2023-05-15T15:50:39" time="9.589" tests="1">
-    <testcase classname=" renders GoonMart logo" name=" renders GoonMart logo" time="0.53">
+  <testsuite name="Register" errors="0" failures="0" skipped="0" timestamp="2023-05-16T17:12:17" time="0.876" tests="2">
+    <testcase classname="Register should invalidate empty name field" name="Register should invalidate empty name field" time="0.074">
+    </testcase>
+    <testcase classname="Register should invalidate empty fields" name="Register should invalidate empty fields" time="0.025">
+    </testcase>
+  </testsuite>
+  <testsuite name="CategoryList" errors="0" failures="0" skipped="0" timestamp="2023-05-16T17:12:18" time="0.91" tests="2">
+    <testcase classname="CategoryList renders all categories" name="CategoryList renders all categories" time="0.081">
+    </testcase>
+    <testcase classname="CategoryList filters products by category when clicked" name="CategoryList filters products by category when clicked" time="0.27">
+    </testcase>
+  </testsuite>
+  <testsuite name="WelcomeSection" errors="0" failures="0" skipped="0" timestamp="2023-05-16T17:12:19" time="0.199" tests="2">
+    <testcase classname="WelcomeSection renders the welcome message" name="WelcomeSection renders the welcome message" time="0.012">
+    </testcase>
+    <testcase classname="WelcomeSection renders the happy shopping message" name="WelcomeSection renders the happy shopping message" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2023-05-16T17:12:19" time="1.096" tests="1">
+    <testcase classname=" renders GoonMart logo" name=" renders GoonMart logo" time="0.063">
     </testcase>
   </testsuite>
 </testsuites>
