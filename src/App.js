@@ -7,7 +7,6 @@ import Homepage from './Homepage';
 import InnerHomepage from './InnerHomepage';
 import Register from './Register';
 import Login from './Login';
-import ProductPage from './ProductPage';
 import ProductPageNew from './ProductPageNew';
 import Cart from './Cart';
 import Orders from './Orders';
