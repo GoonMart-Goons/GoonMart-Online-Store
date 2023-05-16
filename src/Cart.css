@@ -46,7 +46,7 @@
 
 .quantity-control {
     display: flex;
-    margin: 5px 0;
+    margin: 2px 0;
     float: right;
     width:500px
 }
@@ -55,7 +55,7 @@
     background-color: #e7831f;
     color: #ffffff;
     border: none;
-    padding: 2px;
+    padding: 1px;
     cursor: pointer;
     text-align: center;
 }

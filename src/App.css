@@ -284,17 +284,11 @@ nav button :hover{
 .cart-item {
   display: flex;
   align-items: center;
-  margin: 10px;
+  margin: 0px;
   padding: 10px;
   border: 1px solid #ccc;
-  border-radius: 5px;
   width: calc(33.33% - 20px);
-}
-
-.cart-item {
-  display: flex;
   gap: 20px;
-  padding: 20px 60px;
   color: hsl(0, 0%, 4%);
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
@@ -326,13 +320,30 @@ nav button :hover{
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 10px 0;
+  margin: 4px 0;
 }
 .quantity-control button {
   background-color: #f0f0f0;
   border: none;
-  padding: 5px 10px;
+  padding: 5px;
   cursor: pointer;
+}
+
+.total{
+  float: right;
+  justify-content: right;
+}
+
+.checkout-btn{
+  justify-content: right;
+  margin-top: 10px;
+  background-color: orangered;
+  color: #ffffff;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  text-align: center;
+  float: right;
 }
 
 /* Form pages styling */

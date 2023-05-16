@@ -39,6 +39,13 @@ const Cart = () => {
               
             </div>
         ))}
+        <div className='total'>
+          <h2>Total: R {cartItems.reduce((acc, curr) => acc + curr.price * curr.quantity, 0)}</h2>
+        </div>
+
+        <div>
+          <button className='checkout-btn'>Proceed to Checkout</button>
+        </div>
       </div>
   );
 }
