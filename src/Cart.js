@@ -24,12 +24,12 @@ const Cart = () => {
                 <p>{item.name}</p>
               </div>
               </div>
-                
+
               <div className="quantity-control">
-                <p>R {item.price}</p>
-                <button onClick={() => decrementItem(item.id)}>-</button>
-                <span>{item.quantity}</span>
-                <button onClick={() => incrementItem(item.id)}>+</button>
+                  <p>R {item.price * item.quantity}</p>
+                  <button onClick={() => decrementItem(item.id)}>-</button>
+                  <span>{item.quantity}</span>
+                  <button onClick={() => incrementItem(item.id)}>+</button>
               </div>
               
               <div className='extras'>
