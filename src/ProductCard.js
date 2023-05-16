@@ -6,20 +6,35 @@ import Star from './Star';
 import { db, storage } from './config/Config';
 import { collection, query, where, getDocs } from 'firebase/firestore';
 import { getStorage, ref, getDownloadURL } from '@firebase/storage';*/
-
+import { storage } from './config/Config';
+import { ref, getDownloadURL } from 'firebase/storage';
 
 const ProductCard = ({ image, prodName, ratingSum, ratingCount /*reviews*/, price, id, quantity, prodDesc, category }) => {
   const navigate = useNavigate();
 
-  function getImagePath(imageName) {
-    while (imageName.includes(" ")) {
-      imageName = imageName.replace(' ', '%20');
-    }
-    return 'imgs/products/' + imageName + '.jpg';
-  }
+  // function getImagePath(imageName) {
+  //   while (imageName.includes(" ")) {
+  //     imageName = imageName.replace(' ', '%20');
+  //   }
+  //   return 'imgs/products/' + imageName + '.jpg';
+  // }
 
-  image = getImagePath(prodName)
-  console.log("Image file name:", image)
+  // image = getImagePath(prodName)
+  // console.log("Image file name:", image)
+
+  const [imageURL, setImageURL] = useState(null)
+
+  useEffect(() => {
+    const imgRef = ref(storage, image)
+
+    getDownloadURL(imgRef)
+      .then((url) => {
+        setImageURL(url)
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+  }, [image])
 
   return (
     <div className="product-card" onClick = {() => navigate('/productpagenew', {
@@ -28,7 +43,8 @@ const ProductCard = ({ image, prodName, ratingSum, ratingCount /*reviews*/, pric
     })} data-testid="product-cardx">
       <div className="product-image">
         {/*{imageURL && <img  src={imageURL} alt={prodName} height={400}/>}*/}
-        <img src='/imgs/products/God of War Ragnarok.jpg' alt={prodName} height={300}/>
+        {/* <img src={image} alt={prodName} height={300}/> */}
+        {imageURL && <img src={imageURL} alt={prodName} height={300}/>}
       </div>
       <div className="product-info">
         <div className="product-name">{prodName}</div>

@@ -18,20 +18,6 @@ const ProductGrid = ({activeCategoryName, searchQuery}) => {
     const prodsRef = collection(db, 'Products');
     let q;
 
-    /*
-    //---CASE SENSITIVE IMPLEMENTATION---
-    if (searchQuery !== '') {
-      q = query(prodsRef, where('prodName', '>=', searchQuery), where('prodName', '<=', searchQuery + '\uf8ff'));
-    } else if (activeCategoryName === 'All') {
-      q = query(prodsRef, where('category', 'in', ['Electronics', 'Clothing', 'Home & Kitchen', 'Toys & Games']));
-    } else {
-      q = query(prodsRef, where('category', '==', activeCategoryName));
-    }
-
-    const querySnapshot = await getDocs(q);
-    const DBproducts = querySnapshot.docs.map(doc => doc.data());
-    return DBproducts; */
-
     //When no item is being searched for explicitly
     if (searchQuery === '') {
       if (activeCategoryName === 'All') {
