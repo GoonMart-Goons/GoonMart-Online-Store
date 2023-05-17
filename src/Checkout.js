@@ -201,7 +201,7 @@ const Checkout = (props) => {
                     {errors.cardName && <error className="form-error">{errors.cardName.message}</error>}
                     
                     <label className="form-label" htmlFor = "cardDate">Expiration date</label>
-                    <input className="form-input" type="name"  name="cardDate" {...register("carDate")} placeholder='MM/YY' value = {cardDate}
+                    <input className="form-input" type="name"  name="cardDate" {...register("cardDate")} placeholder='MM/YY' value = {cardDate}
                     onChange = {(e) => setCardDate(e.target.value)} />
                     {errors.cardDate && <error className="form-error">{errors.cardDate.message}</error>}
 
