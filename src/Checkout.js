@@ -12,8 +12,11 @@ import { useLocation } from 'react-router-dom';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 
-import { auth } from './config/Config'
-import { signInWithEmailAndPassword } from 'firebase/auth';
+// Get cartItems from Cart.js
+import { userCartItems } from './Cart';
+
+// To get logged in user info
+import { getUserByEmail, userEmail } from './Login';
 
 const validationSchema = yup.object().shape({
     cardNum: yup.string()
@@ -63,7 +66,7 @@ const validationSchema = yup.object().shape({
 
   });
 
-const Checkout =(props) => {
+const Checkout = (props) => {
 
   const location = useLocation();
   console.log(location)
@@ -125,8 +128,15 @@ const Checkout =(props) => {
 
     const navigate = useNavigate();
 
-    const summary = [{product: "Phone", price: "R5", id: 1},
-    {product: "Laptop", price: "R10", id: 2}]
+    const summary = userCartItems.map(item => {
+      return {
+        product: item.name,
+        quantity: item.quantity,
+        price: item.price
+      }
+    })
+    // const summary = [{product: "Phone", price: "R5", id: 1},
+    // {product: "Laptop", price: "R10", id: 2}]
 
     /*ReactDOM.render(
       <React.StrictMode>
@@ -185,28 +195,30 @@ const Checkout =(props) => {
                   onChange = {(e) => setCardNum(e.target.value)} />
                   {errors.cardNum && <error className="form-error">{errors.cardNum.message}</error>}
 
-                  <label className="form-label" htmlFor = "cardName">Cardholder Name</label>
-                  <input className="form-input" type="name"  name="cardName" {...register("cardName")} placeholder='Danny Fenton' value = {cardName}
-                  onChange = {(e) => setCardName(e.target.value)} />
-                  {errors.cardName && <error className="form-error">{errors.cardName.message}</error>}
-                  
-                  <label className="form-label" htmlFor = "cardDate">Expiration date</label>
-                  <input className="form-input" type="name"  name="cardDate" {...register("cardDate")} placeholder='MM/YY' value = {cardDate}
-                  onChange = {(e) => setCardDate(e.target.value)} />
-                  {errors.cardDate && <error className="form-error">{errors.cardDate.message}</error>}
-                  <label className="form-label" htmlFor = "CVV">CVV</label>
-                  <input className="form-input" type="name"  name="CVV" {...register("CVV")} placeholder='' value = {CVV}
-                  onChange = {(e) => setCardCVV(e.target.value)} />
-                  {errors.CVV && <error className="form-error">{errors.CVV.message}</error>}
-                  <div>
-                    <h2>Order Summary</h2>
-                    {summary.map((sumz) => (
-                      <p key={sumz.id}>
-                        {sumz.product}: {sumz.price}
-                      </p>
-                    ))}
-                  </div>
-                  <button type="submit" className="form-btn">Purchase</button>
+                    <label className="form-label" htmlFor = "cardName">Cardholder Name</label>
+                    <input className="form-input" type="name"  name="cardName" {...register("cardName")} placeholder='Danny Fenton' value = {cardName}
+                    onChange = {(e) => setCardName(e.target.value)} />
+                    {errors.cardName && <error className="form-error">{errors.cardName.message}</error>}
+                    
+                    <label className="form-label" htmlFor = "cardDate">Expiration date</label>
+                    <input className="form-input" type="name"  name="cardDate" {...register("carDate")} placeholder='MM/YY' value = {cardDate}
+                    onChange = {(e) => setCardDate(e.target.value)} />
+                    {errors.cardDate && <error className="form-error">{errors.cardDate.message}</error>}
+
+                    <label className="form-label" htmlFor = "CVV">CVV</label>
+                    <input className="form-input" type="name"  name="CVV" {...register("CVV")} placeholder='' value = {CVV}
+                    onChange = {(e) => setCardCVV(e.target.value)} />
+                    {errors.CVV && <error className="form-error">{errors.CVV.message}</error>}
+
+                    <div>
+                      <h2>Order Summary</h2>
+                      {summary.map((sumz) => (
+                        <p key={sumz.id}>
+                         {sumz.quantity} x {sumz.product}: R{sumz.price * sumz.quantity}
+                        </p>
+                      ))}
+                    </div>
+                    <button type="submit" className="form-btn">Purchase</button>
                 </form>
             </div>
         </div>

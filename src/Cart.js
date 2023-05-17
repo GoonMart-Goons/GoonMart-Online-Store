@@ -4,6 +4,8 @@ import './Cart.css';
 import { CartContext } from './CartContext';
 import { Link } from 'react-router-dom';
 
+export let userCartItems = {}
+
 const Cart = () => {
     const { cartItems, removeItem, incrementItem, decrementItem } = useContext(CartContext);
     const navigate = useNavigate();
@@ -11,6 +13,8 @@ const Cart = () => {
     const navigateToProductPage = (id) => {
       navigate(`/product/${id}`);
     }
+
+    userCartItems = cartItems
   
     // Calculate total
     const total = cartItems.reduce((acc, curr) => acc + curr.price * curr.quantity, 0);
