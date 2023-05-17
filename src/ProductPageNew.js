@@ -1,13 +1,14 @@
+// Library and page imports 
 import React, {useState, useEffect, useContext} from 'react';
 import {useLocation, useNavigate} from 'react-router-dom';
+import 'react-multi-carousel/lib/styles.css';
 import './ProductPage.css';
 import Star from './Star';
 import Carousel from 'react-multi-carousel';
-import 'react-multi-carousel/lib/styles.css';
-//import { useLocation, useNavigate } from 'react-router-dom';
-import 'react-multi-carousel/lib/styles.css';
 import ProductCard from './ProductCard';
 import ReviewGrid from './ReviewGrid';
+import ProductPageNavBar from './ProductPageNavBar';
+
 //FireBase imports
 import { db } from './config/Config';
 import { collection, query, where, getDocs } from 'firebase/firestore';
@@ -24,6 +25,7 @@ const ProductPageNew = () => {
 
     const [imageURL, setImageURL] = useState(null)
 
+    //fetch and generage image from database
     useEffect(() => {
         const imgRef = ref(storage, image)
 
@@ -36,25 +38,27 @@ const ProductPageNew = () => {
         })
     }, [image])
     
-    //const {image, prodName, ratingSum, ratingCount /*reviews*/, price, id, quantity, prodDesc } = location.state;
-    const [products, setProducts] = useState([/*suggestedProducts[0]*/]);
+    // Variables for communication with cart page
+    const [products, setProducts] = useState([]);
     const [index, setIndex] = useState(0);
     const [quantityCount, setQuantityCount] = useState(1);
 
+    // Function to increase product count
     const handleIncrement = () => {
         if (quantityCount < quantity) {
             setQuantityCount(quantityCount + 1);
         }
     };
 
+    // Function to decrease product count
     const handleDecrement = () => {
         if (quantityCount > 1) {
             setQuantityCount(quantityCount - 1);
         }
     };
 
+    // Communication of data to Cart page
     const { addToCart } = useContext(CartContext);
-
     const handleAddToCart = (item) => {
         alert('Item added to cart');
         addToCart({
@@ -73,9 +77,11 @@ const ProductPageNew = () => {
         },
     };
      
+    // database retreval of suggested products
     const [DBproducts, setDBproducts] = React.useState([]);
 
         async function dataBase(){
+            //navigate to "products" collection in database
             const prodsRef = collection(db, 'Products')
             console.log(category);
             const q  = query(prodsRef, where('category', '==', category))
@@ -92,6 +98,7 @@ const ProductPageNew = () => {
             return DBproducts;
         }
         
+        //used to dynamically call the dataBase function each time this page is reloaded or navigated to
         React.useEffect(() => {
             dataBase().then(products => {
             setDBproducts(products);
@@ -99,24 +106,24 @@ const ProductPageNew = () => {
         }, [category]);
         
         return (  
-            <><div className="app">
+            <>  <ProductPageNavBar/>
+                <div className="app">
                     <div className="details" key={id}>
+                        {/*Display image*/}
                         <div className="big-img">
                             {imageURL && <img src={imageURL} alt={prodName}/>}
-                            {/* <img src={image} alt={prodName} /> */}
-                          
                         </div>
 
-
                         <div className="box">
-                            
-                                <h2>{prodName}</h2>
-                                <h2>R {price}</h2>
+                            {/*Desplay product details -> Name, price, avgRating, description */}
+                            <h2>{prodName}</h2>
+                            <h2>R {price}</h2>
                     
                            <h6><Star rating={averageRating} /></h6> 
 
                         <p>{prodDesc}</p>
                         <div className="Box">
+                            {/*Option to select how many poducts you want to add to cart at this stage*/}
                             <button type="button" className="Dec" onClick={handleDecrement}>
                                 -
                             </button>
@@ -126,6 +133,7 @@ const ProductPageNew = () => {
                             </button>
                         </div>
                         <p>In Stock</p>
+                        {/*Add to cart button with its data sharing functionality*/}
                     <button className="cart" onClick={() => {
                         addToCart({
                             id: id,
@@ -135,13 +143,16 @@ const ProductPageNew = () => {
                             price: price
                         });
                     }}>Add to Cart</button>
+                    {/*navigation to Cart page*/}
                     <button className="view-cart" onClick={() => navigate('/cart')}>View Cart</button>
                 </div>
             </div>
                 <div>
                 <h2 className="heading">Suggested Products</h2>
+                    {/*carousel that desplays the suggested products*/}
                     <Carousel className = "Carousel-container" responsive={responsive}>
                     
+                    {/*Looping through all the products in the suggested products list and displaying their respective cards*/}
                     {DBproducts.map(product => {
                         return (
                         <ProductCard
@@ -162,6 +173,7 @@ const ProductPageNew = () => {
                     
                     </Carousel>
 
+                    {/*the reviews section where the product name is passed in to communicate with ReviewGrid page*/}
                     <h2 className='heading'>Reviews</h2>
                     <ReviewGrid productName={prodName}/>
     
