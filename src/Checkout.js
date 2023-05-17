@@ -12,10 +12,11 @@ import { useLocation } from 'react-router-dom';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 
+// Get cartItems from Cart.js
+import { userCartItems } from './Cart';
+
 // To get logged in user info
 import { getUserByEmail, userEmail } from './Login';
-
-import { db } from './config/Config'
 
 const validationSchema = yup.object().shape({
     cardNum: yup.string()
@@ -105,8 +106,15 @@ const Checkout = (props) => {
 
     const navigate = useNavigate();
 
-    const summary = [{product: "Phone", price: "R5", id: 1},
-    {product: "Laptop", price: "R10", id: 2}]
+    const summary = userCartItems.map(item => {
+      return {
+        product: item.name,
+        quantity: item.quantity,
+        price: item.price
+      }
+    })
+    // const summary = [{product: "Phone", price: "R5", id: 1},
+    // {product: "Laptop", price: "R10", id: 2}]
 
     /*ReactDOM.render(
       <React.StrictMode>
@@ -162,7 +170,7 @@ const Checkout = (props) => {
                       <h2>Order Summary</h2>
                       {summary.map((sumz) => (
                         <p key={sumz.id}>
-                          {sumz.product}: {sumz.price}
+                         {sumz.quantity} x {sumz.product}: R{sumz.price * sumz.quantity}
                         </p>
                       ))}
                     </div>
