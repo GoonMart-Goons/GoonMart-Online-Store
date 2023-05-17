@@ -2,7 +2,7 @@
 @import url("Reviews.css");
 
 .welcome-section {
-  background-image: url('welcome.jpg');
+  background-image: url('imgs/welcome.jpg');
   background-size: cover;
   background-position: center;
   height: 300px;
@@ -85,7 +85,7 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.product-image {  
+.product-image {
   font-size: 3rem;
   height: 100px;
   width: 100px;
@@ -102,7 +102,7 @@
   font-size: 16px;
   font-weight: bold;
   margin-bottom: 10px;
-  
+
 }
 
 .product-rating {
@@ -170,7 +170,7 @@ nav button {
 
 
 nav button :hover{
-  zoom: 1.01; 
+  zoom: 1.01;
   color: beige;
   border-radius: 0px;
 }
@@ -254,18 +254,108 @@ nav button :hover{
   margin-top: 10px;
 }
 
+/* Cart styling ................................................................*/
+.cart-container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  text-align: center;
+  overflow: hidden;
+  min-height: 73vh;
+  align-items: center;
+  justify-content: center;
+  border-width: 2px;
+  border-radius: 10px;
+}
+.view-cart {
+  margin-top: 10px;
+  background-color: #00ff00;
+  color: #ffffff;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.cart-container h1{
+  color: orangered;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  margin: 0px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  width: calc(33.33% - 20px);
+  gap: 20px;
+  color: hsl(0, 0%, 4%);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.cart-item img {
+  width: 100px;
+  height: 100px;
+}
+
+.cart-item img {
+  width: 100px;
+  height: 100px;
+  margin-right: 10px;
+}
+
+.item-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+.item-info h2 {
+  margin: 0;
+  padding: 0;
+}
+.quantity-control {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 4px 0;
+}
+.quantity-control button {
+  background-color: #f0f0f0;
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.total{
+  float: right;
+  justify-content: right;
+}
+
+.checkout-btn{
+  justify-content: right;
+  margin-top: 10px;
+  background-color: orangered;
+  color: #ffffff;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  text-align: center;
+  float: right;
+}
+
 /* Form pages styling */
 .Form, .loginForm, .registerForm{
   display: flex;
   flex-direction: column;
-
 }
 
 @media screen and (min-width: 600px){
   .Form{
     padding: 5rem;
     margin: 0.5rem;
-
   }
 }
 
@@ -293,7 +383,7 @@ nav button :hover{
   border-width: 2px;
   border-color: rgb(255, 68, 0);
   border-radius: 10px;
-  background-color: rgb(212, 212, 212); 
+  background-color: rgb(212, 212, 212);
   color: black;
 }
 
@@ -313,7 +403,7 @@ nav button :hover{
   border: none;
   cursor: pointer;
   font-size: 15px;
-  
+
 }
 
 .form-error{
@@ -330,8 +420,8 @@ nav button :hover{
   font-size: small;
   color: red;
   text-align: left;
-  width: 100% ; 
-  word-wrap: break-word; 
+  width: 100% ;
+  word-wrap: break-word;
   white-space: pre-line;
 }
 
@@ -341,7 +431,7 @@ nav button :hover{
   right: 10px;
   transform: translateY(-50%);
   cursor: pointer;
-  background-color: rgb(212, 212, 212); 
+  background-color: rgb(212, 212, 212);
 }
 
 .eye-icon i {
