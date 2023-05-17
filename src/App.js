@@ -20,7 +20,7 @@ function App() {
         <CartProvider>  {/* wrap your main App component with CartProvider */}
             <Router>
                 <Routes>
-                    <Route path = "/" index element = {<Homepage />} />
+                    <Route path = "/fjgkf" index element = {<Homepage />} />
                     <Route path = "/register" element = {<Register />} />
                     <Route path = "/login" element = {<Login />} />
                     <Route path = "/InnerHomepage" element = {<InnerHomepage />} />
@@ -28,7 +28,7 @@ function App() {
                     <Route path = "/product/:id" element = {<ProductPageNew />} />
                     <Route path = "/cart" element = {<Cart />} />
                     <Route path = "/orders" element = {<Orders />} />
-                    <Route path = "/checkout" /*element = {<Checkout/>}*/ element={<Checkout/>}/>
+                    <Route path = "/" /*element = {<Checkout/>}*/ element={<Checkout/>}/>
                 </Routes>
             </Router>
         </CartProvider>  {/* wrap your main App component with CartProvider */}
