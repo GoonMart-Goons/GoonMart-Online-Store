@@ -1,12 +1,13 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {useLocation, useNavigate} from 'react-router-dom';
 import './ProductPage.css';
 import Star from './Star';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import { useLocation, useNavigate } from 'react-router-dom';
+//import { useLocation, useNavigate } from 'react-router-dom';
 import 'react-multi-carousel/lib/styles.css';
 import ProductCard from './ProductCard';
+import ReviewGrid from './ReviewGrid';
 //FireBase imports
 import { db } from './config/Config';
 import { collection, query, where, getDocs } from 'firebase/firestore';
