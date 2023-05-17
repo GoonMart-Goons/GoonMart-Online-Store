@@ -266,7 +266,17 @@ nav button :hover{
   justify-content: center;
   border-width: 2px;
   border-radius: 10px;
+/* WAS ONLY IN CART.CSS */
+  flex-wrap: wrap;
+  padding: 10px;
 }
+
+/* WAS ONLY IN CART.CSS */
+.cart-container h1{
+  color: orangered;
+  text-align: center;
+}
+
 .view-cart {
   margin-top: 10px;
   background-color: #00ff00;
@@ -286,25 +296,34 @@ nav button :hover{
   align-items: center;
   margin: 0px;
   padding: 10px;
-  border: 1px solid #ccc;
-  width: calc(33.33% - 20px);
+  /* border: 1px solid #ccc; */
+  /* width: calc(33.33% - 20px); */
   gap: 20px;
   color: hsl(0, 0%, 4%);
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
   text-decoration: none;
+/* FROM CART.CSS */
+  margin: 10px;
+  border-top: 1px solid orangered;
+  border-bottom: 1px solid orangered;
+  border-left: none;
+  border-right: none;
+  width: 1200px;
 }
 
 .cart-item img {
   width: 100px;
   height: 100px;
+/* FROM CART.CSS */
+  margin-right: 10px;
 }
 
-.cart-item img {
+/* .cart-item img {
   width: 100px;
   height: 100px;
   margin-right: 10px;
-}
+} */
 
 .item-info {
   display: flex;
@@ -320,13 +339,22 @@ nav button :hover{
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 4px 0;
+  /* margin: 4px 0; */
+/* FROM CART.CSS */
+  margin: 2px 0;
+  float: right;
+  width:500px
 }
 .quantity-control button {
-  background-color: #f0f0f0;
+  /* background-color: #f0f0f0; */
   border: none;
   padding: 5px;
   cursor: pointer;
+  /* FROM CART.CSS */
+  background-color: #e7831f;
+  color: #ffffff;
+  padding: 1px;
+  text-align: center;
 }
 
 .total{
@@ -343,6 +371,29 @@ nav button :hover{
   padding: 10px;
   cursor: pointer;
   text-align: center;
+  float: right;
+}
+
+/* FROM CART.CSS */
+.product{
+  float: left;
+  width: 700px;
+}
+
+/* FROM CART.CSS */
+.rmv-btn {
+  margin-top: 10px;
+  background-color: red;
+  color: #ffffff;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  text-align: center;
+}
+
+/* FROM CART.CSS */
+.extras{
+  width: 700px;
   float: right;
 }
 
