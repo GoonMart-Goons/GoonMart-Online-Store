@@ -345,7 +345,7 @@ nav button :hover{
   text-align: center;
   float: right;
 }
-
+/*....................................end.......................................................end*/
 /* Form pages styling */
 .Form, .loginForm, .registerForm{
   display: flex;
