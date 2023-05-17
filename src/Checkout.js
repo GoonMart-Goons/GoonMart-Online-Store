@@ -12,8 +12,10 @@ import { useLocation } from 'react-router-dom';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 
-import { auth } from './config/Config'
-import { signInWithEmailAndPassword } from 'firebase/auth';
+// To get logged in user info
+import { getUserByEmail, userEmail } from './Login';
+
+import { db } from './config/Config'
 
 const validationSchema = yup.object().shape({
     cardNum: yup.string()
@@ -46,7 +48,7 @@ const validationSchema = yup.object().shape({
     .max(5, "Incorrect date format")
   });
 
-const Checkout =(props) => {
+const Checkout = (props) => {
 
   const location = useLocation();
   console.log(location)

@@ -8,8 +8,9 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 
-import { auth } from './config/Config'
+import { db, auth } from './config/Config'
 import { signInWithEmailAndPassword } from 'firebase/auth';
+import { collection, query, where, getDocs } from 'firebase/firestore';
 
 const validationSchema = yup.object().shape({
     email: yup.string().required("Email is required").email("Invalid email"),
@@ -22,6 +23,19 @@ const validationSchema = yup.object().shape({
         "Password must contain at least\n 1 uppercase letter, 1 lowercase letter,\n 1 number, and 1 special character"
       ),
   });
+
+export let userEmail
+
+export async function getUserByEmail(email) {
+  const usersRef = collection(db, 'Users')
+  const q = query(usersRef, where('email', '==', email))
+  const userSnapshot = await getDocs(q)
+
+  const userDoc = userSnapshot.docs[0]
+  // console.log("FROM FUNC:", userDoc.data())
+  return userDoc.data()
+  // console.log("User Doc From FB:", userDoc.data())
+}
 
 export default function Login() {
 
@@ -57,6 +71,8 @@ export default function Login() {
             .then((userCredentials) => {
                 //console.log("Signed in successfully: ", userCredentials);
                 setOpenSnackbar(true);
+                // console.log("User Info From Login:" get)
+                userEmail = email
                 setSnackbarMessage('Signed in successfully');
                 setTimeout(() => {
                     navigate('/InnerHomepage'); // navigate to the HOME page
@@ -69,15 +85,6 @@ export default function Login() {
             })
         }
     }
-
-    // const onSubmit = (data) => {
-    //     setUserInfo(data);
-    //     console.log(data);
-    //     if (Object.keys(errors).length === 0) { // check if errors object is empty
-    //         SignIn()
-    //         // navigate('/'); // navigate to the HOME page
-    //     }
-    // }
 
     const navigate = useNavigate();
     
