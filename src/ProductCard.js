@@ -113,7 +113,7 @@ const ProductCard = ({ image, prodName /*ratingSum, ratingCount reviews*/, price
           {/*<div className="product-reviews">{reviews}</div>*/}
         </div>
         
-        <div className="product-price">{price}</div>
+        <div className="product-price">R {price}</div>
       </div>
     </div>
   );
