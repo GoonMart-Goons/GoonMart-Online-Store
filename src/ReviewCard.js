@@ -1,17 +1,13 @@
+// Imports
 import React, {useState, useEffect} from 'react';
 import { useNavigate } from "react-router-dom";
 import Star from './Star';
 import './Reviews.css';
 
-/*FireBase imports
-import { db, storage } from './config/Config';
-import { collection, query, where, getDocs } from 'firebase/firestore';
-import { getStorage, ref, getDownloadURL } from '@firebase/storage';*/
-
-
 const ReviewCard = ({ customer, description, stars, date }) => {
- // const navigate = useNavigate();
+ 
   return (
+    /*Display review information  -> rating, description, customer name and date review was made*/
       <div className="review-card">
 
         <div className="review-rating">

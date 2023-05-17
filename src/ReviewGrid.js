@@ -11,25 +11,32 @@ const ReviewGrid = ({productName}) => {
   
   const [DBreviews, setDBreviews] = React.useState([])
 
+  // used to call the getProductReviews function each time the page is reloaded or navigated to
   React.useEffect(() => {
     getProductReviews(productName)
   }, [])
   
   async function getProductReviews(prodName){
-    console.log("prodname:", prodName)
+    //console.log("prodname:", prodName)
+
+    // navigate to the "Products collection of the database"
     const prodsRef = collection(db, 'Products')
     const q = query(prodsRef, where('prodName', '==', prodName))
     const prodSnapshot = await getDocs(q)
 
     const prodDoc = prodSnapshot.docs[0]
 
+    // Navigate to the reviews collection of that specific product
     const reviewsRef = collection(db, 'Products', prodDoc.id, 'Reviews')
     const reviewsSnapshot = await getDocs(reviewsRef)
+
+    //Case where no reviews have been made -> array stays empty
     if (reviewsSnapshot.empty){
-      console.log('This product has no reviews')
+      //console.log('This product has no reviews')
       return
     }
 
+    // Retrieves the date the review was made in the correct format
     const reviewsData = reviewsSnapshot.docs.map((reviewDoc) => {
       const reviewData = reviewDoc.data()
       const timestamp = reviewData.Date
@@ -48,6 +55,7 @@ const ReviewGrid = ({productName}) => {
       }
     })
 
+    // update our reviews array with all reviews made for the products
     setDBreviews(reviewsData)
     console.log("DBreviews:", DBreviews)
   }
