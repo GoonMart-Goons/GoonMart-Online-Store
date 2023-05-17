@@ -7,6 +7,7 @@ import Star from './Star';
 import Carousel from 'react-multi-carousel';
 import ProductCard from './ProductCard';
 import ReviewGrid from './ReviewGrid';
+import ProductPageNavBar from './ProductPageNavBar';
 
 //FireBase imports
 import { db } from './config/Config';
@@ -105,7 +106,8 @@ const ProductPageNew = () => {
         }, [category]);
         
         return (  
-            <><div className="app">
+            <>  <ProductPageNavBar/>
+                <div className="app">
                     <div className="details" key={id}>
                         {/*Display image*/}
                         <div className="big-img">
