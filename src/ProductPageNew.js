@@ -83,7 +83,7 @@ const ProductPageNew = () => {
         async function dataBase(){
             //navigate to "products" collection in database
             const prodsRef = collection(db, 'Products')
-            console.log(category);
+            //console.log(category);
             const q  = query(prodsRef, where('category', '==', category))
             
             const querySnapshot = await getDocs(q)
