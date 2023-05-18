@@ -9,17 +9,6 @@ import { ref, getDownloadURL } from 'firebase/storage';
 
 const ProductCard = ({ image, prodName /*ratingSum, ratingCount reviews*/, price, id, quantity, prodDesc, category }) => {
   const navigate = useNavigate();
-
-  // function getImagePath(imageName) {
-  //   while (imageName.includes(" ")) {
-  //     imageName = imageName.replace(' ', '%20');
-  //   }
-  //   return 'imgs/products/' + imageName + '.jpg';
-  // }
-
-  // image = getImagePath(prodName)
-  // console.log("Image file name:", image)
-
   const [imageURL, setImageURL] = useState(null)
 
   //fetch and generage image from database
