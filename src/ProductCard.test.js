@@ -1,58 +1,51 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
+import { BrowserRouter } from 'react-router-dom';
 import ProductCard from './ProductCard';
-import '@testing-library/jest-dom/extend-expect'; // import jest-dom for toBeInTheDocument()
-import { BrowserRouter as Router } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import '@testing-library/jest-dom/extend-expect';
 
+jest.mock('react-router-dom', () => ({
+    ...jest.requireActual('react-router-dom'), // use actual for all non-hook parts
+    useNavigate: jest.fn(),
+}));
 
 describe('ProductCard', () => {
-    const product = {
-        image: 'https://example.com/image.jpg',
-        prodName: 'Example Product',
-        rating: 4,
-        reviews: 10,
-        price: '$19.99',
-    };
+    it('renders product name and price correctly', () => {
+        const mockNavigate = jest.fn();
+        useNavigate.mockReturnValue(mockNavigate);
 
-    test('renders product image with correct alt text', () => {
-        render(<Router> <ProductCard {...product} /> </Router> );
-        const image = screen.getByAltText('Example Product');
-        expect(image).toHaveAttribute('src', product.image);
+        const { getByText, getByTestId } = render(
+            <BrowserRouter>
+                <ProductCard
+                    image='test-image.jpg'
+                    prodName='Test Product'
+                    price={50}
+                    id='1'
+                    quantity={5}
+                    prodDesc='Test Product Description'
+                    category='Test Category'
+                />
+            </BrowserRouter>
+        );
 
+        expect(getByText('Test Product')).toBeInTheDocument();
+        expect(getByText('R 50')).toBeInTheDocument();
+
+        const productCard = getByTestId('product-cardx');
+        fireEvent.click(productCard);
+
+        expect(mockNavigate).toHaveBeenCalledWith('/productpagenew', {
+            state: {
+                image: 'test-image.jpg',
+                prodName: 'Test Product',
+                averageRating: 0,
+                price: 50,
+                id: '1',
+                quantity: 5,
+                prodDesc: 'Test Product Description',
+                category: 'Test Category'
+            }
+        });
     });
-
-    test('renders product name, rating, reviews, and price', () => {
-        render(<Router> <ProductCard {...product} /> </Router> );
-        const prodName = screen.getByAltText('Example Product');
-        //const rating = screen.getAllByText('★').length;
-        const price = screen.getByText(product.price);
-        expect(prodName).toBeInTheDocument();
-        //expect(rating).toBe(product.rating);
-        expect(prodName).toBeInTheDocument();
-        //expect(rating).toBe(product.rating);
-        expect(price).toBeInTheDocument();
-    });
-    // test('renders the number of reviews with "reviews" appended', () => {
-    //     render(<Router> <ProductCard reviews={10} /></Router> );
-    //     const reviewsElement = screen.getByText(/10/i);
-    //     expect(reviewsElement).toBeInTheDocument();
-    // });
-    // test('renders the correct number of stars', () => {
-    //     render(<Router> <ProductCard rating={4} /></Router> );
-    //     const stars = screen.getAllByText('★');
-    //     expect(stars.length).toEqual(4);
-    // });
-    test('renders the image and name', () => {
-        render(<Router> <ProductCard image="image.jpg" prodName="Product Name" /></Router> );
-        const imageElement = screen.getByAltText('Product Name');
-        const nameElement = screen.getByText('Product Name');
-        expect(imageElement).toBeInTheDocument();
-        expect(nameElement).toBeInTheDocument();
-    });
-    // test('renders the price with a dollar sign and two decimal places', () => {
-    //     render(<Router> <ProductCard price={10.00} /></Router> );
-    //     const priceElement = screen.getByText('10');
-    //     expect(priceElement).toBeInTheDocument();
-    // });
-
 });
