@@ -34,7 +34,7 @@ const ProductPageNew = () => {
             setImageURL(url)
         })
         .catch((error) => {
-            console.error(error)
+            //console.error(error)
         })
     }, [image])
     

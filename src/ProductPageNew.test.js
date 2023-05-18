@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { render, fireEvent, screen } from '@testing-library/react';
+import { render, fireEvent, screen, act } from '@testing-library/react';
 import ProductPageNew from './ProductPageNew';
 import { CartContext } from './CartContext';
 import { BrowserRouter as Router, Route, MemoryRouter, Routes } from 'react-router-dom';
@@ -7,6 +7,7 @@ import { db, storage } from './config/Config';
 import { collection, query, where, getDocs } from 'firebase/firestore';
 import { ref, getDownloadURL } from 'firebase/storage';
 import '@testing-library/jest-dom/extend-expect';
+
 
 
 
@@ -61,17 +62,16 @@ describe('ProductPageNew component', () => {
     const addToCartMock = jest.fn();
     const cartContextValues = { addToCart: addToCartMock };
 
-    beforeEach(() => {
-        render(
-            <CartContext.Provider value={cartContextValues}>
-                <MemoryRouter initialEntries={['/product/1']}>
-                    <Routes>
-                        <Route path="/product/:id" element={<ProductPageNew />} />
-                    </Routes>
-                </MemoryRouter>
-            </CartContext.Provider>
-        )
-
+    beforeEach(async () => {
+        await act(async () => {
+            render(
+                <CartContext.Provider value={cartContextValues}>
+                    <MemoryRouter initialEntries={['/product/1']}>
+                        <ProductPageNew />
+                    </MemoryRouter>
+                </CartContext.Provider>
+            );
+        });
     });
 
     it('renders the component correctly', () => {

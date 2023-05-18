@@ -46,7 +46,7 @@ const ReviewGrid = ({productName}) => {
       
       //Formats date to dd/mm/yyyy
       const formattedDate = date.toLocaleDateString('en-GB')
-      console.log("Date:", formattedDate)
+      //console.log("Date:", formattedDate)
 
       return {
         id: reviewDoc.id,
@@ -57,7 +57,7 @@ const ReviewGrid = ({productName}) => {
 
     // update our reviews array with all reviews made for the products
     setDBreviews(reviewsData)
-    console.log("DBreviews:", DBreviews)
+    //console.log("DBreviews:", DBreviews)
   }
 
   //Returns HTML components to be displayed with relevant data
