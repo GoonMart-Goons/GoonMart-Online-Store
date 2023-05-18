@@ -66,7 +66,7 @@ export const CartProvider = props => {
     };
 
     return (
-        <CartContext.Provider value={{ cartItems, addToCart, removeItem , incrementItem, decrementItem}}>
+        <CartContext.Provider value={{ cartItems, addToCart, removeItem , incrementItem, decrementItem, setOpenSnackbar, setSnackbarMessage, setCartItems}}>
             {props.children}
             <Snackbar
                 open={openSnackbar}
