@@ -40,3 +40,81 @@
     font-size: 18px;
     font-weight:lighter;
   }
+
+  /* Orders page reviews section */ 
+  .review-section {
+    margin-top: 20px;
+  }
+  
+  .write-review-button {
+    background: rgb(255, 68, 0);;
+    color: white;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px 25px;
+    margin-top:15px;
+    border-radius: 8px;
+  }
+  
+  .review-form {
+    margin-top: 10px;
+  }
+  
+  label {
+    display: block;
+    text-align: left;
+    padding: 0.25rem 0;
+    color: rgb(0, 0, 0);
+  }
+  
+  select{
+    /*width: 100%;
+    padding: 5px;
+    margin-bottom: 10px;*/
+
+    margin: 0.2rem 0;
+    padding: 15px;
+    border-width: 2px;
+    border-color: rgb(255, 68, 0);
+    border-radius: 10px;
+    background-color: rgb(212, 212, 212);
+    color: black;
+  }
+
+  textarea {
+    margin: 0.2rem 0;
+    padding: 20px;
+    border-width: 2px;
+    border-color: rgb(255, 68, 0);
+    border-radius: 10px;
+    background-color: rgb(212, 212, 212);
+    color: black;
+    width: 30%;
+  } 
+  
+  button[type='submit'] {
+
+    background: rgb(255, 68, 0);;
+    color: white;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px 25px;
+    margin-top:15px;
+    border-radius: 8px;
+  }
+  
+  .stars {
+    margin-bottom: 15px;
+    font-size: 28px;
+    color: rgb(156, 156, 156);
+  }
+  
+  .star {
+    cursor: pointer;
+  }
+  
+  .star.filled {
+    color:  rgb(255, 68, 0);
+  }
