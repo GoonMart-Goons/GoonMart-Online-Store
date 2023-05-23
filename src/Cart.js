@@ -1,11 +1,18 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Cart.css';
 import { CartContext } from './CartContext';
 
+// Firebase imports
+import { storage } from './config/Config';
+import { ref, getDownloadURL} from 'firebase/storage'
+
 const Cart = () => {
     const { cartItems, removeItem, incrementItem, decrementItem } = useContext(CartContext);
     const navigate = useNavigate();
+
+    console.log("Cart Items:", cartItems)
+    console.log("Image:", cartItems.image)
 
     const navigateToProductPage = (id) => {
         navigate(`/product/${id}`);
@@ -17,6 +24,22 @@ const Cart = () => {
             navigate('/checkout');
         }
     };
+
+    // Download image for display
+    // const [imageURL, setImageURL] = useState(null)
+    // //fetch and generage image from database
+    // useEffect(() => {
+    //     const imgRef = ref(storage, cartItems.image)
+
+    //     getDownloadURL(imgRef)
+    //     .then((url) => {
+    //         cartItems.image = url
+    //         // setImageURL(url)
+    //     })
+    //     .catch((error) => {
+    //         console.error(error)
+    //     })
+    // }, [cartItems.image])
 
     return (
         <div className="cart-container">
