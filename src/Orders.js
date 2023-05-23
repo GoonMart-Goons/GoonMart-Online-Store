@@ -3,7 +3,11 @@ import './Reviews.css';
 
 //Firebase imports
 import { auth, db } from './config/Config'
-import { collection, addDoc } from 'firebase/firestore'
+import { collection, addDoc, doc, getDoc } from 'firebase/firestore'
+
+//Snackbar Imports
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 
 export default function Orders() {
 
@@ -11,28 +15,43 @@ export default function Orders() {
   const [review, setReview] = useState('');
   const [isExpanded, setExpanded] = useState(false);
   const [isButtonVisible, setButtonVisible] = useState(true);
+  const [error, setError] = useState('');
 
   const handleRatingChange = (selectedRating) => {
     setRating(selectedRating);
+    setError('');
   };
 
   const handleReviewChange = (event) => {
     setReview(event.target.value);
+    setError('');
   };
 
   const handleToggle = () => {
     setExpanded(!isExpanded);
     setButtonVisible(false);
+    setError('');
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // TODO: Add your review submission logic here
-    addToDB(name, surname, rating, review, prodID);
-    
-    // Reset the rating and review state
-    setRating(0);
-    setReview('');
+
+    if (rating === 0 || review.trim() === '') {
+      setError('You cannot leave rating or review empty');
+    } else {
+      //Add to db
+      addToDB(userID, rating, review, prodID);
+
+      // Reset the rating and review state
+      setRating(0);
+      setReview('');
+      setError('');
+      setExpanded(!isExpanded);
+
+      //Show successful snackbar
+      setOpenSnackbar(true);
+      setSnackbarMessage('Your review has been submitted');
+    }
   };
 
   const renderStars = () => {
@@ -51,20 +70,35 @@ export default function Orders() {
     return starElements;
   };
   //Test variables
-  const name = "Test";
-  const surname = "Ing";
+  const userID = "dhAjexEe1kpENWuEUxbH"; //Test Case
   const prodID = "WLBntFH5EyKNCXezD4SV"; // SMEG kettle
   
   //adds user's review to db
-  async function addToDB(name, surname, rating, review, prodID){
+  async function addToDB(userID, rating, review, prodID){
+
+    // Get the user document by ID
+    const userRef = doc(db, 'Users', userID);
+    const userDoc = await getDoc(userRef);
+    const userData = userDoc.data();
+    //console.log("userData", userData);
+    //console.log("name", userData.name);
+    var name = userData.name + " " + userData.surname;
+
     addDoc(collection(db,'Products', prodID, 'Reviews'), {
       Date: Date.now(),
       Review: review,
       Stars: rating,
-      User: name + " " + surname
+      User: name
     })
   }
 
+  //Snackbar code
+  const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState('');
+
+  const handleCloseSnackbar = () => {
+      setOpenSnackbar(false);
+    };
 
   return (
     <div className="review-section">
@@ -86,11 +120,27 @@ export default function Orders() {
             <textarea id="review" value={review} onChange={handleReviewChange} placeholder='Tell us why you would or would not recommend this product'/>
             </div>
             
+            {error && <div className="error-message">{error}</div>}
 
             <button type="submit">Submit</button>
           </form>
         </div>
       )}
+
+        <Snackbar
+            open={openSnackbar}
+            autoHideDuration={6000}
+            onClose={handleCloseSnackbar}
+          >
+            <MuiAlert
+              elevation={6}
+              variant="filled"
+              onClose={handleCloseSnackbar}
+              severity={snackbarMessage.startsWith('Failed') ? 'error' : 'success'}
+            >
+              {snackbarMessage}
+            </MuiAlert>
+        </Snackbar> 
       </div>
   );
 }

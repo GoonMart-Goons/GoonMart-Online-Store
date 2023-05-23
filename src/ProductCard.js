@@ -53,7 +53,7 @@ const ProductCard = ({ image, prodName /*ratingSum, ratingCount reviews*/, price
     const average = totalStars / reviewsSnapshot.size;
 
     setAverageRating(average);
-    console.log('Average rating:', average);
+    //console.log('Average rating:', average);
   }
 
   return (

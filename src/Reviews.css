@@ -118,3 +118,9 @@
   .star.filled {
     color:  rgb(255, 68, 0);
   }
+
+  .error-message{
+    font-size: small;
+    color: red;
+    text-align: left;
+  }
