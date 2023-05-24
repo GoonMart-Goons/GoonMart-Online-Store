@@ -1,6 +1,10 @@
 @import url("ProductPage.css");
 @import url("Reviews.css");
 
+*{
+  font-family: 'Quicksand', sans-serif;
+}
+
 .welcome-section {
   background-image: url('imgs/welcome.jpg');
   background-size: cover;
