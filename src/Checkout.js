@@ -102,6 +102,21 @@ const Checkout = (props) => {
     const [cardName, setCardName] = useState()
     const [cardDate, setCardDate] = useState()
     const [CVV, setCardCVV] = useState()
+    const [PromoCode, setPromoCode] = useState()
+    const [totalValue, setTotalValue] = useState();
+
+    const finalTotal = 0;
+
+    function recalculateTotal(originalPrice){
+      //let t = document.getElementById('textToChange'); 
+      let promoCode = document.getElementById("PromoCode").value;
+      let discountValue = listOfPromos[promoCode]
+      //console.log(discountValue)
+      let finalPrice = originalPrice*discountValue;
+      return finalPrice
+    }
+
+    const listOfPromos = {"MESSI": 0.5, "BURGER_KING": 0.2, "LUBUNTU": 0.7, "": 1}
 
     const SignIn = (e) => {
         // e.preventDefault()
@@ -135,19 +150,26 @@ const Checkout = (props) => {
         price: item.price
       }
     })
-    // const summary = [{product: "Phone", price: "R5", id: 1},
-    // {product: "Laptop", price: "R10", id: 2}]
 
-    /*ReactDOM.render(
-      <React.StrictMode>
-        <Summary/>
-      </React.StrictMode>,
-      document.getElementById('root')
-    );*/
+    function aggregateSums(){
+      let numToDisplay = 0;
+      summary.forEach(element => {
+        //console.log("this is not working")
+        //console.log(element.price)
+        numToDisplay += element.price;
+      });
+      return numToDisplay;
+    }
 
-  /*const location = useLocation();
-  const { cartDetails, total } = location.state;*/
-  
+    function displayNewPrice(){
+      if(PromoCode!==undefined){
+        let numToDisplay = aggregateSums()
+        numToDisplay = recalculateTotal(numToDisplay)
+        if(!Number.isNaN(numToDisplay)){
+          setTotalValue("Discount Price: R" + numToDisplay)
+        }
+      }
+    }
     
   return (
     <section>
@@ -209,17 +231,33 @@ const Checkout = (props) => {
                     <input className="form-input" type="name"  name="CVV" {...register("CVV")} placeholder='' value = {CVV}
                     onChange = {(e) => setCardCVV(e.target.value)} />
                     {errors.CVV && <error className="form-error">{errors.CVV.message}</error>}
-
-                    <div>
-                      <h2>Order Summary</h2>
-                      {summary.map((sumz) => (
-                        <p key={sumz.id}>
-                         {sumz.quantity} x {sumz.product}: R{sumz.price * sumz.quantity}
-                        </p>
-                      ))}
-                    </div>
-                    <button type="submit" className="form-btn">Purchase</button>
+                    <button type="submit" className="form-btn" >Purchase</button>
                 </form>
+
+                <div>
+                  <h2>Order Summary</h2>
+                  {summary.map((sumz) => (
+                    <p key={sumz.id}>
+                     {sumz.quantity} x {sumz.product}: R{sumz.price * sumz.quantity}
+                    </p>
+                  ))}
+                </div>
+                <div>
+                  <label className="form-label" htmlFor = "PromoCode">Promo code: </label>
+                  <input id='PromoCode' className="form-input" type="name"  name="PromoCode" {...register("PromoCode")} placeholder='' value = {PromoCode}
+                  onChange = {(e) => setPromoCode(e.target.value)} />
+                  {errors.PromoCode && <error className="form-error">{errors.PromoCode.message}</error>}
+                  
+                  <div>
+                    <b>Total Price: R{aggregateSums()}</b>
+                  </div>
+                  <div>
+                    <b id='textToChange'>{totalValue}</b>
+                  </div>
+                  <div>
+                    <button className='form-btn' onClick={() => displayNewPrice()}>Use promo code</button>
+                  </div>
+                </div>
             </div>
         </div>
         <Snackbar
