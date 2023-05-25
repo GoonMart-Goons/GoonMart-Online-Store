@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { useForm } from 'react-hook-form';
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -8,8 +8,9 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 
-import { auth } from './config/Config'
+import { auth, db } from './config/Config'
 import { signInWithEmailAndPassword } from 'firebase/auth';
+import { collection, query, where, getDocs } from 'firebase/firestore';
 
 const validationSchema = yup.object().shape({
     email: yup.string().required("Email is required").email("Invalid email"),
@@ -22,6 +23,8 @@ const validationSchema = yup.object().shape({
         "Password must contain at least\n 1 uppercase letter, 1 lowercase letter,\n 1 number, and 1 special character"
       ),
   });
+
+export let loggedInUserID
 
 export default function Login() {
 
@@ -47,6 +50,39 @@ export default function Login() {
     });
 
     const [email, setEmail] = useState()
+
+    useEffect(() => {
+      if(email) {
+        getUserIdByEmail(email)
+          .then(() => {
+            if(loggedInUserID){
+              console.log("User ID:", loggedInUserID)
+            } else {
+              console.log("User not found")
+            }
+          })
+          .catch(error => {
+            console.log("Error:", error)
+          })
+      }
+    }, [email])
+
+    async function getUserIdByEmail(email){
+      try{
+        const usersRef = collection(db, "Users")
+        const qSnapshot = await getDocs(query(usersRef, where("email", "==", email)))
+        if(qSnapshot.empty){
+          loggedInUserID = null
+          return
+        }
+        loggedInUserID = qSnapshot.docs[0].id
+        console.log("User ID:", loggedInUserID)
+      } catch(error){
+        console.log("Error trying to get User ID:", error)
+        loggedInUserID = null
+      }
+    } 
+
     const [password, setPassword] = useState()
 
     const SignIn = (e) => {
