@@ -5,6 +5,9 @@ import './Reviews.css';
 import { auth, db } from './config/Config'
 import { collection, addDoc, doc, getDoc, getDocs,  query, where } from 'firebase/firestore'
 
+//Gets userID of logged in user from Login page
+import { loggedInUserID } from './Login';
+
 //Snackbar Imports
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
