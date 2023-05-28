@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import './Reviews.css';
+import OrdersNavBar from './OrdersNavBar';
 
 //Firebase imports
 import { auth, db } from './config/Config'
@@ -15,16 +16,23 @@ import MuiAlert from '@mui/material/Alert';
 export default function Orders() {
 
   // *****************Reviews stuff -- Maybe should be in a diff file, but oh well**********************
+  // Dummy data
+  const [dummyOrders, setDummyOrders] = useState([
+    { id: '1', name: 'Product One', price: 10.99, quantity: 2, image: '/path/to/image1.jpg' },
+    { id: '2', name: 'Product Two', price: 20.99, quantity: 1, image: '/path/to/image2.jpg' },
+    { id: '3', name: 'Product Three', price: 30.99, quantity: 3, image: '/path/to/image3.jpg' },
+  ]);
 
   //Initalise rating, review and error
   const [rating, setRating] = useState(0);
-  const [review, setReview] = useState('');
+  const [review, setReview] = useState({});
+  //const [review, setReview] = useState('');
   const [error, setError] = useState('');
 
   //Initialise button states. "Write review" button is visible but UI to actually do it is not
   const [isExpanded, setExpanded] = useState(false);
   const [isButtonVisible, setButtonVisible] = useState(true);
-  
+
   // Sets the stars rating value
   const handleRatingChange = (selectedRating) => {
     setRating(selectedRating);
@@ -33,12 +41,19 @@ export default function Orders() {
 
   // Sets the review text content
   const handleReviewChange = (event) => {
-    setReview(event.target.value);
+    setReview(prevState => ({...prevState, [currentProduct]: event.target.value}));
     setError('');
   };
 
-  // Called when "write review" button is clicked
-  const handleToggle = async () => {
+
+  // store the product currently being reviewed
+  const [currentProduct, setCurrentProduct] = useState('');
+
+
+// Called when "write review" button is clicked
+  const handleToggle = async (prodID) => {
+    setCurrentProduct(prodID);
+
 
     //Check if user has already sumbitted a review
 
@@ -70,14 +85,14 @@ export default function Orders() {
     // if rating and review still have their default values, no data has been entered
     if (rating === 0 || review.trim() === '') {
       setError('You cannot leave rating or review empty');
-  
+
     } else {
       //Add new review to the database
-      addToDB(userID, rating, review, prodID);
+      addToDB(userID, rating, review[currentProduct] || '', prodID);
 
       // Reset the rating and review state
       setRating(0);
-      setReview('');
+      setReview(prevState => ({...prevState, [currentProduct]: ''}));
       setError('');
       setExpanded(!isExpanded);
       setButtonVisible(true);
@@ -109,7 +124,7 @@ export default function Orders() {
   const userID = "dhAjexEe1kpENWuEUxbH"; //Test Case
   const prodID = "WLBntFH5EyKNCXezD4SV"; // SMEG kettle
   //const userID = "N8UIq9zUVYpIqY9TaqHD" // Kaji Katame
-  
+
   //adds user's review to db
   async function addToDB(userID, rating, review, prodID){
 
@@ -137,53 +152,57 @@ export default function Orders() {
     };
 
   return (
-    <div className="review-section">
-        <h1> Your GoonMart Orders Will Appear Here!</h1>
+      <>  <OrdersNavBar/>
 
-        {/* ORDER ITEMS HERE */}
-        
+        <div className="review-section">
+          <h1>{dummyOrders.length > 0 ? "Your Previous Orders" : "Your GoonMart Orders Will Appear Here!"}</h1>
 
-    {/*we first see the "write review" button */}
-    {isButtonVisible && (
-      <button className="write-review-button" onClick={handleToggle}>
-        Write a review
-      </button>
-      )}
-      {error && <div className="error-message">{error}</div>}
+          <div className="orders-grid">
+            {/* ORDER ITEMS HERE */}
+            {dummyOrders.map((order) => (
+                <div key={order.id} className="order-item">
+                  <img src={order.image} alt={order.name} />
+                  <div className="order-item-info">
+                    <h2>{order.name}</h2>
+                    <p>Quantity: {order.quantity}</p>
+                    <p>Price: R{order.price}</p>
 
-      {/*If clicked and user has not reviewed the product yet, new UI pops up*/}
-      {isExpanded && (
-        <div className="review-form">
-          <form onSubmit={handleSubmit}>
-            <label htmlFor="rating">Choose a rating:</label>
-            <div className="stars">{renderStars()}</div>
+                    {/* Show the review button for all products when the form isn't expanded, or only for the current product if it is */}
+                    {(currentProduct !== order.id) && (
+                        <button className="write-review-button" onClick={() => handleToggle(order.id)}>
+                          Write a review
+                        </button>
+                    )}
 
-            <label htmlFor="review">Your review:</label>
-            <div>
-            <textarea id="review" value={review} onChange={handleReviewChange} placeholder='Tell us why you would or would not recommend this product'/>
-            </div>
-            
-            {error && <div className="error-message">{error}</div>}
 
-            <button type="submit">Submit</button>
-          </form>
+                    {/* Only show the review form for the product whose review button was clicked */}
+                    {isExpanded && currentProduct === order.id && (
+                        <div className="review-form">
+                          <form onSubmit={handleSubmit}>
+                            <label htmlFor="rating">Choose a rating:</label>
+                            <div className="stars">{renderStars()}</div>
+                            <label htmlFor="review">Your review:</label>
+                            <div>
+                              <textarea
+                                  id="review"
+                                  value={review[currentProduct] || ''}
+                                  onChange={handleReviewChange}
+                                  placeholder='Tell us why you would or would not recommend this product'
+                              />
+                            </div>
+                            {error && <div className="error-message">{error}</div>}
+                            <button type="submit">Submit</button>
+                          </form>
+                        </div>
+                    )}
+                  </div>
+                </div>
+            ))}
+          </div>
+
+          {/* Snackbar UI */}
+          {/* Your Snackbar code */}
         </div>
-      )}
-        {/*Snackbar UI*/}
-        <Snackbar
-            open={openSnackbar}
-            autoHideDuration={6000}
-            onClose={handleCloseSnackbar}
-          >
-            <MuiAlert
-              elevation={6}
-              variant="filled"
-              onClose={handleCloseSnackbar}
-              severity={snackbarMessage.startsWith('Failed') ? 'error' : 'success'}
-            >
-              {snackbarMessage}
-            </MuiAlert>
-        </Snackbar> 
-      </div>
+    </>
   );
 }

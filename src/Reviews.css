@@ -90,7 +90,7 @@
     border-radius: 10px;
     background-color: rgb(212, 212, 212);
     color: black;
-    width: 30%;
+    width: 95%;
   } 
   
   button[type='submit'] {
@@ -124,3 +124,32 @@
     color: red;
     text-align: left;
   }
+.orders-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 1rem;
+  padding: 1rem;
+}
+
+.order-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.order-item img {
+  max-width: 100%;
+  height: auto;
+}
+
+.order-item-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+}
