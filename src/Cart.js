@@ -69,7 +69,7 @@ const Cart = () => {
             Proceed to Checkout
         </Link>*/}
         <Link to={{
-            pathname: '/checkout',
+            pathname: '/addressinfo',
             state: {
               cartDetails: cartDetails,
               total: total
