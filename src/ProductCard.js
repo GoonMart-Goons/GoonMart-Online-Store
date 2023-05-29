@@ -47,7 +47,7 @@ const ProductCard = ({
 
     // Case if no reviews (and rating)
     if (reviewsSnapshot.empty) {
-      console.log('This product has no reviews.');
+      //console.log('This product has no reviews.');
       return;
     }
 
@@ -61,7 +61,7 @@ const ProductCard = ({
     const average = totalStars / reviewsSnapshot.size;
 
     setAverageRating(average);
-    console.log('Average rating:', average);
+    //console.log('Average rating:', average);
   }
 
   // Calculate the discounted price

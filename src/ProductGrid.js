@@ -13,7 +13,11 @@ const ProductGrid = ({ activeCategoryName, searchQuery }) => {
     if (searchQuery === '') {
       if (activeCategoryName === 'All') {
         q = query(prodsRef, where('category', 'in', ['Electronics', 'Clothing', 'Home & Kitchen', 'Toys & Games']));
-      } else {
+      }
+      else if (activeCategoryName === 'On Sale') {
+        q = query(prodsRef, where('salePercentage', '!=', 0));
+      } 
+      else {
         q = query(prodsRef, where('category', '==', activeCategoryName));
       }
 
