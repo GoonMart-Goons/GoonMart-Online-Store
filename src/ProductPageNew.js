@@ -16,6 +16,9 @@ import { storage } from './config/Config';
 import { ref, getDownloadURL } from 'firebase/storage';
 import { CartContext } from './CartContext';
 
+//Gets userID of logged in user from Login page
+import { loggedInUserID } from './Login';
+
 const ProductPageNew = () => {
     const { state } = useLocation();
     const navigate = useNavigate();
@@ -106,7 +109,7 @@ const ProductPageNew = () => {
         }, [category]);
         
         return (  
-            <>  <ProductPageNavBar/>
+            <>  <ProductPageNavBar /*userID = {loggedInUserID}*/ />
                 <div className="app">
                     <div className="details" key={id}>
                         {/*Display image*/}
