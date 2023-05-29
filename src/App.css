@@ -334,6 +334,14 @@ nav button :hover{
   cursor: pointer;
 }
 
+.original-price {
+  text-decoration: line-through;;
+}
+
+.discounted-price, .sale-info {
+  color: red;
+}
+
 /* Form pages styling */
 .Form, .loginForm, .registerForm{
   display: flex;
