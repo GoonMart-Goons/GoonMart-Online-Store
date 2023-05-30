@@ -4,6 +4,8 @@ import MuiAlert from '@mui/material/Alert';
 
 export const CartContext = createContext();
 
+
+
 export const CartProvider = (props) => {
   const [cartItems, setCartItems] = useState([]);
   const [openSnackbar, setOpenSnackbar] = useState(false);

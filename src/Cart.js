@@ -3,13 +3,20 @@ import { useNavigate } from 'react-router-dom';
 import './Cart.css';
 import { CartContext } from './CartContext';
 
+// Logged in user'd ID
+
 // Firebase imports
-import { storage } from './config/Config';
-import { ref, getDownloadURL} from 'firebase/storage'
+import { db } from './config/Config';
+import { doc, setDoc } from 'firebase/firestore';
+
+// Add cart item to FB
 
 const Cart = () => {
     const { cartItems, removeItem, incrementItem, decrementItem } = useContext(CartContext);
     const navigate = useNavigate();
+
+    const { addToCart } = useContext(CartContext);
+    addToCart() //Remeber item here
 
     console.log("Cart Items:", cartItems)
     console.log("Image:", cartItems.image)
