@@ -16,9 +16,22 @@ import MuiAlert from '@mui/material/Alert';
 import { userCartItems } from './Cart';
 
 // To get logged in user info
-import { getUserByEmail, userEmail } from './Login';
+import { loggedInUserID } from './Login';
 
-//export userCartItems
+//Firebase imports
+import { db } from './config/Config';
+import { doc, setDoc } from 'firebase/firestore';
+
+//Add addy to FireStore
+async function postAddressToDB(personalInfo){
+  try {
+    const addressDocRef = doc(db, `Users/${loggedInUserID}/Address`, `${loggedInUserID}Address`)
+    await setDoc(addressDocRef, personalInfo)
+    console.log("Address info added successfully.")
+  } catch(error) {
+    console.error("Error while posting address to database:", error)
+  }
+}
 
 export let personalInformation = {}
 
@@ -42,10 +55,18 @@ const validationSchema = yup.object().shape({
 
   });
 
+//Add addy to FireStore
+async function postAddressToDB(personalInfo){
+  try {
+    const addressDocRef = doc(db, `Users/${loggedInUserID}/Address`, `${loggedInUserID}Address`)
+    await setDoc(addressDocRef, personalInfo)
+    console.log("Address info added successfully.")
+  } catch(error) {
+    console.error("Error while posting address to database:", error)
+  }
+}
+
 const AddressInfo = (props) => {
-
-
-
   const location = useLocation();
   console.log(location)
   console.log(props)
@@ -79,8 +100,9 @@ const AddressInfo = (props) => {
     const [cityTown, setCityTown] = useState()
     const [postalCode, setPostalCode] = useState()
 
-    const personalInfo = {Name: firstName + " " + surname, Address: address, Town: cityTown + ", " + postalCode}
+    const personalInfo = {Name: firstName + " " + surname, Address: address, Town: cityTown, PostalCode: postalCode}
     personalInformation = personalInfo
+    postAddressToDB(personalInfo)
 
     const SignIn = (e) => {
         // e.preventDefault()
