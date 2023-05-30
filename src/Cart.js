@@ -4,15 +4,11 @@ import './Cart.css';
 import { CartContext } from './CartContext';
 import { Link } from 'react-router-dom';
 
+// Firebase imports
+import { storage } from './config/Config';
+import { ref, getDownloadURL} from 'firebase/storage'
+
 export let userCartItems = {}
-
-// Firebase imports
-import { storage } from './config/Config';
-import { ref, getDownloadURL} from 'firebase/storage'
-
-// Firebase imports
-import { storage } from './config/Config';
-import { ref, getDownloadURL} from 'firebase/storage'
 
 const Cart = () => {
     const { cartItems, removeItem, incrementItem, decrementItem } = useContext(CartContext);
