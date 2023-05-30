@@ -2,67 +2,84 @@ import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Cart.css';
 import { CartContext } from './CartContext';
+import { Link } from 'react-router-dom';
+
+export let userCartItems = {}
 
 const Cart = () => {
     const { cartItems, removeItem, incrementItem, decrementItem } = useContext(CartContext);
     const navigate = useNavigate();
-
+  
     const navigateToProductPage = (id) => {
-        navigate(`/product/${id}`);
-    };
+      navigate(`/product/${id}`);
+    }
 
-    const handleProceedToCheckout = () => {
-        if (cartItems.length > 0) {
-            // Proceed to checkout logic here
-            navigate('/checkout');
-        }
-    };
-
+    userCartItems = cartItems
+  
+    // Calculate total
+    const total = cartItems.reduce((acc, curr) => acc + curr.price * curr.quantity, 0);
+  
+    // Prepare cart details for Checkout
+    const cartDetails = cartItems.map(item => {
+      return {
+        name: item.name,
+        quantity: item.quantity,
+        price: item.price
+      };
+    });
+  
     return (
-        <div className="cart-container">
-            <h1>Cart</h1>
-            {cartItems.length === 0 ? (
-                <p>Your cart is empty.</p>
-            ) : (
-                <>
-                    {cartItems.map((item) => (
-                        <div className="cart-item" key={item.id}>
-                            <div className="product">
-                                <img src={item.image} alt={item.name} />
-                                <div className="item-info">
-                                    <p>{item.name}</p>
-                                </div>
-                            </div>
-                            <div className="quantity-control">
-                                <p>R {item.price * item.quantity}</p>
-                                <button onClick={() => decrementItem(item.id)}>-</button>
-                                <span>{item.quantity}</span>
-                                <button onClick={() => incrementItem(item.id)}>+</button>
-                            </div>
-                            <div className="extras">
-
-                                <button onClick={() => removeItem(item.id)} className="rmv-btn">
-                                    Remove
-                                </button>
-                            </div>
-                        </div>
-                    ))}
-                    <div className="total">
-                        <h2>Total: R {cartItems.reduce((acc, curr) => acc + curr.price * curr.quantity, 0)}</h2>
-                    </div>
-                    <div>
-                        <button
-                            className="checkout-btn"
-                            disabled={cartItems.length === 0}
-                            onClick={handleProceedToCheckout}
-                        >
-                            Proceed to Checkout
-                        </button>
-                    </div>
-                </>
-            )}
+      <div className="cart-container">
+        <h1>Cart</h1>
+        {cartItems.map(item => (
+          <div className="cart-item" key={item.id}>
+            <div className="product">
+              <img src={item.image} alt={item.name} />
+              <div className="item-info">
+                <p>{item.name}</p>
+              </div>
+            </div>
+            <div className="quantity-control">
+              <p>R {item.price * item.quantity}</p>
+              <button onClick={() => decrementItem(item.id)}>-</button>
+              <span>{item.quantity}</span>
+              <button onClick={() => incrementItem(item.id)}>+</button>
+            </div>
+            <div className="extras">
+              <button onClick={() => navigateToProductPage(item.id)} className="view-cart">
+                View Product
+              </button>
+              <button onClick={() => removeItem(item.id)} className="rmv-btn">
+                Remove
+              </button>
+            </div>
+          </div>
+        ))}
+        <div className="total">
+          <h2>Total: R {total}</h2>
         </div>
+        <div>
+          {/*<Link to={{
+            pathname: '/checkout',
+            state: {
+              cartDetails: cartDetails,
+              total: total
+            }
+          }} className="checkout-btn">
+            Proceed to Checkout
+        </Link>*/}
+        <Link to={{
+            pathname: '/addressinfo',
+            state: {
+              cartDetails: cartDetails,
+              total: total
+            }
+          }} className="checkout-btn">
+            Proceed to Checkout
+        </Link>
+        </div>
+      </div>
     );
-};
-
-export default Cart;
+  };
+  
+  export default Cart;
