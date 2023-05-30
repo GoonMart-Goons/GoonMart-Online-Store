@@ -70,6 +70,39 @@ export default function Login() {
     });
 
     const [email, setEmail] = useState()
+
+    useEffect(() => {
+      if(email) {
+        getUserIdByEmail(email)
+          .then(() => {
+            if(loggedInUserID){
+              console.log("User ID:", loggedInUserID)
+            } else {
+              console.log("User not found")
+            }
+          })
+          .catch(error => {
+            console.log("Error:", error)
+          })
+      }
+    }, [email])
+
+    async function getUserIdByEmail(email){
+      try{
+        const usersRef = collection(db, "Users")
+        const qSnapshot = await getDocs(query(usersRef, where("email", "==", email)))
+        if(qSnapshot.empty){
+          loggedInUserID = null
+          return
+        }
+        loggedInUserID = qSnapshot.docs[0].id
+        console.log("User ID:", loggedInUserID)
+      } catch(error){
+        console.log("Error trying to get User ID:", error)
+        loggedInUserID = null
+      }
+    } 
+
     const [password, setPassword] = useState()
 
     useEffect(() => {

@@ -12,6 +12,9 @@ import ProductPageNew from './ProductPageNew';
 import Cart from './Cart';
 import Orders from './Orders';
 import { CartProvider } from './CartContext';  // import CartProvider
+import Checkout from './Checkout';
+import AddressInfo from './AddressInfo';
+import Success from './Success';
 
 
 function App() {
@@ -29,6 +32,9 @@ function App() {
                     <Route path = "/cart" element = {<Cart />} />
                     <Route path = "/orders" element = {<Orders />} />
                     <Route path = "/accountsettings" element = {<AccountSettings />} />
+                    <Route path= '/addressinfo' element = {<AddressInfo/>} />
+                    <Route path= '/checkout' element = {<Checkout/>} />
+                    <Route path= '/success' element = {<Success/>} />
                 </Routes>
             </Router>
         </CartProvider>  {/* wrap your main App component with CartProvider */}
