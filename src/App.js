@@ -7,6 +7,7 @@ import Homepage from './Homepage';
 import InnerHomepage from './InnerHomepage';
 import Register from './Register';
 import Login from './Login';
+import AccountSettings from './AccountSettings';
 import ProductPageNew from './ProductPageNew';
 import Cart from './Cart';
 import Orders from './Orders';
@@ -27,6 +28,7 @@ function App() {
                     <Route path = "/product/:id" element = {<ProductPageNew />} />
                     <Route path = "/cart" element = {<Cart />} />
                     <Route path = "/orders" element = {<Orders />} />
+                    <Route path = "/accountsettings" element = {<AccountSettings />} />
                 </Routes>
             </Router>
         </CartProvider>  {/* wrap your main App component with CartProvider */}

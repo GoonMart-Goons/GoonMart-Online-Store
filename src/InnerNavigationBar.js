@@ -43,10 +43,10 @@ function InnerNavigationBar({onSearch}) {
           </li>
           
           <li>
-            <a className="navbar-menu-item" href="./InnerHomepage">MY ACCOUNT</a>
+            <a className="navbar-menu-item" href="./AccountSettings">MY ACCOUNT</a>
           </li>
           <li>
-            <a className="navbar-menu-item" href="./InnerHomepage">ABOUT</a>
+            <a className="navbar-menu-item" href="./InnerHomePage">ABOUT</a>
           </li>
           <li>
             <a className="navbar-menu-item" href="/">LOG OUT</a>
