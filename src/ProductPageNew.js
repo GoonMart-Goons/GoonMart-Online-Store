@@ -53,7 +53,6 @@ const ProductPageNew = () => {
 
   const { addToCart } = useContext(CartContext);
   const handleAddToCart = (item) => {
-    alert('Item added to cart');
     addToCart({
       id: id,
       name: prodName,

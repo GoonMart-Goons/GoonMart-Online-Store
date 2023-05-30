@@ -18,8 +18,8 @@ const Cart = () => {
     const { cartItems, removeItem, incrementItem, decrementItem } = useContext(CartContext);
     const navigate = useNavigate();
 
-    const { addToCart } = useContext(CartContext);
-    addToCart() //Remeber item here
+    // const { addToCart } = useContext(CartContext);
+    // addToCart() //Remeber item here
 
     console.log("Cart Items:", cartItems)
     console.log("Image:", cartItems.image)
@@ -27,6 +27,13 @@ const Cart = () => {
     const navigateToProductPage = (id) => {
       navigate(`/product/${id}`);
     }
+
+    const handleProceedToCheckout = () => {
+      if (cartItems.length > 0) {
+          // Proceed to checkout logic here
+          navigate('/addressinfo');
+      }
+    };
 
     userCartItems = cartItems
   
@@ -89,24 +96,13 @@ const Cart = () => {
           <h2>Total: R {total}</h2>
         </div>
         <div>
-          {/*<Link to={{
-            pathname: '/checkout',
-            state: {
-              cartDetails: cartDetails,
-              total: total
-            }
-          }} className="checkout-btn">
-            Proceed to Checkout
-        </Link>*/}
-        <Link to={{
-            pathname: '/addressinfo',
-            state: {
-              cartDetails: cartDetails,
-              total: total
-            }
-          }} className="checkout-btn">
-            Proceed to Checkout
-        </Link>
+            <button
+                className="checkout-btn"
+                disabled={cartItems.length === 0}
+                onClick={handleProceedToCheckout}
+            >
+                Proceed to Checkout
+            </button>
         </div>
       </div>
     );

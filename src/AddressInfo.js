@@ -21,7 +21,6 @@ import { userCartItems } from './Cart';
 import { loggedInUserID } from './Login';
 
 //Firebase imports
-import { db } from './config/Config';
 import { collection, addDoc } from 'firebase/firestore';
 
 export let personalInformation = {}
