@@ -10,9 +10,10 @@ import ProductPageNavBar from './ProductPageNavBar';
 
 //FireBase imports
 import { db } from './config/Config';
-import { collection, query, where, getDocs } from 'firebase/firestore';
+import { collection, query, where, getDocs, doc, setDoc } from 'firebase/firestore';
 import { storage } from './config/Config';
 import { ref, getDownloadURL } from 'firebase/storage';
+//Cart functions
 import { CartContext } from './CartContext';
 
 const ProductPageNew = () => {
@@ -53,6 +54,7 @@ const ProductPageNew = () => {
 
   const { addToCart } = useContext(CartContext);
   const handleAddToCart = (item) => {
+
     addToCart({
       id: id,
       name: prodName,

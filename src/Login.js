@@ -87,22 +87,6 @@ export default function Login() {
       }
     }, [email])
 
-    async function getUserIdByEmail(email){
-      try{
-        const usersRef = collection(db, "Users")
-        const qSnapshot = await getDocs(query(usersRef, where("email", "==", email)))
-        if(qSnapshot.empty){
-          loggedInUserID = null
-          return
-        }
-        loggedInUserID = qSnapshot.docs[0].id
-        console.log("User ID:", loggedInUserID)
-      } catch(error){
-        console.log("Error trying to get User ID:", error)
-        loggedInUserID = null
-      }
-    } 
-
     const [password, setPassword] = useState()
 
     useEffect(() => {
