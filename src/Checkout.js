@@ -47,23 +47,7 @@ const validationSchema = yup.object().shape({
     cardDate: yup.string()
     .required("Card expiration date is required")
     .min(5, "Incorrect date format")
-    .max(5, "Incorrect date format"),
-    firstName: yup.string()
-    .required("First name is required")
-    .min(2, "Name must be at least 2 characters long"),
-    surname: yup.string()
-    .required("Surname is required")
-    .min(2, "Name must be at least 2 characters long"),
-    address: yup.string()
-    .required("Address is required")
-    .min(8, "Address must be at least 8 characters long"),
-    cityTown: yup.string()
-    .required("City/Town is required")
-    .min(4, "City/Town must be at least 4 characters long"),
-    postalCode: yup.string()
-    .required("Postal code is required")
-    .min(4, "Postal code is too short")
-    .max(4, "Postal code is too long"),
+    .max(5, "Incorrect date format")
 
   });
 
@@ -114,14 +98,22 @@ const Checkout = (props) => {
       return finalPrice
     }
 
+    
+
     const listOfPromos = {"MESSI": 0.5, "BURGER_KING": 0.2, "LUBUNTU": 0.7, "": 1}
 
     const SignIn = (e) => {
         // e.preventDefault()
+        console.log("Something")
         
         if (Object.keys(errors).length === 0){
+          console.log("lets go")
+            navigate("/success")
             console.log("Successful payment");
             //console.log(cartDetails);
+        }
+        else{
+          console.log(errors)
         }
     }
 
@@ -164,11 +156,7 @@ const Checkout = (props) => {
 
             <div className="col-1">
                 {/*<img src= "/imgs/goonmart-logo.png" className='loginLogo' alt='goonmart logo'/>*/}
-                
-
-                <form id='loginrForm' data-testid="login-form" className='loginForm' onSubmit={handleSubmit(SignIn)}>
-
-                  <h2>Shipping Address</h2>
+                <h2>Shipping Address</h2>
                   <p>Name: {personalInformation.Name}</p>
                   <p>Address: {personalInformation.Address}</p>
                   <p>City/Town: {personalInformation.Town}</p>
@@ -195,7 +183,11 @@ const Checkout = (props) => {
                   <div>
                     <button className='form-btn' onClick={() => displayNewPrice()}>Use promo code</button>
                   </div>
-                </div>
+                </div>                
+
+                <form id='loginrForm' data-testid="login-form" className='loginForm' onSubmit={handleSubmit(SignIn)}>
+
+
                   <h2>Card Information</h2>
 
                   <label className="form-label" htmlFor = "cardNum">Card number</label>
@@ -217,7 +209,7 @@ const Checkout = (props) => {
                     <input className="form-input" type="name"  name="CVV" {...register("CVV")} placeholder='' value = {CVV}
                     onChange = {(e) => setCardCVV(e.target.value)} />
                     {errors.CVV && <error className="form-error">{errors.CVV.message}</error>}
-                    <button type="submit" className="form-btn" >Purchase</button>
+                    <button type="submit" className="form-btn" onClick={() => SignIn()}>Purchase</button>
                 </form>
             </div>
         </div>
