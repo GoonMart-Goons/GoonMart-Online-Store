@@ -96,11 +96,6 @@ const Checkout = (props) => {
         resolver: yupResolver(validationSchema),
     });
     
-    const [firstName, setFirstName] = useState()
-    const [surname, setSurname] = useState()
-    const [address, setAddress] = useState()
-    const [cityTown, setCityTown] = useState()
-    const [postalCode, setPostalCode] = useState()
     const [cardNum, setCardNum] = useState()
     const [cardName, setCardName] = useState()
     const [cardDate, setCardDate] = useState()
@@ -125,20 +120,6 @@ const Checkout = (props) => {
         // e.preventDefault()
         
         if (Object.keys(errors).length === 0){
-            /*signInWithEmailAndPassword(auth, cardNum, cardName)
-            .then((userCredentials) => {
-                //console.log("Signed in successfully: ", userCredentials);
-                setOpenSnackbar(true);
-                setSnackbarMessage('Signed in successfully');
-                setTimeout(() => {
-                    navigate('/InnerHomepage'); // navigate to the HOME page
-                }, 2000); //delay for 2 seconds (2000 milliseconds)
-            }).catch((error) => {
-                //console.log("Failed to login: ", error)
-                setOpenSnackbar(true);
-                setSnackbarMessage('Failed to login: ' + error.message);
-                
-            })*/
             console.log("Successful payment");
             //console.log(cartDetails);
         }

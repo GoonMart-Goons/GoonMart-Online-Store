@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { useForm } from 'react-hook-form';
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -8,7 +8,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 
-import { db, auth } from './config/Config'
+import { auth, db } from './config/Config'
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { collection, query, where, getDocs } from 'firebase/firestore';
 
@@ -24,18 +24,7 @@ const validationSchema = yup.object().shape({
       ),
   });
 
-export let userEmail
-
-export async function getUserByEmail(email) {
-  const usersRef = collection(db, 'Users')
-  const q = query(usersRef, where('email', '==', email))
-  const userSnapshot = await getDocs(q)
-
-  const userDoc = userSnapshot.docs[0]
-  // console.log("FROM FUNC:", userDoc.data())
-  return userDoc.data()
-  // console.log("User Doc From FB:", userDoc.data())
-}
+export let loggedInUserID
 
 export default function Login() {
 
@@ -61,6 +50,39 @@ export default function Login() {
     });
 
     const [email, setEmail] = useState()
+
+    useEffect(() => {
+      if(email) {
+        getUserIdByEmail(email)
+          .then(() => {
+            if(loggedInUserID){
+              console.log("User ID:", loggedInUserID)
+            } else {
+              console.log("User not found")
+            }
+          })
+          .catch(error => {
+            console.log("Error:", error)
+          })
+      }
+    }, [email])
+
+    async function getUserIdByEmail(email){
+      try{
+        const usersRef = collection(db, "Users")
+        const qSnapshot = await getDocs(query(usersRef, where("email", "==", email)))
+        if(qSnapshot.empty){
+          loggedInUserID = null
+          return
+        }
+        loggedInUserID = qSnapshot.docs[0].id
+        console.log("User ID:", loggedInUserID)
+      } catch(error){
+        console.log("Error trying to get User ID:", error)
+        loggedInUserID = null
+      }
+    } 
+
     const [password, setPassword] = useState()
 
     const SignIn = (e) => {
@@ -71,8 +93,6 @@ export default function Login() {
             .then((userCredentials) => {
                 //console.log("Signed in successfully: ", userCredentials);
                 setOpenSnackbar(true);
-                // console.log("User Info From Login:" get)
-                userEmail = email
                 setSnackbarMessage('Signed in successfully');
                 setTimeout(() => {
                     navigate('/InnerHomepage'); // navigate to the HOME page
@@ -85,6 +105,15 @@ export default function Login() {
             })
         }
     }
+
+    // const onSubmit = (data) => {
+    //     setUserInfo(data);
+    //     console.log(data);
+    //     if (Object.keys(errors).length === 0) { // check if errors object is empty
+    //         SignIn()
+    //         // navigate('/'); // navigate to the HOME page
+    //     }
+    // }
 
     const navigate = useNavigate();
     
