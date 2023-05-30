@@ -7,6 +7,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import InnerNavigationBar from './InnerNavigationBar';
 import { useLocation } from 'react-router-dom';
+import { db } from './config/Config';
+import { doc, setDoc } from 'firebase/firestore';
 //import Summary from './Summary';
 
 import Snackbar from '@mui/material/Snackbar';
@@ -44,9 +46,11 @@ const validationSchema = yup.object().shape({
 
   });
 
+//Add addy to FireStore
 async function postAddressToDB(personalInfo){
   try {
-    await addDoc(collection(db, "Users", loggedInUserID, "Address"), personalInfo)
+    const addressDocRef = doc(db, `Users/${loggedInUserID}/Address`, `${loggedInUserID}Address`)
+    await setDoc(addressDocRef, personalInfo)
     console.log("Address info added successfully.")
   } catch(error) {
     console.error("Error while posting address to database:", error)
