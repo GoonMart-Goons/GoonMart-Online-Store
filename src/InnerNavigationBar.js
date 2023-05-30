@@ -36,17 +36,17 @@ function InnerNavigationBar({onSearch}) {
       <div className="navbar-right">
         <ul className="navbar-menu">
           <li>
-            <a className="navbar-menu-item" href="./Cart"><FaCartPlus/></a>
+            <a className="navbar-menu-item" href="./Cart" aria-label="Cart"><FaCartPlus/></a>
           </li>
           <li>
             <a className="navbar-menu-item" href="./Orders">ORDERS</a>
           </li>
           
           <li>
-            <a className="navbar-menu-item" href="./InnerHomepage">MY ACCOUNT</a>
+            <a className="navbar-menu-item" href="./AccountSettings">MY ACCOUNT</a>
           </li>
           <li>
-            <a className="navbar-menu-item" href="./InnerHomepage">ABOUT</a>
+            <a className="navbar-menu-item" href="./InnerHomePage">ABOUT</a>
           </li>
           <li>
             <a className="navbar-menu-item" href="/">LOG OUT</a>

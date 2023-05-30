@@ -92,6 +92,7 @@ export default function Login() {
             signInWithEmailAndPassword(auth, email, password)
             .then((userCredentials) => {
                 //console.log("Signed in successfully: ", userCredentials);
+                localStorage.setItem('message', email);
                 setOpenSnackbar(true);
                 setSnackbarMessage('Signed in successfully');
                 setTimeout(() => {

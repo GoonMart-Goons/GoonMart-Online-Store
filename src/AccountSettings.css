@@ -1,0 +1,52 @@
+.profile-container{
+    text-align: right;
+    align-content: center;
+    display:flex;
+    flex-flow: column wrap;
+    padding: 90px 50px 90px 50px;
+    background-color: white;
+}
+.Header {
+    text-align: center;
+    font-family: Roboto;
+    text-decoration-color: #434755;
+    
+}
+input{
+    text-align: left;
+    width:500px;
+    height:30px;
+    border-radius: 3px;
+    background-color:whitesmoke;
+    border:none;
+    padding: 5px 20px 5px 20px;
+
+}
+label{
+    padding-right: 20px;
+}
+
+
+
+.btnSub {
+    border-radius: 5px;
+    border: none;
+    background-color: orangered;
+    text-align: center;
+    font-family: Roboto;
+    font-weight: bold;
+    font-size: 15px;
+    width: 500px;
+    height: 25px;
+    padding: 10px 20px 30px 20px;
+}
+.profile-field {
+    flex: 1;
+    padding: 10px 10px 10px 10px;
+    font-family: Roboto;
+    font-size: 18px;
+    text-decoration-color:#434755;
+    font-weight: bold;
+    
+}
+

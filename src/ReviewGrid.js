@@ -4,76 +4,77 @@ import './Reviews.css';
 
 //FireBase imports
 import { db } from './config/Config'
-import { collection, query, where, getDocs } from 'firebase/firestore';
+import { collection, query, where, getDocs, Timestamp } from 'firebase/firestore';
 
 
-const reviews = [
-  {
-    id: 1,
-    customer: 'Banana Apricot',
-    stars: 4,
-    description: "this was the best [insert product here] that I have ever used",
-    date: "11 Jan 2022"
-  },
-  {
-    id: 2,
-    customer: 'Mango Pear',
-    stars: 1,
-    description: "It came delivered already in seven pieces",
-    date: "23 Aug 2022"
-  },
-  {
-    id: 3,
-    customer: 'Grape Melon',
-    stars: 3,
-    description: "It came on time and works well",
-    date: "12 Mar 2023"
-  } ];
-
-const ReviewGrid = () => {
-
-  /*const [DBproducts, setDBproducts] = React.useState([]);
-
-  async function dataBase(){
-    const prodsRef = collection(db, 'Products')
-    console.log(activeCategoryName);
-    let q
-    if (activeCategoryName === "All"){
-      q = query(prodsRef, where('category', 'in', ["Electronics", "Clothing", "Home & Kitchen", "Toys & Games"]))
-    } else {
-      q = query(prodsRef, where('category', '==', activeCategoryName))
-    }
-    
-    const querySnapshot = await getDocs(q)
-    //Queried documents
-    const DBproducts = querySnapshot.docs.map(doc => doc.data());
-    //console.log(DBproducts);
-    return DBproducts;
-  }
+const ReviewGrid = ({productName}) => {
   
+  const [DBreviews, setDBreviews] = React.useState([])
 
+  // used to call the getProductReviews function each time the page is reloaded or navigated to
   React.useEffect(() => {
-    dataBase().then(products => {
-      setDBproducts(products);
-    });
-  }, [activeCategoryName]);*/
+    getProductReviews(productName)
+  }, [])
+  
+  async function getProductReviews(prodName){
+    //console.log("prodname:", prodName)
 
-  /*const filteredProducts = activeCategoryId === 0 
-  ?  products : products.filter(product => product.category === activeCategoryId);*/
+    // navigate to the "Products collection of the database"
+    const prodsRef = collection(db, 'Products')
+    const q = query(prodsRef, where('prodName', '==', prodName))
+    const prodSnapshot = await getDocs(q)
 
+    const prodDoc = prodSnapshot.docs[0]
+
+    // Navigate to the reviews collection of that specific product
+    const reviewsRef = collection(db, 'Products', prodDoc.id, 'Reviews')
+    const reviewsSnapshot = await getDocs(reviewsRef)
+
+    //Case where no reviews have been made -> array stays empty
+    if (reviewsSnapshot.empty){
+      //console.log('This product has no reviews')
+      return
+    }
+
+    // Retrieves the date the review was made in the correct format
+    const reviewsData = reviewsSnapshot.docs.map((reviewDoc) => {
+      const reviewData = reviewDoc.data()
+      const timestamp = reviewData.Date
+
+      //Convert FB timestamp to JS date
+      const date = timestamp instanceof Timestamp ? timestamp.toDate() : new Date(timestamp)
+      
+      //Formats date to dd/mm/yyyy
+      const formattedDate = date.toLocaleDateString('en-GB')
+      //console.log("Date:", formattedDate)
+
+      return {
+        id: reviewDoc.id,
+        ...reviewData,
+        Date: formattedDate
+      }
+    })
+
+    // update our reviews array with all reviews made for the products
+    setDBreviews(reviewsData)
+    //console.log("DBreviews:", DBreviews)
+  }
+
+  //Returns HTML components to be displayed with relevant data
   return (
     <div className="review-grid">
-      {reviews.map(review => {
-          return (
-            <ReviewCard
-                customer = {review.customer}
-                stars = {review.stars}
-                description = {review.description}
-                date = {review.date}
-            />
-          );
-        })
-      }
+      {DBreviews.length === 0 ? 
+      (<p className = "error-card">There are no reviews on this product yet</p>) : 
+      (DBreviews.map((review) => (
+        <ReviewCard
+          key={review.id}
+          customer={review.User}
+          stars={review.Stars}
+          description={review.Review}
+          date={review.Date}
+        />
+      ))
+    )}
     </div>
   );
 }

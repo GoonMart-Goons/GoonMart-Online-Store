@@ -3,6 +3,15 @@
     display:flexbox;
     padding: 0px 3em;
   }
+
+  .error-card {
+    display:flex;
+    flex-direction: column;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
   
   .review-card {
     display:flex;

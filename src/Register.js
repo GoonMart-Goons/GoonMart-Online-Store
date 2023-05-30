@@ -77,6 +77,7 @@ export default function Register() {
               //const user = userCredentials.user
               //console.log(userCredentials)
               addToDB(data.name, data.surname, data.email)
+              localStorage.setItem('message', data.email);
               setOpenSnackbar(true);
                 //console.log("Added successfully")
                 setSnackbarMessage('Registered successfully! Welcome to GoonMart');
