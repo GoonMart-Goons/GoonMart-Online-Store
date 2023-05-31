@@ -116,12 +116,22 @@ const { userID, prodID } = props;
     const userData = userDoc.data();
     var name = userData.name + " " + userData.surname;
 
+    //Add review to products reviews
     addDoc(collection(db,'Products', prodID, 'Reviews'), {
       Date: Date.now(),
       Review: review,
       Stars: rating,
       User: name,
       UserID: userID /*******Had to add this field to make once off review validation easier *****************/
+    })
+
+    //Add review to User reviews
+    addDoc(collection(db,'Users', userID, 'Reviews'), {
+      Date: Date.now(),
+      Review: review,
+      Stars: rating,
+      User: name,
+      ProdID: prodID /*******Had to add this field to make once off review validation easier *****************/
     })
   }
 

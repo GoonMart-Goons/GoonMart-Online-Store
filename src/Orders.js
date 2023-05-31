@@ -22,6 +22,7 @@ export default function Orders() {
   //***************************Test variables*************************************
   const userID = "dhAjexEe1kpENWuEUxbH"; //Test Case
   const prodID = "WLBntFH5EyKNCXezD4SV"; // SMEG kettle
+  //const prodID = "9H6OJMKeExtZQE25v50m"; // iPhone
   //const userID = "N8UIq9zUVYpIqY9TaqHD" // Kaji Katame
 
   return (
