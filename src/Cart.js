@@ -10,8 +10,6 @@ import { Link } from 'react-router-dom';
 import { db } from './config/Config';
 import { doc, setDoc } from 'firebase/firestore';
 
-// Add cart item to FB
-
 export let userCartItems = {}
 
 const Cart = () => {
