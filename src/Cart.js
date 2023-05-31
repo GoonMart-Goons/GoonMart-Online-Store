@@ -15,14 +15,13 @@ import { doc, setDoc } from 'firebase/firestore';
 export let userCartItems = {}
 
 const Cart = () => {
-    const { cartItems, removeItem, incrementItem, decrementItem } = useContext(CartContext);
+    const { cartItems, removeItem, incrementItem, decrementItem, getCartItems } = useContext(CartContext);
     const navigate = useNavigate();
 
-    // const { addToCart } = useContext(CartContext);
-    // addToCart() //Remeber item here
-
-    console.log("Cart Items:", cartItems)
-    console.log("Image:", cartItems.image)
+    useEffect(() => {
+      getCartItems()
+    }, [])
+    console.log("CART:", cartItems)
 
     const navigateToProductPage = (id) => {
       navigate(`/product/${id}`);

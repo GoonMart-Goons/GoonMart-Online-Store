@@ -4,7 +4,7 @@ import MuiAlert from '@mui/material/Alert';
 
 //Firebase
 import { db } from './config/Config';
-import { doc, setDoc } from 'firebase/firestore';
+import { doc, setDoc, getDocs, collection } from 'firebase/firestore';
 //Logged in user's ID
 import { loggedInUserID } from './Login';
 
@@ -16,6 +16,20 @@ async function addCartItemToDB(item){
     await setDoc(cartItemDocRef, item)
   } catch(error){
     console.error("Failed to add item to cart:", error)
+  }
+}
+
+async function fetchCartItemsFromDB(){
+  try{
+    const cartSnapshot = await getDocs(collection(db, `Users/${loggedInUserID}/Cart`))
+    const DBcartItems = []
+    cartSnapshot.forEach((doc) => {
+      DBcartItems.push(doc.data())
+    })
+    return DBcartItems
+  } catch(error){
+    console.error("Error fetching cart items from database:", error) 
+    return
   }
 }
 
@@ -67,9 +81,14 @@ export const CartProvider = (props) => {
     } 
     else
       addCartItemToDB(item) 
-      
+
     setSnackbarMessage('Item added to cart');
   };
+
+  const getCartItems = async () => {
+    const items = await fetchCartItemsFromDB()
+    setCartItems(items)
+  }
 
   const removeItem = (id) => {
     setCartItems(cartItems.filter((item) => item.id !== id));
@@ -107,6 +126,7 @@ export const CartProvider = (props) => {
         setOpenSnackbar,
         setSnackbarMessage,
         setCartItems,
+        getCartItems
       }}
     >
       {props.children}
