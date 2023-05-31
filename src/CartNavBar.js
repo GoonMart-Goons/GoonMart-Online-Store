@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import {FaCartPlus, FaSearch} from 'react-icons/fa';
+//import {FaCartPlus, FaSearch} from 'react-icons/fa';
 
-function OrdersNavBar() {
+function CartNavBar() {
 
     return (
         //The logo section of the navigation bar
@@ -13,7 +13,7 @@ function OrdersNavBar() {
             <div className="navbar-right">
                 <ul className="navbar-menu">
                     <li>
-                        <a className="navbar-menu-item" href="./Cart"><FaCartPlus/></a>
+                        <a className="navbar-menu-item" href="./Orders">ORDERS</a>
                     </li>
                     <li>
                         <a className="navbar-menu-item" href="./InnerHomepage">HOME</a>
@@ -25,4 +25,4 @@ function OrdersNavBar() {
     );
 }
 
-export default OrdersNavBar;
+export default CartNavBar;

@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Cart.css';
 import { CartContext } from './CartContext';
+import CartNavBar from './CartNavBar';
 import { Link } from 'react-router-dom';
 
 // Logged in user'd ID
@@ -63,6 +64,7 @@ const Cart = () => {
     // }, [cartItems.image])
 
     return (
+      <><CartNavBar/>
       <div className="cart-container">
         <h1>Cart</h1>
         {cartItems.map(item => (
@@ -101,7 +103,7 @@ const Cart = () => {
                 Proceed to Checkout
             </button>
         </div>
-      </div>
+      </div></>
     );
   };
   

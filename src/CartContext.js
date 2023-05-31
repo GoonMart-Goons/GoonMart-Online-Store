@@ -20,6 +20,7 @@ async function addCartItemToDB(item){
 }
 
 async function fetchCartItemsFromDB(){
+  console.log("cart id:", loggedInUserID)
   try{
     const cartSnapshot = await getDocs(collection(db, `Users/${loggedInUserID}/Cart`))
     const DBcartItems = []
