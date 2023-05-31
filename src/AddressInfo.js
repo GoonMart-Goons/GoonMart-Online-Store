@@ -59,7 +59,7 @@ const AddressInfo = (props) => {
   console.log(location)
   console.log(props)
   console.log("Need to see from Address Info")
-  console.log(userCartItems)
+  console.log("CART ITEMS", userCartItems)
   //const { cartDetails, total } = location.state;
     //Snackbar code
     const [openSnackbar, setOpenSnackbar] = useState(false);
@@ -90,7 +90,6 @@ const AddressInfo = (props) => {
 
     const personalInfo = {Name: firstName + " " + surname, Address: address, Town: cityTown, PostalCode: postalCode}
     personalInformation = personalInfo
-    postAddressToDB(personalInfo)
 
     const SignIn = (e) => {
         // e.preventDefault()
@@ -110,6 +109,7 @@ const AddressInfo = (props) => {
                 setSnackbarMessage('Failed to login: ' + error.message);
                 
             })*/
+            postAddressToDB(personalInfo)
             navigate('/checkout')
             console.log("Successful payment");
             //console.log(cartDetails);
