@@ -2,7 +2,36 @@ import React, { useState, createContext, useEffect } from 'react';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 
+//Firebase
+import { db } from './config/Config';
+import { doc, setDoc, getDocs, collection } from 'firebase/firestore';
+//Logged in user's ID
+import { loggedInUserID } from './Login';
+
 export const CartContext = createContext();
+
+async function addCartItemToDB(item){
+  try{
+    const cartItemDocRef = doc(db, `Users/${loggedInUserID}/Cart`, `${item.id}${loggedInUserID}`)
+    await setDoc(cartItemDocRef, item)
+  } catch(error){
+    console.error("Failed to add item to cart:", error)
+  }
+}
+
+async function fetchCartItemsFromDB(){
+  try{
+    const cartSnapshot = await getDocs(collection(db, `Users/${loggedInUserID}/Cart`))
+    const DBcartItems = []
+    cartSnapshot.forEach((doc) => {
+      DBcartItems.push(doc.data())
+    })
+    return DBcartItems
+  } catch(error){
+    console.error("Error fetching cart items from database:", error) 
+    return
+  }
+}
 
 export const CartProvider = (props) => {
   const [cartItems, setCartItems] = useState([]);
@@ -42,8 +71,24 @@ export const CartProvider = (props) => {
       setCartItems([...cartItems, item]);
     }
     setOpenSnackbar(true);
+    const currItem = cartItems.filter((cartItem) => cartItem.id === item.id)
+    console.log("CURR ITEM:", item)
+    if(currItem.length > 0){
+      currItem[0].quantity += item.quantity
+      console.log("CURR CART ITEM:", currItem)
+      console.log("QTY:", currItem[0].quantity)
+      addCartItemToDB(currItem[0])
+    } 
+    else
+      addCartItemToDB(item) 
+
     setSnackbarMessage('Item added to cart');
   };
+
+  const getCartItems = async () => {
+    const items = await fetchCartItemsFromDB()
+    setCartItems(items)
+  }
 
   const removeItem = (id) => {
     setCartItems(cartItems.filter((item) => item.id !== id));
@@ -81,6 +126,7 @@ export const CartProvider = (props) => {
         setOpenSnackbar,
         setSnackbarMessage,
         setCartItems,
+        getCartItems
       }}
     >
       {props.children}

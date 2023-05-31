@@ -8,6 +8,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 
+// Firebase imports
 import { auth, db } from './config/Config'
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { collection, query, where, getDocs } from 'firebase/firestore';
@@ -24,7 +25,26 @@ const validationSchema = yup.object().shape({
       ),
   });
 
+// Allows us to access the logged in user's ID from any page 
 export let loggedInUserID
+
+//Gets the user's ID by querying with their email
+async function getUserIdByEmail(email){
+  try{
+    const usersRef = collection(db, "Users")
+    const q = await getDocs(query(usersRef, where("email", "==", email)))
+
+    if(q.empty){
+      loggedInUserID = null
+      return
+    }
+    loggedInUserID = q.docs[0].id
+    console.log("User's ID:", loggedInUserID)
+  } catch(error){
+    console.error("Error trying to get User ID:", error)
+    loggedInUserID = null
+  }
+}
 
 export default function Login() {
 
@@ -67,23 +87,23 @@ export default function Login() {
       }
     }, [email])
 
-    async function getUserIdByEmail(email){
-      try{
-        const usersRef = collection(db, "Users")
-        const qSnapshot = await getDocs(query(usersRef, where("email", "==", email)))
-        if(qSnapshot.empty){
-          loggedInUserID = null
-          return
-        }
-        loggedInUserID = qSnapshot.docs[0].id
-        console.log("User ID:", loggedInUserID)
-      } catch(error){
-        console.log("Error trying to get User ID:", error)
-        loggedInUserID = null
-      }
-    } 
-
     const [password, setPassword] = useState()
+
+    useEffect(() => {
+      if(email) {
+        getUserIdByEmail(email)
+          .then(() => {
+            if(loggedInUserID){
+              console.log("User ID:", loggedInUserID)
+            } else {
+              console.log("User not found")
+            }
+          })
+          .catch(error => {
+            console.log("Error:", error)
+          })
+      }
+    }, [email])
 
     const SignIn = (e) => {
         // e.preventDefault()

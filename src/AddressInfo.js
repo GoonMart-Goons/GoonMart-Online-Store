@@ -7,8 +7,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import InnerNavigationBar from './InnerNavigationBar';
 import { useLocation } from 'react-router-dom';
-import { db } from './config/Config';
-import { doc, setDoc } from 'firebase/firestore';
 //import Summary from './Summary';
 
 import Snackbar from '@mui/material/Snackbar';
@@ -22,7 +20,7 @@ import { loggedInUserID } from './Login';
 
 //Firebase imports
 import { db } from './config/Config';
-import { collection, addDoc } from 'firebase/firestore';
+import { collection, addDoc, doc, setDoc } from 'firebase/firestore';
 
 export let personalInformation = {}
 
@@ -51,7 +49,6 @@ async function postAddressToDB(personalInfo){
   try {
     const addressDocRef = doc(db, `Users/${loggedInUserID}/Address`, `${loggedInUserID}Address`)
     await setDoc(addressDocRef, personalInfo)
-    console.log("Address info added successfully.")
   } catch(error) {
     console.error("Error while posting address to database:", error)
   }
@@ -62,7 +59,7 @@ const AddressInfo = (props) => {
   console.log(location)
   console.log(props)
   console.log("Need to see from Address Info")
-  console.log(userCartItems)
+  console.log("CART ITEMS", userCartItems)
   //const { cartDetails, total } = location.state;
     //Snackbar code
     const [openSnackbar, setOpenSnackbar] = useState(false);
@@ -93,12 +90,26 @@ const AddressInfo = (props) => {
 
     const personalInfo = {Name: firstName + " " + surname, Address: address, Town: cityTown, PostalCode: postalCode}
     personalInformation = personalInfo
-    postAddressToDB(personalInfo)
 
     const SignIn = (e) => {
         // e.preventDefault()
         
         if (Object.keys(errors).length === 0){
+            /*signInWithEmailAndPassword(auth, cardNum, cardName)
+            .then((userCredentials) => {
+                //console.log("Signed in successfully: ", userCredentials);
+                setOpenSnackbar(true);
+                setSnackbarMessage('Signed in successfully');
+                setTimeout(() => {
+                    navigate('/InnerHomepage'); // navigate to the HOME page
+                }, 2000); //delay for 2 seconds (2000 milliseconds)
+            }).catch((error) => {
+                //console.log("Failed to login: ", error)
+                setOpenSnackbar(true);
+                setSnackbarMessage('Failed to login: ' + error.message);
+                
+            })*/
+            postAddressToDB(personalInfo)
             navigate('/checkout')
             console.log("Successful payment");
             //console.log(cartDetails);

@@ -4,22 +4,35 @@ import './Cart.css';
 import { CartContext } from './CartContext';
 import { Link } from 'react-router-dom';
 
+// Logged in user'd ID
+
 // Firebase imports
-import { storage } from './config/Config';
-import { ref, getDownloadURL} from 'firebase/storage'
+import { db } from './config/Config';
+import { doc, setDoc } from 'firebase/firestore';
+
+// Add cart item to FB
 
 export let userCartItems = {}
 
 const Cart = () => {
-    const { cartItems, removeItem, incrementItem, decrementItem } = useContext(CartContext);
+    const { cartItems, removeItem, incrementItem, decrementItem, getCartItems } = useContext(CartContext);
     const navigate = useNavigate();
-  
-    console.log("Cart Items:", cartItems)
-    console.log("Image:", cartItems.image)
+
+    useEffect(() => {
+      getCartItems()
+    }, [])
+    console.log("CART:", cartItems)
 
     const navigateToProductPage = (id) => {
       navigate(`/product/${id}`);
     }
+
+    const handleProceedToCheckout = () => {
+      if (cartItems.length > 0) {
+          // Proceed to checkout logic here
+          navigate('/addressinfo');
+      }
+    };
 
     userCartItems = cartItems
   
@@ -82,24 +95,13 @@ const Cart = () => {
           <h2>Total: R {total}</h2>
         </div>
         <div>
-          {/*<Link to={{
-            pathname: '/checkout',
-            state: {
-              cartDetails: cartDetails,
-              total: total
-            }
-          }} className="checkout-btn">
-            Proceed to Checkout
-        </Link>*/}
-        <Link to={{
-            pathname: '/addressinfo',
-            state: {
-              cartDetails: cartDetails,
-              total: total
-            }
-          }} className="checkout-btn">
-            Proceed to Checkout
-        </Link>
+            <button
+                className="checkout-btn"
+                disabled={cartItems.length === 0}
+                onClick={handleProceedToCheckout}
+            >
+                Proceed to Checkout
+            </button>
         </div>
       </div>
     );
