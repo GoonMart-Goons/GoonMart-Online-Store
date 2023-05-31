@@ -6,6 +6,8 @@ import AddReview from './AddReview';
 import { CartContext } from './CartContext';
 import { userCartItems } from './Cart';
 
+import { loggedInUserID } from './Login';
+
 export default function Orders() {
   // *****************Reviews stuff -- Maybe should be in a diff file, but oh well**********************
   // Dummy data
@@ -32,6 +34,7 @@ export default function Orders() {
 
   const userID = "dhAjexEe1kpENWuEUxbH"; //Test Case
   const prodID = "WLBntFH5EyKNCXezD4SV"; // SMEG kettle
+  console.log("ID:", loggedInUserID)
   //const prodID = "9H6OJMKeExtZQE25v50m"; // iPhone
   //const userID = "N8UIq9zUVYpIqY9TaqHD" // Kaji Katame
 

@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useContext, useEffect} from 'react'
 import { useForm } from 'react-hook-form';
 import ReactDOM from 'react-dom';
 import * as yup from "yup";
@@ -14,10 +14,41 @@ import MuiAlert from '@mui/material/Alert';
 
 // Get cartItems from Cart.js
 import { userCartItems } from './Cart';
+import { CartContext } from './CartContext';
+import { loggedInUserID } from './Login';
+import { db } from './config/Config';
+import { collection, addDoc, getDocs, deleteDoc, doc } from 'firebase/firestore';
 //import {u} from './AddressInfo'
 
-// To get logged in user info
-import { getUserByEmail, userEmail } from './Login';
+async function addOrderToDB(cartItems){
+  console.log("ID FROM ADD ORDER:", loggedInUserID)
+  try{
+    const ordersRef = collection(db, `Users/${loggedInUserID}/Orders`)
+    const order = {
+      cartItems,
+      timestamp: new Date().toISOString()
+    }
+    const ordersDocRef = await addDoc(ordersRef, order)
+    console.log("Order posted with ID:", ordersDocRef.id)
+    delCartFromDB()
+  } catch(error){
+    console.error("Error posting order:", error)
+  }
+}
+
+async function delCartFromDB(){
+  try{
+    const cartRef = collection(db, `Users/${loggedInUserID}/Cart`)
+    const qSnapshot = await getDocs(cartRef)
+
+    qSnapshot.forEach(async (doc) => {
+      await deleteDoc(doc(doc.id))
+    })
+    console.log("Deleted cart items")
+  } catch(error){
+    console.error("Error deleting cart:", error)
+  }
+}
 
 const validationSchema = yup.object().shape({
     cardNum: yup.string()
@@ -52,6 +83,12 @@ const validationSchema = yup.object().shape({
   });
 
 const Checkout = (props) => {
+  const { cartItems, getCartItems } = useContext(CartContext);
+
+  useEffect(() => {
+    getCartItems()
+  }, [])
+  console.log("CURR ITEMS:", cartItems)
 
   const location = useLocation();
   console.log(location)
@@ -114,12 +151,9 @@ const Checkout = (props) => {
 
     const SignIn = (e) => {
         // e.preventDefault()
-        console.log("Something")
         
         if (Object.keys(errors).length === 0){
-
-
-          
+            addOrderToDB(cartItems)
             navigate("/success")
             console.log("Successful payment");
             //console.log(cartDetails);
@@ -131,7 +165,7 @@ const Checkout = (props) => {
 
     const navigate = useNavigate();
 
-    const summary = userCartItems.map(item => {
+    const summary = cartItems.map(item => {
       return {
         product: item.name,
         quantity: item.quantity,

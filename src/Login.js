@@ -72,22 +72,6 @@ export default function Login() {
 
     const [email, setEmail] = useState()
 
-    useEffect(() => {
-      if(email) {
-        getUserIdByEmail(email)
-          .then(() => {
-            if(loggedInUserID){
-              console.log("User ID:", loggedInUserID)
-            } else {
-              console.log("User not found")
-            }
-          })
-          .catch(error => {
-            console.log("Error:", error)
-          })
-      }
-    }, [email])
-
     const [password, setPassword] = useState()
 
     useEffect(() => {
