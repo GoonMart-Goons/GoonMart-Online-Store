@@ -4,7 +4,7 @@ import MuiAlert from '@mui/material/Alert';
 
 //Firebase
 import { db } from './config/Config';
-import { doc, setDoc, getDocs, collection } from 'firebase/firestore';
+import { doc, setDoc, getDocs, collection, deleteDoc, addDoc } from 'firebase/firestore';
 //Logged in user's ID
 import { loggedInUserID } from './Login';
 
@@ -31,6 +31,34 @@ async function fetchCartItemsFromDB(){
   } catch(error){
     console.error("Error fetching cart items from database:", error) 
     return
+  }
+}
+
+async function addOrderToDB(cartItems){
+  try{
+    const ordersRef = collection(db, `Users/${loggedInUserID}/Orders`)
+    const order = {
+      cartItems,
+      time: new Date().toISOString()
+    }
+    await addDoc(ordersRef, order)
+    console.log("Order posted successfully.")
+  } catch(error){
+    console.log("Error posting order:", error)
+  }
+}
+
+async function delCartFromDB(){
+  try{
+    const cartRef = collection(db, `Users/${loggedInUserID}/Cart`)
+    const qSnap = await getDocs(cartRef)
+
+    qSnap.forEach(async (doc) => {
+      await deleteDoc(doc(doc.id))
+    })
+    console.error("Deleted cart.")
+  } catch(error){
+    console.error("Error trying to delete cart:", error)
   }
 }
 
@@ -91,6 +119,15 @@ export const CartProvider = (props) => {
     setCartItems(items)
   }
 
+  const addToOrders = async () => {
+    addOrderToDB(cartItems)
+    delAllCartItems()
+  }
+
+  const delAllCartItems = async () => {
+    delCartFromDB()
+  }
+
   const removeItem = (id) => {
     setCartItems(cartItems.filter((item) => item.id !== id));
     alert('Item removed from cart');
@@ -127,7 +164,9 @@ export const CartProvider = (props) => {
         setOpenSnackbar,
         setSnackbarMessage,
         setCartItems,
-        getCartItems
+        getCartItems,
+        delAllCartItems,
+        addToOrders
       }}
     >
       {props.children}
