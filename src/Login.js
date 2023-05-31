@@ -24,6 +24,7 @@ const validationSchema = yup.object().shape({
   });
 
 export default function Login() {
+  const [userAdd, setuserAdd]=useState([]);
 
     //Snackbar code
     const [openSnackbar, setOpenSnackbar] = useState(false);
@@ -48,6 +49,8 @@ export default function Login() {
 
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
+
+    //setuserAdd(['Test','Case','123 Rodeo Drive','Johannesburg','Gauteng','South Africa','1234'])
 
     const SignIn = (e) => {
         // e.preventDefault()

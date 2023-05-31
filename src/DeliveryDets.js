@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './Delivery.css';
 
-function ProfilePage() {
+const ProfilePage=({user})=> {
     const [name, setName] = useState('John Doe');
     const [email, setEmail] = useState('johndoe@example.com');
     const [phone, setPhone] = useState('555-555-5555');
@@ -37,41 +37,40 @@ function ProfilePage() {
   <div class="fields fields--2">
     <label class="field">
       <span class="field__label" for="firstname">First name</span>
-      <input class="field__input" type="text" id="firstname" value="John" />
+      <input class="field__input" type="text" id="firstname" value='Test' />
     </label>
     <label class="field">
       <span class="field__label" for="lastname">Last name</span>
-      <input class="field__input" type="text" id="lastname" value="Doe" />
+      <input class="field__input" type="text" id="lastname" value='Case' />
     </label>
     <label class="field">
     <span class="field__label" for="address">Address</span>
-    <input class="field__input" type="text" id="address" />
+    <input class="field__input" type="text" id="address" value='56 Jorissen Street' />
   </label>
   <label class="field">
     <span class="field__label" for="country">Country</span>
-    <select class="field__input" id="country">
-      <option value=""></option>
+    <select class="field__input" type="text" id="country" value='South Africa'>
+      <option value="">South Africa</option>
       <option value="southafrica">South Africa</option>
     </select>
   </label>
   <label class="field">
       <span class="field__label" for="city">City/Town</span>
-      <input class="field__input" type="text" id="city" />
+      <input class="field__input" type="text" id="city" value='Johannesburg' />
     </label>
     <label class="field">
       <span class="field__label" for="province">Province</span>
-      <select class="field__input" id="province">
+      <select class="field__input" id="province" value='Gauteng'>
         <option value=""></option>
         <option value="Gauteng">Gauteng</option>
       </select>
     </label>
     <label class="field">
       <span class="field__label" for="postal">Postal code</span>
-      <input class="field__input" type="text" id="postalcode" />
+      <input class="field__input" type="text" id="postalcode" value='2001' />
     </label>
   </div>
   </div>
-  <button class="button">Continue</button>
 </div>
     );
 }

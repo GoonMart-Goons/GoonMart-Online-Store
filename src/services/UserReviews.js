@@ -5,6 +5,7 @@ import ReviewCard from '../ReviewCard';
 
 
 const UserReviews = ({user}) => { 
+  console.log(user)
     const [ProdDetails, setProdDetails] = React.useState([])
     //console.log(user);
 
@@ -16,18 +17,21 @@ const UserReviews = ({user}) => {
         const prodsRef = collection(db, 'Users')
         const q = query(prodsRef, where('email', '==',user));
         const prodSnapshot = await getDocs(q)
-        const prodDoc = prodSnapshot.docs[0] 
-
-        const reviewsRef = collection(db, 'Products', prodDoc.id, 'Reviews')
+        const prodDoc = prodSnapshot.docs[0]
+        console.log(prodDoc.id)
+        
+        const reviewsRef = collection(db, 'Users', prodDoc.id, 'Reviews')
         const reviewsSnapshot = await getDocs(reviewsRef)
 
         if (reviewsSnapshot.empty){
-            //console.log('This product has no reviews')
+            console.log('This product has no reviews')
             return
           }
+          
 
           const reviewsData = reviewsSnapshot.docs.map((reviewDoc) => {
             const reviewData = reviewDoc.data()
+            
             const timestamp = reviewData.Date
       
             //Convert FB timestamp to JS date
