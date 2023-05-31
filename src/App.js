@@ -10,7 +10,7 @@ import Login from './Login';
 import AccountSettings from './AccountSettings';
 import ProductPageNew from './ProductPageNew';
 import Cart from './Cart';
-import Orders from './Orders';
+//import Orders from './Orders';
 import { CartProvider } from './CartContext';  // import CartProvider
 import Checkout from './Checkout';
 import AddressInfo from './AddressInfo';
@@ -30,7 +30,7 @@ function App() {
                     <Route path = "/productpagenew" element = {<ProductPageNew />} />
                     <Route path = "/product/:id" element = {<ProductPageNew />} />
                     <Route path = "/cart" element = {<Cart />} />
-                    <Route path = "/orders" element = {<Orders />} />
+                  
                     <Route path = "/accountsettings" element = {<AccountSettings />} />
                     <Route path= '/addressinfo' element = {<AddressInfo/>} />
                     <Route path= '/checkout' element = {<Checkout/>} />
