@@ -8,6 +8,7 @@ import './AccountSettings.css';
 import AccountDB from './services/AccountDB';
 import DeliveryDets from './DeliveryDets';
 import UserReviews from './services/UserReviews';
+import AddressDB from './services/AddressDB';
 import ProductPageNavBar from './ProductPageNavBar';
 
 function TabPanel(props) {
@@ -81,7 +82,7 @@ console.log(receivedMessage);
       <AccountDB user={localStorage.getItem('message')}/>
       </TabPanel>
       <TabPanel value={value} index={1}>
-      <DeliveryDets user={localStorage.getItem('address')}/>
+      <AddressDB user={localStorage.getItem('message')}/>
       </TabPanel>
       <TabPanel value={value} index={2}>
       <p>Past Reviews</p>

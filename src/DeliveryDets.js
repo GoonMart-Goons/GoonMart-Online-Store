@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './Delivery.css';
 
-const ProfilePage=({user})=> {
+const ProfilePage=({Town, Name,Surname, Address, PostalC})=> {
     const [name, setName] = useState('John Doe');
     const [email, setEmail] = useState('johndoe@example.com');
     const [phone, setPhone] = useState('555-555-5555');
@@ -37,15 +37,15 @@ const ProfilePage=({user})=> {
   <div class="fields fields--2">
     <label class="field">
       <span class="field__label" for="firstname">First name</span>
-      <input class="field__input" type="text" id="firstname" value='Test' />
+      <input class="field__input" type="text" id="firstname" value={Name} />
     </label>
     <label class="field">
       <span class="field__label" for="lastname">Last name</span>
-      <input class="field__input" type="text" id="lastname" value='Case' />
+      <input class="field__input" type="text" id="lastname" value={Surname} />
     </label>
     <label class="field">
     <span class="field__label" for="address">Address</span>
-    <input class="field__input" type="text" id="address" value='56 Jorissen Street' />
+    <input class="field__input" type="text" id="address" value={Address} />
   </label>
   <label class="field">
     <span class="field__label" for="country">Country</span>
@@ -56,7 +56,7 @@ const ProfilePage=({user})=> {
   </label>
   <label class="field">
       <span class="field__label" for="city">City/Town</span>
-      <input class="field__input" type="text" id="city" value='Johannesburg' />
+      <input class="field__input" type="text" id="city" value={Town} />
     </label>
     <label class="field">
       <span class="field__label" for="province">Province</span>
@@ -67,7 +67,7 @@ const ProfilePage=({user})=> {
     </label>
     <label class="field">
       <span class="field__label" for="postal">Postal code</span>
-      <input class="field__input" type="text" id="postalcode" value='2001' />
+      <input class="field__input" type="text" id="postalcode" value={PostalC} />
     </label>
   </div>
   </div>
