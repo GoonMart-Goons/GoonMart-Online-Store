@@ -8,6 +8,7 @@ import './AccountSettings.css';
 import AccountDB from './services/AccountDB';
 import DeliveryDets from './DeliveryDets';
 import UserReviews from './services/UserReviews';
+import ProductPageNavBar from './ProductPageNavBar';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -59,6 +60,8 @@ function VerticalTabs() {
 console.log(receivedMessage);
 
   return (
+    <>
+    <ProductPageNavBar />
     <Box
       sx={{ flexGrow: 1, bgcolor: 'background.paper', display: 'flex',height: '100vh' }}
     >
@@ -70,26 +73,23 @@ console.log(receivedMessage);
         aria-label="Vertical tabs example"
         sx={{ borderRight: 1, borderColor: 'divider'}}
       >
-        <Tab label="Personal Details" {...a11yProps(0)} sx={{ height:'25vh'}} />
-        <Tab label="Delivery Details" {...a11yProps(1)} sx={{ height:'25vh'}}/>
-        <Tab label="Reviews" {...a11yProps(2)} sx={{ height:'25vh'}}/>
-        <Tab label="Orders" {...a11yProps(3)} sx={{ height:'25vh'}}/>
+        <Tab label="Personal Details" {...a11yProps(0)} sx={{ height:'33vh'}} />
+        <Tab label="Delivery Details" {...a11yProps(1)} sx={{ height:'33vh'}}/>
+        <Tab label="Reviews" {...a11yProps(2)} sx={{ height:'33vh'}}/>
       </Tabs>
       <TabPanel value={value} index={0}>
       <AccountDB user={localStorage.getItem('message')}/>
       </TabPanel>
       <TabPanel value={value} index={1}>
-      <DeliveryDets />
+      <DeliveryDets user={localStorage.getItem('address')}/>
       </TabPanel>
       <TabPanel value={value} index={2}>
       <p>Past Reviews</p>
       <hr />
       <UserReviews user={localStorage.getItem('message')}/>
       </TabPanel>
-      <TabPanel value={value} index={3}>
-        Item Four
-      </TabPanel>
     </Box>
+    </>
   );
 }
 export default VerticalTabs;

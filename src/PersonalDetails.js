@@ -50,11 +50,6 @@ const ProfilePage=({Fname,Fsurname,Femail})=> {
                     <label htmlFor="password">Password:</label>
                     <input type="password" id="password" value={password} onChange={handlePasswordChange} />
                 </div>
-
-                <div className="profile-field">
-                    <button type="submit" className="btnSub">Save Changes</button>
-                </div>
-               
                 
             </div></>
     );
