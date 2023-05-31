@@ -3,11 +3,7 @@ import './Reviews.css';
 import OrdersNavBar from './OrdersNavBar';
 import AddReview from './AddReview';
 
-//Firebase imports
-import { auth, db } from './config/Config'
-import { collection, addDoc, doc, getDoc, getDocs,  query, where } from 'firebase/firestore'
-
-//Gets userID of logged in user from Login page
+import { userCartItems } from './Cart';
 import { loggedInUserID } from './Login';
 
 export default function Orders() {
@@ -19,7 +15,11 @@ export default function Orders() {
     { id: '3', name: 'Product Three', price: 30.99, quantity: 3, image: '/path/to/image3.jpg' },
   ]);
 
+  setDummyOrders(userCartItems)
+  console.log("Cart items:", userCartItems)
+
   //***************************Test variables*************************************
+
   const userID = "dhAjexEe1kpENWuEUxbH"; //Test Case
   const prodID = "WLBntFH5EyKNCXezD4SV"; // SMEG kettle
   //const prodID = "9H6OJMKeExtZQE25v50m"; // iPhone
