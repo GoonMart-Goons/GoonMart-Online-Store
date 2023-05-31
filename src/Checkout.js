@@ -107,7 +107,9 @@ const Checkout = (props) => {
         console.log("Something")
         
         if (Object.keys(errors).length === 0){
-          console.log("lets go")
+
+
+          
             navigate("/success")
             console.log("Successful payment");
             //console.log(cartDetails);
