@@ -95,7 +95,17 @@ const Checkout = (props) => {
       let discountValue = listOfPromos[promoCode]
       //console.log(discountValue)
       let finalPrice = originalPrice*discountValue;
+      finalPrice = formatNumber(finalPrice)
       return finalPrice
+    }
+
+    function formatNumber(number) {
+      let roundedNumber = Math.round(number * 100) / 100;
+      let formattedNumber = roundedNumber.toFixed(2); 
+      /*if (formattedNumber.charAt(formattedNumber.length - 1) === '0') {
+        formattedNumber += '0';
+      }*/
+      return formattedNumber;
     }
 
     
@@ -136,6 +146,8 @@ const Checkout = (props) => {
         //console.log(element.price)
         numToDisplay += element.price;
       });
+      let number = 13970.949999999999;
+      numToDisplay = formatNumber(numToDisplay)
       return numToDisplay;
     }
 
@@ -211,7 +223,7 @@ const Checkout = (props) => {
                     <input className="form-input" type="name"  name="CVV" {...register("CVV")} placeholder='' value = {CVV}
                     onChange = {(e) => setCardCVV(e.target.value)} />
                     {errors.CVV && <error className="form-error">{errors.CVV.message}</error>}
-                    <button type="submit" className="form-btn" onClick={() => SignIn()}>Purchase</button>
+                    <button type="submit" className="form-btn">Purchase</button>
                 </form>
             </div>
         </div>
