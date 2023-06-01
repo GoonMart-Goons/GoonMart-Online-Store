@@ -4,7 +4,7 @@ import MuiAlert from '@mui/material/Alert';
 
 //Firebase
 import { db } from './config/Config';
-import { doc, setDoc, getDocs, collection, deleteDoc, addDoc } from 'firebase/firestore';
+import { doc, setDoc, getDocs, collection, deleteDoc, addDoc, updateDoc, increment } from 'firebase/firestore';
 
 //Logged in user's ID
 // import { loggedInUserID } from './Login';
@@ -57,7 +57,8 @@ async function delCartFromDB(){
     qSnap.forEach(async (doc) => {
       await deleteDoc(doc(doc.id))
     })
-  } catch(error){
+  } catch(error) {
+    console.error("Error deleting the cart", error)
   }
 }
 
@@ -78,6 +79,28 @@ async function getOrdersFromDB(){
     return DBorders
   } catch(error){
     console.error("Error fetching orders:", error)
+  }
+}
+
+async function incCartItemInDB(itemID, num){
+  try{
+    const loggedInUserID = sessionStorage.getItem('loggedInUserID')
+    const itemDocRef = doc(db, `Users/${loggedInUserID}/Cart`, `${itemID}${loggedInUserID}`)
+    await updateDoc(itemDocRef, { quantity: increment(num) })
+    console.log("Qty incremented")
+  } catch(error){
+    console.error("Error updating qty:", error)
+  }
+}
+
+async function removeItemFromDB(itemID){
+  try{
+    const loggedInUserID = sessionStorage.getItem('loggedInUserID')
+    const itemDocRef = doc(db, `Users/${loggedInUserID}/Cart`, `${itemID}${loggedInUserID}`)
+    await deleteDoc(itemDocRef)
+    console.log("Item deleted from cart:", loggedInUserID)
+  } catch(error){
+    console.error("Error trying to delete item:", error)
   }
 }
 
@@ -152,6 +175,7 @@ export const CartProvider = (props) => {
 
   const removeItem = (id) => {
     setCartItems(cartItems.filter((item) => item.id !== id));
+    removeItemFromDB(id)
   };
 
   const incrementItem = (id) => {
@@ -162,6 +186,8 @@ export const CartProvider = (props) => {
           : cartItem
       )
     );
+    incCartItemInDB(id, 1)
+
   };
 
   const decrementItem = (id) => {
@@ -172,6 +198,14 @@ export const CartProvider = (props) => {
           : cartItem
       )
     );
+
+    cartItems.forEach((cartItem) => {
+      if (cartItem.id === id && cartItem.quantity > 1){
+        (() => {
+          incCartItemInDB(id, -1)
+        })()
+      }
+    })
   };
 
   return (
