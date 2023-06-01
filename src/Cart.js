@@ -20,7 +20,7 @@ const Cart = () => {
     useEffect(() => {
       getCartItems()
     }, [])
-    console.log("CART:", cartItems)
+    // console.log("CART:", cartItems)
 
     const navigateToProductPage = (id) => {
       navigate(`/product/${id}`);

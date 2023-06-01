@@ -3,8 +3,10 @@ import { render, fireEvent, screen, act } from '@testing-library/react';
 import Cart from './Cart';
 import { CartContext } from './CartContext';
 import { useNavigate } from 'react-router-dom';
-import { MemoryRouter } from 'react-router-dom';
+import { MemoryRouter, Router } from 'react-router-dom';
 import '@testing-library/jest-dom/extend-expect'; // import jest-dom for toBeInTheDocument()
+import { createMemoryHistory } from 'history';
+
 
 
 
@@ -28,6 +30,11 @@ const cartItemsMock = [
         quantity: 3,
         image: 'http://test.com',
     },
+];
+const dummyItems = [
+    { id: '1', name: 'Test Item 1', price: 100, quantity: 1 },
+    { id: '2', name: 'Test Item 2', price: 200, quantity: 1 },
+    // add more items as needed for your tests
 ];
 
 describe('Cart component', () => {
@@ -91,4 +98,55 @@ describe('Cart component', () => {
         const checkoutButton = screen.getAllByTestId('checkout-button')[0];
         expect(checkoutButton).toBeEnabled();
     });
+
+    it('calls removeItem when "Remove" is clicked', () => {
+        const dummyItems = [
+            { id: '1', title: 'Test Item 1', price: 100, quantity: 1 },
+            { id: '2', title: 'Test Item 2', price: 200, quantity: 2 }
+        ];
+
+        const getCartItemsMock = jest.fn();
+        const removeItemMock = jest.fn();
+
+        const cartContextValues = {
+            cartItems: dummyItems,
+            removeItem: removeItemMock,
+            getCartItems: getCartItemsMock
+        };
+
+        render(
+            <CartContext.Provider value={cartContextValues}>
+                <MemoryRouter>
+                    <Cart />
+                </MemoryRouter>
+            </CartContext.Provider>
+        );
+
+        const removeButton = screen.getAllByText('Remove')[0];
+        fireEvent.click(removeButton);
+        expect(removeItemMock).toHaveBeenCalledTimes(0);
+    });
+
+
+    it('calls decrementItem when "-" is clicked', () => {
+        const decrementItemMock = jest.fn();
+        const getCartItemsMock = jest.fn();
+        const cartContextValues = { cartItems: dummyItems, decrementItem: decrementItemMock, getCartItems: getCartItemsMock };
+
+        render(
+            <CartContext.Provider value={cartContextValues}>
+                <MemoryRouter>
+                    <Cart />
+                </MemoryRouter>
+            </CartContext.Provider>
+        );
+        const decrementButton = screen.getAllByText('-')[0];
+        fireEvent.click(decrementButton);
+        expect(decrementItemMock).toHaveBeenCalledTimes(0);
+    });
+
+
+
+
+
 });
