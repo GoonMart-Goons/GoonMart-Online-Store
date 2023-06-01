@@ -99,6 +99,7 @@ const Cart = () => {
                 className="checkout-btn"
                 disabled={cartItems.length === 0}
                 onClick={handleProceedToCheckout}
+                data-testid="checkout-button"
             >
                 Proceed to Checkout
             </button>

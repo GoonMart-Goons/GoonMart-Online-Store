@@ -1,113 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="41" failures="0" errors="0" time="7.246">
-  <testsuite name="ProductPageNew component" errors="0" failures="0" skipped="0" timestamp="2023-05-18T07:21:39" time="1.285" tests="5">
-    <testcase classname="ProductPageNew component renders the component correctly" name="ProductPageNew component renders the component correctly" time="0.088">
+<testsuites name="jest tests" tests="6" failures="0" errors="0" time="1.243">
+  <testsuite name="Cart component" errors="0" failures="0" skipped="0" timestamp="2023-06-01T18:24:30" time="0.888" tests="6">
+    <testcase classname="Cart component renders the cart items correctly" name="Cart component renders the cart items correctly" time="0.042">
     </testcase>
-    <testcase classname="ProductPageNew component increments quantity" name="ProductPageNew component increments quantity" time="0.033">
+    <testcase classname="Cart component renders the total price correctly" name="Cart component renders the total price correctly" time="0.006">
     </testcase>
-    <testcase classname="ProductPageNew component decrements quantity" name="ProductPageNew component decrements quantity" time="0.018">
+    <testcase classname="Cart component increments quantity when &quot;+&quot; is clicked" name="Cart component increments quantity when &quot;+&quot; is clicked" time="0.01">
     </testcase>
-    <testcase classname="ProductPageNew component does not decrement quantity below 1" name="ProductPageNew component does not decrement quantity below 1" time="0.01">
+    <testcase classname="Cart component decrements quantity when &quot;-&quot; is clicked" name="Cart component decrements quantity when &quot;-&quot; is clicked" time="0.005">
     </testcase>
-    <testcase classname="ProductPageNew component adds to cart when &quot;Add to Cart&quot; button is clicked" name="ProductPageNew component adds to cart when &quot;Add to Cart&quot; button is clicked" time="0.009">
+    <testcase classname="Cart component removes item when &quot;Remove&quot; is clicked" name="Cart component removes item when &quot;Remove&quot; is clicked" time="0.005">
     </testcase>
-  </testsuite>
-  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2023-05-18T07:21:41" time="0.964" tests="1">
-    <testcase classname=" renders GoonMart logo" name=" renders GoonMart logo" time="0.069">
-    </testcase>
-  </testsuite>
-  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2023-05-18T07:21:42" time="0.555" tests="3">
-    <testcase classname=" renders InnerHomepage without crashing" name=" renders InnerHomepage without crashing" time="0.061">
-    </testcase>
-    <testcase classname=" renders InnerNavigationBar and Categories" name=" renders InnerNavigationBar and Categories" time="0.229">
-    </testcase>
-    <testcase classname=" search function updates state correctly" name=" search function updates state correctly" time="0">
-    </testcase>
-  </testsuite>
-  <testsuite name="CategoryList" errors="0" failures="0" skipped="0" timestamp="2023-05-18T07:21:42" time="0.57" tests="2">
-    <testcase classname="CategoryList renders all categories" name="CategoryList renders all categories" time="0.059">
-    </testcase>
-    <testcase classname="CategoryList filters products by category when clicked" name="CategoryList filters products by category when clicked" time="0.227">
-    </testcase>
-  </testsuite>
-  <testsuite name="ProductCard" errors="0" failures="0" skipped="0" timestamp="2023-05-18T07:21:43" time="0.581" tests="1">
-    <testcase classname="ProductCard renders product name and price correctly" name="ProductCard renders product name and price correctly" time="0.055">
-    </testcase>
-  </testsuite>
-  <testsuite name="Login Component" errors="0" failures="0" skipped="0" timestamp="2023-05-18T07:21:43" time="0.461" tests="5">
-    <testcase classname="Login Component renders Login form" name="Login Component renders Login form" time="0.021">
-    </testcase>
-    <testcase classname="Login Component submitting empty form shows validation errors" name="Login Component submitting empty form shows validation errors" time="0.071">
-    </testcase>
-    <testcase classname="Login Component submitting short password form shows validation error" name="Login Component submitting short password form shows validation error" time="0.012">
-    </testcase>
-    <testcase classname="Login Component submitting valid form calls SignIn function" name="Login Component submitting valid form calls SignIn function" time="0">
-    </testcase>
-    <testcase classname="Login Component clicking on &quot;Register&quot; button navigates to registration page" name="Login Component clicking on &quot;Register&quot; button navigates to registration page" time="0">
-    </testcase>
-  </testsuite>
-  <testsuite name="Register" errors="0" failures="0" skipped="0" timestamp="2023-05-18T07:21:44" time="0.478" tests="2">
-    <testcase classname="Register should invalidate empty name field" name="Register should invalidate empty name field" time="0.058">
-    </testcase>
-    <testcase classname="Register should invalidate empty fields" name="Register should invalidate empty fields" time="0.014">
-    </testcase>
-  </testsuite>
-  <testsuite name="Cart Component" errors="0" failures="0" skipped="0" timestamp="2023-05-18T07:21:44" time="0.306" tests="6">
-    <testcase classname="Cart Component renders cart items" name="Cart Component renders cart items" time="0.017">
-    </testcase>
-    <testcase classname="Cart Component calls removeItem when the remove button is clicked" name="Cart Component calls removeItem when the remove button is clicked" time="0.005">
-    </testcase>
-    <testcase classname="Cart Component calls decrementItem when the decrement button is clicked" name="Cart Component calls decrementItem when the decrement button is clicked" time="0.003">
-    </testcase>
-    <testcase classname="Cart Component calls incrementItem when the increment button is clicked" name="Cart Component calls incrementItem when the increment button is clicked" time="0.006">
-    </testcase>
-    <testcase classname="Cart Component navigates to the product page when a product is clicked" name="Cart Component navigates to the product page when a product is clicked" time="0.002">
-    </testcase>
-    <testcase classname="Cart Component navigates to the checkout page when Proceed to Checkout button is clicked" name="Cart Component navigates to the checkout page when Proceed to Checkout button is clicked" time="0.001">
-    </testcase>
-  </testsuite>
-  <testsuite name="CartContext" errors="0" failures="0" skipped="0" timestamp="2023-05-18T07:21:45" time="0.276" tests="5">
-    <testcase classname="CartContext provides cartItems, addToCart, removeItem, incrementItem, decrementItem values" name="CartContext provides cartItems, addToCart, removeItem, incrementItem, decrementItem values" time="0.013">
-    </testcase>
-    <testcase classname="CartContext calls setOpenSnackbar and setSnackbarMessage when addToCart is called" name="CartContext calls setOpenSnackbar and setSnackbarMessage when addToCart is called" time="0.002">
-    </testcase>
-    <testcase classname="CartContext calls setCartItems and alert when removeItem is called" name="CartContext calls setCartItems and alert when removeItem is called" time="0">
-    </testcase>
-    <testcase classname="CartContext calls setCartItems when incrementItem is called" name="CartContext calls setCartItems when incrementItem is called" time="0.001">
-    </testcase>
-    <testcase classname="CartContext calls setCartItems when decrementItem is called" name="CartContext calls setCartItems when decrementItem is called" time="0">
-    </testcase>
-  </testsuite>
-  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2023-05-18T07:21:45" time="0.209" tests="3">
-    <testcase classname=" renders InnerNavigationBar component without crashing" name=" renders InnerNavigationBar component without crashing" time="0.016">
-    </testcase>
-    <testcase classname=" calls onSearch function when form is submitted" name=" calls onSearch function when form is submitted" time="0.009">
-    </testcase>
-    <testcase classname=" renders navigation links correctly" name=" renders navigation links correctly" time="0.011">
-    </testcase>
-  </testsuite>
-  <testsuite name="NavigationBar" errors="0" failures="0" skipped="0" timestamp="2023-05-18T07:21:45" time="0.199" tests="4">
-    <testcase classname="NavigationBar renders the GoonMart logo" name="NavigationBar renders the GoonMart logo" time="0.015">
-    </testcase>
-    <testcase classname="NavigationBar renders the search input" name="NavigationBar renders the search input" time="0.003">
-    </testcase>
-    <testcase classname="NavigationBar renders the search button with FaSearch icon" name="NavigationBar renders the search button with FaSearch icon" time="0.003">
-    </testcase>
-    <testcase classname="NavigationBar renders the LOGIN and REGISTER buttons" name="NavigationBar renders the LOGIN and REGISTER buttons" time="0.003">
-    </testcase>
-  </testsuite>
-  <testsuite name="ReviewCard" errors="0" failures="0" skipped="0" timestamp="2023-05-18T07:21:45" time="0.202" tests="1">
-    <testcase classname="ReviewCard renders customer name, description, stars, and date" name="ReviewCard renders customer name, description, stars, and date" time="0.015">
-    </testcase>
-  </testsuite>
-  <testsuite name="Orders" errors="0" failures="0" skipped="0" timestamp="2023-05-18T07:21:46" time="0.193" tests="1">
-    <testcase classname="Orders renders the component" name="Orders renders the component" time="0.033">
-    </testcase>
-  </testsuite>
-  <testsuite name="WelcomeSection" errors="0" failures="0" skipped="0" timestamp="2023-05-18T07:21:46" time="0.176" tests="2">
-    <testcase classname="WelcomeSection renders the welcome message" name="WelcomeSection renders the welcome message" time="0.011">
-    </testcase>
-    <testcase classname="WelcomeSection renders the happy shopping message" name="WelcomeSection renders the happy shopping message" time="0.002">
+    <testcase classname="Cart component disables &quot;Proceed to Checkout&quot; button when no items in cart" name="Cart component disables &quot;Proceed to Checkout&quot; button when no items in cart" time="0.008">
     </testcase>
   </testsuite>
 </testsuites>
