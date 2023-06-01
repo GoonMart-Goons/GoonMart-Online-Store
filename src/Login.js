@@ -39,6 +39,7 @@ async function getUserIdByEmail(email){
       return
     }
     loggedInUserID = q.docs[0].id
+    sessionStorage.setItem("loggedInUserID", q.docs[0].id)
     console.log("User's ID:", loggedInUserID)
   } catch(error){
     console.error("Error trying to get User ID:", error)

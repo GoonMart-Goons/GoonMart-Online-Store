@@ -16,7 +16,7 @@ import MuiAlert from '@mui/material/Alert';
 import { userCartItems } from './Cart';
 
 // To get logged in user info
-import { loggedInUserID } from './Login';
+// import { loggedInUserID } from './Login';
 
 //Firebase imports
 import { db } from './config/Config';
@@ -47,8 +47,10 @@ const validationSchema = yup.object().shape({
 //Add addy to FireStore
 async function postAddressToDB(personalInfo){
   try {
+    const loggedInUserID = sessionStorage.getItem('loggedInUserID')
     const addressDocRef = doc(db, `Users/${loggedInUserID}/Address`, `${loggedInUserID}Address`)
     await setDoc(addressDocRef, personalInfo)
+    console.log("Added/Updated address:", loggedInUserID)
   } catch(error) {
     console.error("Error while posting address to database:", error)
   }

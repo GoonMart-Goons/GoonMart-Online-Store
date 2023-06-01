@@ -15,12 +15,13 @@ import MuiAlert from '@mui/material/Alert';
 // Get cartItems from Cart.js
 import { userCartItems } from './Cart';
 import { CartContext } from './CartContext';
-import { loggedInUserID } from './Login';
+// import { loggedInUserID } from './Login';
 import { db } from './config/Config';
 import { collection, addDoc, getDocs, deleteDoc, doc } from 'firebase/firestore';
 //import {u} from './AddressInfo'
 
 async function addOrderToDB(cartItems){
+  const loggedInUserID = sessionStorage.getItem('loggedInUserID')
   console.log("ID FROM ADD ORDER:", loggedInUserID)
   try{
     const ordersRef = collection(db, `Users/${loggedInUserID}/Orders`)
@@ -29,7 +30,7 @@ async function addOrderToDB(cartItems){
       timestamp: new Date().toISOString()
     }
     const ordersDocRef = await addDoc(ordersRef, order)
-    console.log("Order posted with ID:", ordersDocRef.id)
+    console.log("Order posted:", loggedInUserID)
     delCartFromDB()
   } catch(error){
     console.error("Error posting order:", error)
@@ -38,13 +39,14 @@ async function addOrderToDB(cartItems){
 
 async function delCartFromDB(){
   try{
+    const loggedInUserID = sessionStorage.getItem('loggedInUserID')
     const cartRef = collection(db, `Users/${loggedInUserID}/Cart`)
     const qSnapshot = await getDocs(cartRef)
 
     qSnapshot.forEach(async (doc) => {
-      await deleteDoc(doc(doc.id))
+      await deleteDoc(doc.ref)
     })
-    console.log("Deleted cart items")
+    console.log("Cart deleted:", loggedInUserID)
   } catch(error){
     console.error("Error deleting cart:", error)
   }
