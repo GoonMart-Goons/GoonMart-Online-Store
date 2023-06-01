@@ -15,9 +15,7 @@ async function addCartItemToDB(item){
     const loggedInUserID = sessionStorage.getItem('loggedInUserID')
     const cartItemDocRef = doc(db, `Users/${loggedInUserID}/Cart`, `${item.id}${loggedInUserID}`)
     await setDoc(cartItemDocRef, item)
-    console.log("Successfully added item[s] to cart:", loggedInUserID)
   } catch(error){
-    console.error("Failed to add item to cart:", error)
   }
 }
 
@@ -30,10 +28,8 @@ async function fetchCartItemsFromDB(){
     cartSnapshot.forEach((doc) => {
       DBcartItems.push(doc.data())
     })
-    console.log("Successfully got item[s] from cart:", loggedInUserID)
     return DBcartItems
   } catch(error){
-    console.error("Error fetching cart items from database:", error) 
     return
   }
 }
@@ -47,9 +43,7 @@ async function addOrderToDB(cartItems){
       time: new Date().toISOString()
     }
     await addDoc(ordersRef, order)
-    console.log("Successfully posted order:", loggedInUserID)
   } catch(error){
-    console.log("Error posting order:", error)
   }
 }
 
@@ -62,9 +56,7 @@ async function delCartFromDB(){
     qSnap.forEach(async (doc) => {
       await deleteDoc(doc(doc.id))
     })
-    console.log("Successfully deleted cart:", loggedInUserID)
   } catch(error){
-    console.error("Error trying to delete cart:", error)
   }
 }
 
@@ -110,12 +102,10 @@ export const CartProvider = (props) => {
     console.log("CURR ITEM:", item)
     if(currItem.length > 0){
       currItem[0].quantity += item.quantity
-      console.log("CURR CART ITEM:", currItem)
-      console.log("QTY:", currItem[0].quantity)
       addCartItemToDB(currItem[0])
-    } 
+    }
     else
-      addCartItemToDB(item) 
+      addCartItemToDB(item)
 
     setSnackbarMessage('Item added to cart');
   };
@@ -136,7 +126,6 @@ export const CartProvider = (props) => {
 
   const removeItem = (id) => {
     setCartItems(cartItems.filter((item) => item.id !== id));
-    alert('Item removed from cart');
   };
 
   const incrementItem = (id) => {

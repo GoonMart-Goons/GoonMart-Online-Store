@@ -1,58 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="9" failures="1" errors="0" time="1.34">
-  <testsuite name="Cart component" errors="0" failures="1" skipped="0" timestamp="2023-06-01T19:50:44" time="0.969" tests="9">
-    <testcase classname="Cart component renders the cart items correctly" name="Cart component renders the cart items correctly" time="0.019">
+<testsuites name="jest tests" tests="5" failures="0" errors="0" time="1.528">
+  <testsuite name="CartProvider" errors="0" failures="0" skipped="0" timestamp="2023-06-01T20:19:26" time="1.176" tests="5">
+    <testcase classname="CartProvider adds items to cart correctly" name="CartProvider adds items to cart correctly" time="0.264">
     </testcase>
-    <testcase classname="Cart component renders the total price correctly" name="Cart component renders the total price correctly" time="0.005">
+    <testcase classname="CartProvider removes items from cart correctly" name="CartProvider removes items from cart correctly" time="0.014">
     </testcase>
-    <testcase classname="Cart component increments quantity when &quot;+&quot; is clicked" name="Cart component increments quantity when &quot;+&quot; is clicked" time="0.005">
+    <testcase classname="CartProvider increments and decrements item quantity correctly" name="CartProvider increments and decrements item quantity correctly" time="0.021">
     </testcase>
-    <testcase classname="Cart component decrements quantity when &quot;-&quot; is clicked" name="Cart component decrements quantity when &quot;-&quot; is clicked" time="0.003">
+    <testcase classname="CartProvider increments quantity if item is already in cart" name="CartProvider increments quantity if item is already in cart" time="0.008">
     </testcase>
-    <testcase classname="Cart component removes item when &quot;Remove&quot; is clicked" name="Cart component removes item when &quot;Remove&quot; is clicked" time="0.003">
-    </testcase>
-    <testcase classname="Cart component disables &quot;Proceed to Checkout&quot; button when no items in cart" name="Cart component disables &quot;Proceed to Checkout&quot; button when no items in cart" time="0.006">
-    </testcase>
-    <testcase classname="Cart component calls removeItem when &quot;Remove&quot; is clicked" name="Cart component calls removeItem when &quot;Remove&quot; is clicked" time="0.005">
-    </testcase>
-    <testcase classname="Cart component calls decrementItem when &quot;-&quot; is clicked" name="Cart component calls decrementItem when &quot;-&quot; is clicked" time="0.005">
-    </testcase>
-    <testcase classname="Cart component proceeds to checkout when there are items in the cart" name="Cart component proceeds to checkout when there are items in the cart" time="0.073">
-      <failure>TypeError: Cannot read properties of undefined (reading &apos;pathname&apos;)
-    at Router (/Users/kudzaisaurombe/GoonMart-Online-Store/node_modules/react-router/lib/components.tsx:354:5)
-    at renderWithHooks (/Users/kudzaisaurombe/GoonMart-Online-Store/node_modules/react-dom/cjs/react-dom.development.js:16305:18)
-    at mountIndeterminateComponent (/Users/kudzaisaurombe/GoonMart-Online-Store/node_modules/react-dom/cjs/react-dom.development.js:20074:13)
-    at beginWork (/Users/kudzaisaurombe/GoonMart-Online-Store/node_modules/react-dom/cjs/react-dom.development.js:21587:16)
-    at beginWork$1 (/Users/kudzaisaurombe/GoonMart-Online-Store/node_modules/react-dom/cjs/react-dom.development.js:27426:14)
-    at performUnitOfWork (/Users/kudzaisaurombe/GoonMart-Online-Store/node_modules/react-dom/cjs/react-dom.development.js:26560:12)
-    at workLoopSync (/Users/kudzaisaurombe/GoonMart-Online-Store/node_modules/react-dom/cjs/react-dom.development.js:26466:5)
-    at renderRootSync (/Users/kudzaisaurombe/GoonMart-Online-Store/node_modules/react-dom/cjs/react-dom.development.js:26434:7)
-    at recoverFromConcurrentError (/Users/kudzaisaurombe/GoonMart-Online-Store/node_modules/react-dom/cjs/react-dom.development.js:25850:20)
-    at performConcurrentWorkOnRoot (/Users/kudzaisaurombe/GoonMart-Online-Store/node_modules/react-dom/cjs/react-dom.development.js:25750:22)
-    at flushActQueue (/Users/kudzaisaurombe/GoonMart-Online-Store/node_modules/react/cjs/react.development.js:2667:24)
-    at act (/Users/kudzaisaurombe/GoonMart-Online-Store/node_modules/react/cjs/react.development.js:2582:11)
-    at /Users/kudzaisaurombe/GoonMart-Online-Store/node_modules/@testing-library/react/dist/act-compat.js:46:25
-    at renderRoot (/Users/kudzaisaurombe/GoonMart-Online-Store/node_modules/@testing-library/react/dist/pure.js:161:26)
-    at render (/Users/kudzaisaurombe/GoonMart-Online-Store/node_modules/@testing-library/react/dist/pure.js:247:10)
-    at Object.&lt;anonymous&gt; (/Users/kudzaisaurombe/GoonMart-Online-Store/src/Cart.test.js:159:15)
-    at Promise.then.completed (/Users/kudzaisaurombe/GoonMart-Online-Store/node_modules/jest-circus/build/utils.js:391:28)
-    at new Promise (&lt;anonymous&gt;)
-    at callAsyncCircusFn (/Users/kudzaisaurombe/GoonMart-Online-Store/node_modules/jest-circus/build/utils.js:316:10)
-    at _callCircusTest (/Users/kudzaisaurombe/GoonMart-Online-Store/node_modules/jest-circus/build/run.js:218:40)
-    at _runTest (/Users/kudzaisaurombe/GoonMart-Online-Store/node_modules/jest-circus/build/run.js:155:3)
-    at _runTestsForDescribeBlock (/Users/kudzaisaurombe/GoonMart-Online-Store/node_modules/jest-circus/build/run.js:66:9)
-    at _runTestsForDescribeBlock (/Users/kudzaisaurombe/GoonMart-Online-Store/node_modules/jest-circus/build/run.js:60:9)
-    at run (/Users/kudzaisaurombe/GoonMart-Online-Store/node_modules/jest-circus/build/run.js:25:3)
-    at runAndTransformResultsToJestFormat (/Users/kudzaisaurombe/GoonMart-Online-Store/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:170:21)
-    at jestAdapter (/Users/kudzaisaurombe/GoonMart-Online-Store/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:82:19)
-    at runTestInternal (/Users/kudzaisaurombe/GoonMart-Online-Store/node_modules/jest-runner/build/runTest.js:389:16)
-    at runTest (/Users/kudzaisaurombe/GoonMart-Online-Store/node_modules/jest-runner/build/runTest.js:475:34)
-    at TestRunner.runTests (/Users/kudzaisaurombe/GoonMart-Online-Store/node_modules/jest-runner/build/index.js:101:12)
-    at TestScheduler.scheduleTests (/Users/kudzaisaurombe/GoonMart-Online-Store/node_modules/@jest/core/build/TestScheduler.js:333:13)
-    at runJest (/Users/kudzaisaurombe/GoonMart-Online-Store/node_modules/@jest/core/build/runJest.js:404:19)
-    at _run10000 (/Users/kudzaisaurombe/GoonMart-Online-Store/node_modules/@jest/core/build/cli/index.js:320:7)
-    at runCLI (/Users/kudzaisaurombe/GoonMart-Online-Store/node_modules/@jest/core/build/cli/index.js:173:3)
-    at Object.run (/Users/kudzaisaurombe/GoonMart-Online-Store/node_modules/jest-cli/build/cli/index.js:155:37)</failure>
+    <testcase classname="CartProvider fetches cart items from Firebase" name="CartProvider fetches cart items from Firebase" time="0">
     </testcase>
   </testsuite>
 </testsuites>

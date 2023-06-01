@@ -1,130 +1,174 @@
-import React, {useState} from 'react';
-import { CartContext, CartProvider } from './CartContext';
-import '@testing-library/jest-dom/extend-expect';
-import { render, screen, fireEvent } from '@testing-library/react';
+import React from 'react';
+import {render, fireEvent, renderHook} from '@testing-library/react';
+import { CartProvider, CartContext } from './CartContext';
+import { act } from 'react-dom/test-utils';
+import '@testing-library/jest-dom/extend-expect'; // import jest-dom for toBeInTheDocument()
+const projectId = 'my-test-project'; // Use a unique string.
 
-describe('CartContext', () => {
-    test('provides cartItems, addToCart, removeItem, incrementItem, decrementItem values', () => {
-        const cartItems = [
-            { id: 1, name: 'Item 1', price: 10, quantity: 2 },
-            { id: 2, name: 'Item 2', price: 20, quantity: 1 },
-        ];
 
-        const addToCart = jest.fn();
-        const removeItem = jest.fn();
-        const incrementItem = jest.fn();
-        const decrementItem = jest.fn();
 
-        render(
-            <CartContext.Provider value={{ cartItems, addToCart, removeItem, incrementItem, decrementItem }}>
-                <MockComponent />
-            </CartContext.Provider>
+
+describe('CartProvider', () => {
+    it('adds items to cart correctly', async () => {
+        const testItem = { id: 'test', name: 'Test Item', price: 10, quantity: 1 };
+        const TestComponent = () => {
+            const { addToCart, cartItems } = React.useContext(CartContext);
+            return (
+                <div>
+                    <button data-testid="add-button" onClick={() => addToCart(testItem)}>
+                        Add Item
+                    </button>
+                    <div data-testid="cart-items">{cartItems.length}</div>
+                </div>
+            );
+        };
+
+        const { getByTestId } = render(
+            <CartProvider>
+                <TestComponent />
+            </CartProvider>
         );
 
-        expect(screen.getByText(/CartItems:/)).toBeInTheDocument();
+        await act(async () => {
+            fireEvent.click(getByTestId('add-button'));
+        });
 
-        const cartItemsTextElements = screen.queryAllByText(new RegExp(JSON.stringify(cartItems)));
-        expect(cartItemsTextElements.length).toBeGreaterThan(0);
-
-        expect(screen.getByText(/addToCart:/)).toBeInTheDocument();
-        expect(screen.getByText(/removeItem:/)).toBeInTheDocument();
-        expect(screen.getByText(/incrementItem:/)).toBeInTheDocument();
-        expect(screen.getByText(/decrementItem:/)).toBeInTheDocument();
+        expect(getByTestId('cart-items').textContent).toBe('1');
     });
 
-    test('calls setOpenSnackbar and setSnackbarMessage when addToCart is called', () => {
-        const addToCart = jest.fn();
-        const setOpenSnackbar = jest.fn();
-        const setSnackbarMessage = jest.fn();
-        const removeItem = jest.fn();
-        const incrementItem = jest.fn();
-        const decrementItem = jest.fn();
+    it('removes items from cart correctly', async () => {
+        const testItem = { id: 'test', name: 'Test Item', price: 10, quantity: 1 };
+        const TestComponent = () => {
+            const { addToCart, removeItem, cartItems } = React.useContext(CartContext);
+            return (
+                <div>
+                    <button data-testid="add-button" onClick={() => addToCart(testItem)}>
+                        Add Item
+                    </button>
+                    <button data-testid="remove-button" onClick={() => removeItem(testItem.id)}>
+                        Remove Item
+                    </button>
+                    <div data-testid="cart-items">{cartItems.length}</div>
+                </div>
+            );
+        };
 
-        render(
-            <CartContext.Provider value={{ addToCart, removeItem, incrementItem, decrementItem, setOpenSnackbar, setSnackbarMessage }}>
-                <MockComponent addToCart={addToCart} />
-            </CartContext.Provider>
+        const { getByTestId } = render(
+            <CartProvider>
+                <TestComponent />
+            </CartProvider>
         );
 
-        //const addToCartButton = screen.getByText(/Add to Cart/i);
+        await act(async () => {
+            fireEvent.click(getByTestId('add-button'));
+        });
 
-        //fireEvent.click(addToCartButton);
+        expect(getByTestId('cart-items').textContent).toBe('1');
 
-       // expect(addToCart).toHaveBeenCalled();
-        //expect(setOpenSnackbar).toHaveBeenCalledWith(true);
-        //expect(setSnackbarMessage).toHaveBeenCalledWith('Item added to cart');
+        await act(async () => {
+            fireEvent.click(getByTestId('remove-button'));
+        });
+
+        expect(getByTestId('cart-items').textContent).toBe('0');
     });
 
-    test('calls setCartItems and alert when removeItem is called', () => {
-        // const removeItem = jest.fn();
-        // const setCartItems = jest.fn();
-        // window.alert = jest.fn();
-        //
-        // render(
-        //     <CartContext.Provider value={{ removeItem, setCartItems }}>
-        //         <MockComponent />
-        //     </CartContext.Provider>
-        // );
-        //
-        // const { removeItem: removeItemMock } = screen.getByText(/removeItem/).nextSibling;
-        // fireEvent.click(removeItemMock);
-        //
-        // expect(removeItem).toHaveBeenCalled();
-        // expect(setCartItems).toHaveBeenCalled();
-        // expect(window.alert).toHaveBeenCalledWith('Item removed from cart');
+    it('increments and decrements item quantity correctly', async () => {
+        const testItem = { id: 'test', name: 'Test Item', price: 10, quantity: 1 };
+        const TestComponent = () => {
+            const { addToCart, incrementItem, decrementItem, cartItems } = React.useContext(CartContext);
+            const cartItem = cartItems.find((item) => item.id === testItem.id);
+            return (
+                <div>
+                    <button data-testid="add-button" onClick={() => addToCart(testItem)}>
+                        Add Item
+                    </button>
+                    <button data-testid="increment-button" onClick={() => incrementItem(testItem.id)}>
+                        Increment Quantity
+                    </button>
+                    <button data-testid="decrement-button" onClick={() => decrementItem(testItem.id)}>
+                        Decrement Quantity
+                    </button>
+                    <div data-testid="item-quantity">{cartItem ? cartItem.quantity : 0}</div>
+                </div>
+            );
+        };
+
+        const { getByTestId } = render(
+            <CartProvider>
+                <TestComponent />
+            </CartProvider>
+        );
+
+        await act(async () => {
+            fireEvent.click(getByTestId('add-button'));
+        });
+
+        expect(getByTestId('item-quantity').textContent).toBe('1');
+
+        await act(async () => {
+            fireEvent.click(getByTestId('increment-button'));
+        });
+
+        expect(getByTestId('item-quantity').textContent).toBe('2');
+
+        await act(async () => {
+            fireEvent.click(getByTestId('decrement-button'));
+        });
+
+        expect(getByTestId('item-quantity').textContent).toBe('1');
     });
 
-    test('calls setCartItems when incrementItem is called', () => {
-        // const incrementItem = jest.fn();
-        // const setCartItems = jest.fn();
-        //
-        // render(
-        //     <CartContext.Provider value={{ incrementItem, setCartItems }}>
-        //         <MockComponent />
-        //     </CartContext.Provider>
-        // );
-        //
-        // const { incrementItem: incrementItemMock } = screen.getByText(/incrementItem/).nextSibling;
-        // fireEvent.click(incrementItemMock);
-        //
-        // expect(incrementItem).toHaveBeenCalled();
-        // expect(setCartItems).toHaveBeenCalled();
+    it('increments quantity if item is already in cart', async () => {
+        const testItem = { id: 'test', name: 'Test Item', price: 10, quantity: 1 };
+        const TestComponent = () => {
+            const { addToCart, cartItems } = React.useContext(CartContext);
+            const cartItem = cartItems.find((item) => item.id === testItem.id);
+            return (
+                <div>
+                    <button data-testid="add-button" onClick={() => addToCart(testItem)}>
+                        Add Item
+                    </button>
+                    <div data-testid="item-quantity">{cartItem ? cartItem.quantity : 0}</div>
+                </div>
+            );
+        };
+
+        const { getByTestId } = render(
+            <CartProvider>
+                <TestComponent />
+            </CartProvider>
+        );
+
+        await act(async () => {
+            fireEvent.click(getByTestId('add-button'));
+            fireEvent.click(getByTestId('add-button'));
+        });
+
+        expect(getByTestId('item-quantity').textContent).toBe('3');
     });
 
-    test('calls setCartItems when decrementItem is called', () => {
-        // const decrementItem = jest.fn();
-        // const setCartItems = jest.fn();
+
+
+    it('fetches cart items from Firebase', async () => {
+        // const dummyItems = [{ id: 'item1', quantity: 1 }];
+        // firestore.getDocs.mockResolvedValueOnce({
+        //     forEach: (callback) => dummyItems.forEach(callback),
+        // });
         //
-        // render(
-        //     <CartContext.Provider value={{ decrementItem, setCartItems }}>
-        //         <MockComponent />
-        //     </CartContext.Provider>
-        // );
+        // const { result, waitForNextUpdate } = renderHook(() => React.useContext(CartContext), {
+        //     wrapper: CartProvider,
+        // });
         //
-        // const { decrementItem: decrementItemMock } = screen.getByText(/decrementItem/).nextSibling;
-        // fireEvent.click(decrementItemMock);
+        // act(() => {
+        //     result.current.getCartItems();
+        // });
         //
-        // expect(decrementItem).toHaveBeenCalled();
-        // expect(setCartItems).toHaveBeenCalled();
+        // await waitForNextUpdate();
+        //
+        // expect(result.current.cartItems).toEqual(dummyItems);
     });
 
 
 
 });
-
-// A mock component to access the CartContext values for testing
-const MockComponent = () => {
-    const { cartItems, addToCart, removeItem, incrementItem, decrementItem, setCa } = React.useContext(CartContext);
-
-    return (
-        <div>
-            <p>CartItems: {JSON.stringify(cartItems)}</p>
-            <p>addToCart: {addToCart.mock.calls.length}</p>
-            <p>removeItem: {removeItem.mock.calls.length}</p>
-            <p>incrementItem: {incrementItem.mock.calls.length}</p>
-            <p>decrementItem: {decrementItem.mock.calls.length}</p>
-        </div>
-    );
-};
-
 
