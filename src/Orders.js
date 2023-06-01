@@ -34,7 +34,7 @@ export default function Orders() {
   //***************************Test variables*************************************
 
   const userID = sessionStorage.getItem('loggedInUserID')
-  const prodID = "WLBntFH5EyKNCXezD4SV"; // SMEG kettle
+  //const prodID = "WLBntFH5EyKNCXezD4SV"; // SMEG kettle
   //const prodID = "9H6OJMKeExtZQE25v50m"; // iPhone
   //const userID = "N8UIq9zUVYpIqY9TaqHD" // Kaji Katame
 
@@ -55,7 +55,7 @@ export default function Orders() {
                     <p>Price: R{order.price}</p>
 
                     <AddReview
-                      prodID = {prodID}
+                      prodID = {order.id}
                       userID = {userID /*loggedInUserID*/} />
                   </div>
                 </div>
