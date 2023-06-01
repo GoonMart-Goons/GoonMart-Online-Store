@@ -4,6 +4,8 @@ import { CartProvider, CartContext } from './CartContext';
 import { act } from 'react-dom/test-utils';
 import '@testing-library/jest-dom/extend-expect'; // import jest-dom for toBeInTheDocument()
 const projectId = 'my-test-project'; // Use a unique string.
+import userEvent from '@testing-library/user-event';
+
 
 
 

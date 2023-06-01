@@ -19,7 +19,6 @@ describe('CategoryList', () => {
         const { getByText } = render(<CategoryList />);
         const electronicsCategory = getByText('Electronics');
         fireEvent.click(electronicsCategory);
-        // You can use something like Jest's mock functions to check that filterProdsByCategory was called correctly
-        // You can also check that the correct products are displayed
+
     });
 });

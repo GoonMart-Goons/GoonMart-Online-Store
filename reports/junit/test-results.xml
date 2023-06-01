@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="5" failures="0" errors="0" time="1.528">
-  <testsuite name="CartProvider" errors="0" failures="0" skipped="0" timestamp="2023-06-01T20:19:26" time="1.176" tests="5">
-    <testcase classname="CartProvider adds items to cart correctly" name="CartProvider adds items to cart correctly" time="0.264">
+<testsuites name="jest tests" tests="4" failures="0" errors="0" time="2.417">
+  <testsuite name="Checkout component" errors="0" failures="0" skipped="0" timestamp="2023-06-01T21:33:32" time="2.025" tests="4">
+    <testcase classname="Checkout component submits the form and adds the order to the database" name="Checkout component submits the form and adds the order to the database" time="0.148">
     </testcase>
-    <testcase classname="CartProvider removes items from cart correctly" name="CartProvider removes items from cart correctly" time="0.014">
+    <testcase classname="Checkout component displays error messages for invalid form inputs" name="Checkout component displays error messages for invalid form inputs" time="0.019">
     </testcase>
-    <testcase classname="CartProvider increments and decrements item quantity correctly" name="CartProvider increments and decrements item quantity correctly" time="0.021">
+    <testcase classname="Checkout component redirects to the &quot;Orders&quot; page after a successful purchase" name="Checkout component redirects to the &quot;Orders&quot; page after a successful purchase" time="0.009">
     </testcase>
-    <testcase classname="CartProvider increments quantity if item is already in cart" name="CartProvider increments quantity if item is already in cart" time="0.008">
-    </testcase>
-    <testcase classname="CartProvider fetches cart items from Firebase" name="CartProvider fetches cart items from Firebase" time="0">
+    <testcase classname="addOrderToDB function posts an order to the database" name="addOrderToDB function posts an order to the database" time="1.1">
     </testcase>
   </testsuite>
 </testsuites>
