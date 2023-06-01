@@ -6,20 +6,23 @@ import MuiAlert from '@mui/material/Alert';
 import { db } from './config/Config';
 import { doc, setDoc, getDocs, collection, deleteDoc, addDoc } from 'firebase/firestore';
 //Logged in user's ID
-import { loggedInUserID } from './Login';
+// import { loggedInUserID } from './Login';
 
 export const CartContext = createContext();
 
 async function addCartItemToDB(item){
   try{
+    const loggedInUserID = sessionStorage.getItem('loggedInUserID')
     const cartItemDocRef = doc(db, `Users/${loggedInUserID}/Cart`, `${item.id}${loggedInUserID}`)
     await setDoc(cartItemDocRef, item)
+    console.log("Successfully added item[s] to cart:", loggedInUserID)
   } catch(error){
     console.error("Failed to add item to cart:", error)
   }
 }
 
 async function fetchCartItemsFromDB(){
+  const loggedInUserID = sessionStorage.getItem('loggedInUserID')
   console.log("cart id:", loggedInUserID)
   try{
     const cartSnapshot = await getDocs(collection(db, `Users/${loggedInUserID}/Cart`))
@@ -27,6 +30,7 @@ async function fetchCartItemsFromDB(){
     cartSnapshot.forEach((doc) => {
       DBcartItems.push(doc.data())
     })
+    console.log("Successfully got item[s] from cart:", loggedInUserID)
     return DBcartItems
   } catch(error){
     console.error("Error fetching cart items from database:", error) 
@@ -36,13 +40,14 @@ async function fetchCartItemsFromDB(){
 
 async function addOrderToDB(cartItems){
   try{
+    const loggedInUserID = sessionStorage.getItem('loggedInUserID')
     const ordersRef = collection(db, `Users/${loggedInUserID}/Orders`)
     const order = {
       cartItems,
       time: new Date().toISOString()
     }
     await addDoc(ordersRef, order)
-    console.log("Order posted successfully.")
+    console.log("Successfully posted order:", loggedInUserID)
   } catch(error){
     console.log("Error posting order:", error)
   }
@@ -50,13 +55,14 @@ async function addOrderToDB(cartItems){
 
 async function delCartFromDB(){
   try{
+    const loggedInUserID = sessionStorage.getItem('loggedInUserID')
     const cartRef = collection(db, `Users/${loggedInUserID}/Cart`)
     const qSnap = await getDocs(cartRef)
 
     qSnap.forEach(async (doc) => {
       await deleteDoc(doc(doc.id))
     })
-    console.error("Deleted cart.")
+    console.log("Successfully deleted cart:", loggedInUserID)
   } catch(error){
     console.error("Error trying to delete cart:", error)
   }
