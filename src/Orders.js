@@ -4,10 +4,29 @@ import OrdersNavBar from './OrdersNavBar';
 import AddReview from './AddReview';
 
 import { CartContext } from './CartContext';
-import { userCartItems } from './Cart';
+
+import { db } from './config/Config';
+import { collection, getDocs } from '@firebase/firestore';
 
 const loggedInUserID = sessionStorage.getItem('loggedInUserID')
 // import { loggedInUserID } from './Login';
+
+async function getOrdersFromDB(userID){
+  try{
+    const ordersRef = collection(db, `Users/${userID}/Orders`)
+    const qSnapshot = await getDocs(ordersRef)
+    
+    qSnapshot.forEach((doc) => {
+      for(const item of doc.data().cartItems){
+        console.log("THING", item)
+      }
+    })
+    console.log("Items from orders:", userID)
+    console.log("This what you want?", qSnapshot.docs[0].data().cartItems)
+  } catch(error){
+    console.error("Error fetching orders:", error)
+  }
+}
 
 export default function Orders() {
   // *****************Reviews stuff -- Maybe should be in a diff file, but oh well**********************
@@ -17,11 +36,11 @@ export default function Orders() {
   //   { id: '2', name: 'Product Two', price: 20.99, quantity: 1, image: '/path/to/image2.jpg' },
   //   { id: '3', name: 'Product Three', price: 30.99, quantity: 3, image: '/path/to/image3.jpg' },
   // ]);
-  const { cartItems, getCartItems } = useContext(CartContext);
+  const { cartItems, getOrders } = useContext(CartContext);
   // const [dummyOrders, setDummyOrders] = useState([]);
 
   useEffect(() => {
-    getCartItems()
+    getOrders()
   }, [])
   console.log("CART:", cartItems)
 
@@ -48,7 +67,7 @@ export default function Orders() {
             {/* ORDER ITEMS HERE */}
             {cartItems.map((order) => (
                 <div key={order.id} className="order-item">
-                  <img src={order.image} alt={order.name} />
+                  {/* <img src={order.image} alt={order.name} /> */}
                   <div className="order-item-info">
                     <h2>{order.name}</h2>
                     <p>Quantity: {order.quantity}</p>

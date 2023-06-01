@@ -5,6 +5,7 @@ import MuiAlert from '@mui/material/Alert';
 //Firebase
 import { db } from './config/Config';
 import { doc, setDoc, getDocs, collection, deleteDoc, addDoc } from 'firebase/firestore';
+
 //Logged in user's ID
 // import { loggedInUserID } from './Login';
 
@@ -57,6 +58,26 @@ async function delCartFromDB(){
       await deleteDoc(doc(doc.id))
     })
   } catch(error){
+  }
+}
+
+async function getOrdersFromDB(){
+  try{
+    const loggedInUserID = sessionStorage.getItem('loggedInUserID')
+    const ordersRef = collection(db, `Users/${loggedInUserID}/Orders`)
+    const qSnapshot = await getDocs(ordersRef)
+    const DBorders = []
+    
+    qSnapshot.forEach((doc) => {
+      for(const item of doc.data().cartItems){
+        DBorders.push(item)
+      }
+    })
+
+    console.log("Items from orders:", loggedInUserID)
+    return DBorders
+  } catch(error){
+    console.error("Error fetching orders:", error)
   }
 }
 
@@ -115,6 +136,11 @@ export const CartProvider = (props) => {
     setCartItems(items)
   }
 
+  const getOrders = async () => {
+    const orders = await getOrdersFromDB()
+    setCartItems(orders)
+  }
+
   const addToOrders = async () => {
     addOrderToDB(cartItems)
     delAllCartItems()
@@ -161,7 +187,8 @@ export const CartProvider = (props) => {
         setCartItems,
         getCartItems,
         delAllCartItems,
-        addToOrders
+        addToOrders,
+        getOrders
       }}
     >
       {props.children}
