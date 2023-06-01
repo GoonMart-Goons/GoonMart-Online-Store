@@ -5,7 +5,7 @@ import MuiAlert from '@mui/material/Alert';
 //Firebase
 import { db } from './config/Config';
 import { doc, setDoc, getDocs, collection, deleteDoc, addDoc } from 'firebase/firestore';
-import { async } from 'q';
+
 //Logged in user's ID
 // import { loggedInUserID } from './Login';
 

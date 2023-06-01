@@ -67,7 +67,7 @@ export default function Orders() {
             {/* ORDER ITEMS HERE */}
             {cartItems.map((order) => (
                 <div key={order.id} className="order-item">
-                  <img src={order.image} alt={order.name} />
+                  {/* <img src={order.image} alt={order.name} /> */}
                   <div className="order-item-info">
                     <h2>{order.name}</h2>
                     <p>Quantity: {order.quantity}</p>
