@@ -80,10 +80,10 @@ export default function Register() {
               localStorage.setItem('message', data.email);
               setOpenSnackbar(true);
                 //console.log("Added successfully")
-                setSnackbarMessage('Registered successfully! Welcome to GoonMart');
+                setSnackbarMessage('Registered successfully! Welcome to GoonMart. Please sign in');
                 setTimeout(() => {
-                  navigate('/InnerHomepage'); // navigate to the HOME page
-                }, 2000); //delay for 2 seconds (2000 milliseconds)
+                  navigate('/login'); // navigate to the HOME page
+                }, 4000); //delay for 4 seconds (4000 milliseconds)
             }).catch((error) => {
               //console.log("Failed to register: ", error)
               setOpenSnackbar(true);
