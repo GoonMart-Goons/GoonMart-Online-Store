@@ -20,7 +20,7 @@ import { db } from './config/Config';
 import { collection, addDoc, getDocs, deleteDoc, doc } from 'firebase/firestore';
 //import {u} from './AddressInfo'
 
-export async function addOrderToDB(cartItems){
+async function addOrderToDB(cartItems){
   const loggedInUserID = sessionStorage.getItem('loggedInUserID')
   console.log("ID FROM ADD ORDER:", loggedInUserID)
   try{
@@ -46,7 +46,9 @@ async function delCartFromDB(){
     qSnapshot.forEach(async (doc) => {
       await deleteDoc(doc.ref)
     })
+    console.log("Cart deleted:", loggedInUserID)
   } catch(error){
+    console.error("Error deleting cart:", error)
   }
 }
 
@@ -91,9 +93,9 @@ const Checkout = (props) => {
   console.log("CURR ITEMS:", cartItems)
 
   const location = useLocation();
-  // console.log(location)
-  // console.log(props)
-  // console.log("What you need to see")
+  console.log(location)
+  console.log(props)
+  console.log("What you need to see")
   //console.log(u)
   //const { cartDetails, total } = location.state;
     //Snackbar code
@@ -238,31 +240,25 @@ const Checkout = (props) => {
 
                   <h2>Card Information</h2>
 
-                  <label className="form-label" htmlFor="cardNum">Card number</label>
-                  <input className="form-input" id="cardNum" name="cardNum" type="text" placeholder="XXXXXXXXXXXXXXXX"
-                         value=""/>
-
+                  <label className="form-label" htmlFor = "cardNum">Card number</label>
+                  <input className="form-input" type="name"  name="cardNum" {...register("cardNum")} placeholder='XXXXXXXXXXXXXXXX' value = {cardNum}
                   onChange = {(e) => setCardNum(e.target.value)} />
                   {errors.cardNum && <error className="form-error">{errors.cardNum.message}</error>}
 
-                  <label className="form-label" htmlFor="cardName">Cardholder Name</label>
-                  <input className="form-input" id="cardName" name="cardName" type="text" placeholder="Danny Fenton"
-                         value=""/>
-
-                  onChange = {(e) => setCardName(e.target.value)} />
+                    <label className="form-label" htmlFor = "cardName">Cardholder Name</label>
+                    <input className="form-input" type="name"  name="cardName" {...register("cardName")} placeholder='Danny Fenton' value = {cardName}
+                    onChange = {(e) => setCardName(e.target.value)} />
                     {errors.cardName && <error className="form-error">{errors.cardName.message}</error>}
+                    
+                    <label className="form-label" htmlFor = "cardDate">Expiration date</label>
+                    <input className="form-input" type="name"  name="cardDate" {...register("cardDate")} placeholder='MM/YY' value = {cardDate}
+                    onChange = {(e) => setCardDate(e.target.value)} />
+                    {errors.cardDate && <error className="form-error">{errors.cardDate.message}</error>}
 
-                  <label className="form-label" htmlFor="cardDate">Expiration date</label>
-                  <input className="form-input" id="cardDate" name="cardDate" type="text" placeholder="MM/YY" value={cardDate}
-                         onChange={(e) => setCardDate(e.target.value)} />
-
-                  {errors.cardDate && <error className="form-error">{errors.cardDate.message}</error>}
-
-                  <label className="form-label" htmlFor="CVV">CVV</label>
-                  <input className="form-input" id="CVV" name="CVV" type="text" placeholder="" value={CVV}
-                         onChange={(e) => setCardCVV(e.target.value)} />
-
-                  {errors.CVV && <error className="form-error">{errors.CVV.message}</error>}
+                    <label className="form-label" htmlFor = "CVV">CVV</label>
+                    <input className="form-input" type="name"  name="CVV" {...register("CVV")} placeholder='' value = {CVV}
+                    onChange = {(e) => setCardCVV(e.target.value)} />
+                    {errors.CVV && <error className="form-error">{errors.CVV.message}</error>}
                     <button type="submit" className="form-btn">Purchase</button>
                 </form>
             </div>
